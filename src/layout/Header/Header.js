@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import {
-  Box,
   AppBar,
   Toolbar,
   Typography,
   Container,
   Divider,
   LinearProgress,
-  Link
+  Link,
+  IconButton
 } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 import { useLoadingContext } from '../../contexts/LoadingContext'
+import Menu from '../../components/Menu'
 
 export const Logo = () => {
   return (
@@ -32,33 +34,28 @@ export const Logo = () => {
 
 export const Header = () => {
   const { isLoading } = useLoadingContext()
+  const [isMenuOpen, setMenuOpen] = useState(false)
+
+  const toggleMenu = (isOpen) => {
+    setMenuOpen(isOpen)
+  }
+
   return (
-    <AppBar position='sticky' elevation={0} enableColorOnDark>
-      <Container>
-        <Toolbar>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
-              flexDirection: 'row',
-              alignItems: 'center'
-            }}
-          >
-            <Logo />
-          </Box>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'flex', md: 'none' },
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <Logo />
-          </Box>
-        </Toolbar>
-      </Container>
+    <AppBar position='sticky' elevation={0}>
+      <Toolbar>
+        <Menu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+        <IconButton
+          color='inherit'
+          aria-label='Open menu'
+          onClick={() => toggleMenu(true)}
+          edge='start'
+        >
+          <MenuIcon />
+        </IconButton>
+        <Container>
+          <Logo />
+        </Container>
+      </Toolbar>
       <Divider />
       {isLoading && <LinearProgress color='primary' />}
     </AppBar>
