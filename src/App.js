@@ -4,6 +4,7 @@ import { Box, Container } from '@mui/material'
 import { Layout } from './layout/Layout'
 import { Theme } from './theme/Theme'
 import { Home } from './pages/HomePage/Home'
+import Login from './pages/Login/Login'
 import { NoMatchRoute } from './pages/NoMatchRoutePage/NoMatchRoute'
 import { LoadingContextProvider } from './contexts/LoadingContext'
 
@@ -12,7 +13,8 @@ export const App = () => {
     <LoadingContextProvider>
       <Router>
         <Theme>
-          <Layout>
+          <Login/>
+          {/* <Layout>
             <Container>
               <Box sx={{ py: 4 }}>
                 <Switch>
@@ -27,7 +29,7 @@ export const App = () => {
                 </Switch>
               </Box>
             </Container>
-          </Layout>
+          </Layout> */}
         </Theme>
       </Router>
     </LoadingContextProvider>
