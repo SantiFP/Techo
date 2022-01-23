@@ -1,35 +1,61 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Box, Container } from '@mui/material'
 import { Layout } from './layout/Layout'
 import { Theme } from './theme/Theme'
 import { Home } from './pages/HomePage/Home'
 import { NoMatchRoute } from './pages/NoMatchRoutePage/NoMatchRoute'
-import { LoadingContextProvider } from './contexts/LoadingContext'
+import { Years } from './pages/YearsPage/Years'
+import { Temporalities } from './pages/TemporalitiesPage/Temporalities'
+import { Types } from './pages/TypesPage/Types'
+import { Pillars } from './pages/PillarsPage/Pillars'
 
 export const App = () => {
   return (
-    <LoadingContextProvider>
-      <Router>
-        <Theme>
-          <Layout>
-            <Container>
-              <Box sx={{ py: 4 }}>
-                <Switch>
-                  <Route
-                    exact
-                    path='/'
-                    component={Home}
-                  />
-                  <Route path='*'>
-                    <NoMatchRoute />
-                  </Route>
-                </Switch>
-              </Box>
-            </Container>
-          </Layout>
-        </Theme>
-      </Router>
-    </LoadingContextProvider>
+    <Router>
+      <Theme>
+        <Layout>
+          <Switch>
+            <Route
+              exact
+              path='/'
+              component={Home}
+            />
+            <Route
+              exact
+              path='/years'
+              component={Years}
+            />
+            <Route
+              exact
+              path='/temporalities'
+              component={Temporalities}
+            />
+            <Route
+              exact
+              path='/types'
+              component={Types}
+            />
+            <Route
+              exact
+              path='/pillars'
+              component={Pillars}
+            />
+            <Route
+              exact
+              path='/indicators'
+              component={NoMatchRoute}
+            />
+            <Route
+              exact
+              path='/spotlights'
+              component={NoMatchRoute}
+            />
+            <Route path='*'>
+              <NoMatchRoute />
+            </Route>
+          </Switch>
+        </Layout>
+      </Theme>
+    </Router>
   )
 }
