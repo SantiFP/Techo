@@ -15,15 +15,15 @@ export const theme = createTheme({
   typography: {
     fontFamily: "'Work Sans', 'Arial', sans-serif",
     h1: {
-      fontSize: '60px',
+      fontSize: '50px',
       fontWeight: 'bold'
     },
     h2: {
-      fontSize: '45px',
+      fontSize: '20px',
       fontWeight: 'bold'
     },
     subtitle1: {
-      fontSize: '39px',
+      fontSize: '30px',
       fontWeight: 'light'
     },
     body1: {
