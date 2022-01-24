@@ -14,13 +14,18 @@ export const App = () => {
   return (
     <Router>
       <Theme>
+        <Route
+          exact
+          path='/'
+          component={Login}
+        />
         <Layout>
           <Switch>
             <Route
-              exact
-              path='/'
-              component={Home}
-            />
+                exact
+                path='/home'
+                component={Home}
+              />
             <Route
               exact
               path='/years'
