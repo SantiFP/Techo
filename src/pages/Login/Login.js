@@ -44,7 +44,7 @@ const Login = () => {
           </Typography>
 
           <GoogleLogin
-            clientId="183061132500-m1kk1463gfem9e4rmqs4ucbgtqes6urn.apps.googleusercontent.com"
+            clientId="192806135807-ecaap9fck05fg52s6dja4mu3087tkrtt.apps.googleusercontent.com"
             // buttonText="Ingresar con el correo de google"
             render={renderProps => (
               <Button
