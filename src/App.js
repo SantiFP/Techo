@@ -13,7 +13,7 @@ export const App = () => {
     <LoadingContextProvider>
       <Router>
         <Theme>
-          <Login/>
+          <Login />
           {/* <Layout>
             <Container>
               <Box sx={{ py: 4 }}>

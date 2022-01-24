@@ -22,9 +22,21 @@ export const theme = createTheme({
       fontSize: '45px',
       fontWeight: 'bold'
     },
+    h5: {
+      fontSize: '16px',
+      fontWeight: 'bold'
+    },
+    h6: {
+      fontSize: '12px',
+      fontWeight: 500
+    },
     subtitle1: {
       fontSize: '39px',
       fontWeight: 'light'
+    },
+    subtitle2: {
+      fontSize: '20px',
+      fontWeight: 600
     },
     body1: {
       fontSize: '18px',
