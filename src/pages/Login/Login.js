@@ -1,19 +1,25 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login'
 import { UseSessionContext } from '../../context/sessionContext'
+import { Redirect } from 'react-router-dom'
 import { Container, Stack, Button, Typography, Box } from '@mui/material'
 import IMAGE_LOGIN from '../../assets/img/imagen-login.png'
 import TECH_LOGO from '../../assets/img/logo-login.png'
 import GoogleIcon from '@mui/icons-material/Google'
 
+
 const Login = () => {
   const {setProfileObj} = UseSessionContext()
-
-  const responseGoogle = (response) => {
-    setProfileObj(response)
+ 
+  const responseGoogle = async (response)  => {
+    await setProfileObj(response)
     console.log(response);
     console.log(response.profileObj)
+    if(localStorage.getItem('profile') !== '{}' || localStorage.getItem('profile') !== null){
+      return <Redirect to='/home'/>
+    }
   }
+ 
   return (
     <Container
       disableGutters
