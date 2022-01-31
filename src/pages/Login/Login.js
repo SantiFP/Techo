@@ -1,11 +1,16 @@
+import React from 'react'
 import GoogleLogin from 'react-google-login'
+import { UseSessionContext } from '../../context/sessionContext'
 import { Container, Stack, Button, Typography, Box } from '@mui/material'
 import IMAGE_LOGIN from '../../assets/img/imagen-login.png'
 import TECH_LOGO from '../../assets/img/logo-login.png'
 import GoogleIcon from '@mui/icons-material/Google'
 
 const Login = () => {
+  const {setProfileObj} = UseSessionContext()
+
   const responseGoogle = (response) => {
+    setProfileObj(response)
     console.log(response);
     console.log(response.profileObj)
   }

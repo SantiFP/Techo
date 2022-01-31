@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import SessionContextProvider, { UseSessionContext }  from './context/sessionContext.js'
 import { Layout } from './layout/Layout'
 import { Theme } from './theme/Theme'
 import { Home } from './pages/HomePage/Home'
@@ -12,13 +12,18 @@ import { Pillars } from './pages/PillarsPage/Pillars'
 
 export const App = () => {
   return (
+    <SessionContextProvider>
     <Router>
       <Theme>
-        <Route
-          exact
-          path='/'
-          component={Login}
-        />
+        {localStorage.getItem('profile') === '{}' || localStorage.getItem('profile') === null  ? 
+                            <Route
+                              exact
+                              path='/'
+                              component={Login}
+                            />
+                            :
+                            <Redirect to='/home'/>
+      }
         <Layout>
           <Switch>
             <Route
@@ -63,5 +68,6 @@ export const App = () => {
         </Layout>
       </Theme>
     </Router>
+    </SessionContextProvider>
   )
 }
