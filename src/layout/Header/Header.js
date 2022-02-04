@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import {
   Box,
@@ -8,9 +8,9 @@ import {
   Link,
   Button
 } from '@mui/material'
-import TechoLogo from '../../assets/images/negative_logo.png'
+import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import { Submenu } from '../../components/Submenu'
+import Submenu from 'components/Submenu'
 import HomeIcon from '@mui/icons-material/Home'
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
@@ -20,6 +20,8 @@ import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak'
 import EqualizerIcon from '@mui/icons-material/Equalizer'
 import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import useUser from 'hooks/useUser'
+import UserMenu from 'components/UserMenu'
 
 export const Logo = () => {
   return (
@@ -96,10 +98,11 @@ const menu = [
 
 ]
 
-export const Header = () => {
+export default function Header () {
   const [anchorEl, setAnchorEl] = useState(null)
   const [sublinks, setSublinks] = useState([])
   const isMenuOpen = Boolean(anchorEl)
+  const { isLogged } = useUser()
 
   const handleClick = (event, sublinks) => {
     setAnchorEl(anchorEl ? null : event.currentTarget)
@@ -112,7 +115,7 @@ export const Header = () => {
 
   return (
     <AppBar position='sticky' elevation={0}>
-      <Container>
+      <Container maxWidth={false}>
         <Toolbar disableGutters>
           <Logo />
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 5 }}>
@@ -136,8 +139,13 @@ export const Header = () => {
               sublinks={sublinks}
             />
           </Box>
+
+          {isLogged
+            ? <UserMenu />
+            : null}
         </Toolbar>
       </Container>
+
     </AppBar>
   )
 }

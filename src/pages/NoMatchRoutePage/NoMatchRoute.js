@@ -1,9 +1,8 @@
-import React from 'react'
 import { Typography, Button, Box, Stack } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
-import Error404 from '../../assets/images/error404.svg'
+import Error404 from 'assets/images/error404.svg'
 
-export const NoMatchRoute = () => {
+export default function NoMatchRoute () {
   return (
     <>
       <Stack justifyContent='center' alignItems='center'>

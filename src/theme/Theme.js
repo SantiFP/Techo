@@ -1,4 +1,3 @@
-import React from 'react'
 import { ThemeProvider, StyledEngineProvider, CssBaseline } from '@mui/material'
 import { createTheme } from '@mui/material/styles'
 
@@ -22,14 +21,6 @@ export const theme = createTheme({
       fontSize: '20px',
       fontWeight: 'bold'
     },
-    h5: {
-      fontSize: '16px',
-      fontWeight: 'bold'
-    },
-    h6: {
-      fontSize: '12px',
-      fontWeight: 500
-    },
     subtitle1: {
       fontSize: '30px',
       fontWeight: 'light'
@@ -45,7 +36,7 @@ export const theme = createTheme({
   }
 })
 
-export const Theme = ({ children }) => {
+export default function Theme ({ children }) {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>

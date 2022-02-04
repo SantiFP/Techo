@@ -1,5 +1,4 @@
-import React from 'react'
-import { CustomDataGrid } from '../../components/CustomDataGrid'
+import CustomDataGrid from 'components/CustomDataGrid'
 
 const columns = [
   { id: 1, field: 'year', headerName: 'Año', flex: 1 },
@@ -15,6 +14,6 @@ const rows = [
   { id: 6, year: 2017, status: false }
 ]
 
-export const Years = () => {
+export default function Years () {
   return <CustomDataGrid title='Años' columns={columns} rows={rows} isLoading={false} />
 }

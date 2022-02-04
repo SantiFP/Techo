@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const Submenu = ({ isMenuOpen, anchorEl, onHandleClose, sublinks }) => {
+export default function Submenu ({ isMenuOpen, anchorEl, onHandleClose, sublinks }) {
   const classes = useStyles()
   return (
     <Popover

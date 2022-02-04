@@ -1,5 +1,4 @@
-import React from 'react'
-import { CustomDataGrid } from '../../components/CustomDataGrid'
+import CustomDataGrid from 'components/CustomDataGrid'
 
 const columns = [
   { id: 1, field: 'types', headerName: 'Tipo', flex: 1 },
@@ -13,6 +12,6 @@ const rows = [
   { id: 4, types: 'Último', status: true }
 ]
 
-export const Types = () => {
+export default function Types () {
   return <CustomDataGrid title='Tipos' columns={columns} rows={rows} isLoading={false} />
 }

@@ -1,25 +1,30 @@
-import React from 'react'
+import { useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
-import { UseSessionContext } from '../../context/sessionContext'
-import { Redirect } from 'react-router-dom'
 import { Container, Stack, Button, Typography, Box } from '@mui/material'
-import IMAGE_LOGIN from '../../assets/img/imagen-login.png'
-import TECH_LOGO from '../../assets/img/logo-login.png'
+import leftImageLogin from 'assets/images/leftImage_login.png'
+import TechLogo from 'assets/images/rgb_logo.png'
 import GoogleIcon from '@mui/icons-material/Google'
+import useUser from 'hooks/useUser'
 
+const CLIENT_ID = '62146245264-9e4e46ckj012g1jfscn1kf03r7qkkdqs.apps.googleusercontent.com'
 
-const Login = () => {
-  const {setProfileObj} = UseSessionContext()
- 
-  const responseGoogle = async (response)  => {
-    await setProfileObj(response)
-    console.log(response);
-    console.log(response.profileObj)
-    if(localStorage.getItem('profile') !== '{}' || localStorage.getItem('profile') !== null){
-      return <Redirect to='/home'/>
-    }
+export default function Login () {
+  const { isLogged, login } = useUser()
+  const history = useHistory()
+
+  useEffect(() => {
+    if (isLogged) history.push('/home')
+  }, [isLogged, history])
+
+  const onLoginSuccess = (res) => {
+    login(res.profileObj)
   }
- 
+
+  const onLoginFailure = (res) => {
+    console.error('Login failed:', res)
+  }
+
   return (
     <Container
       disableGutters
@@ -28,7 +33,7 @@ const Login = () => {
     >
       <Box
         component='img'
-        src={IMAGE_LOGIN}
+        src={leftImageLogin}
         sx={{ minHeight: '100vh', maxWidth: '50%', objectFit: 'cover' }}
       />
 
@@ -36,7 +41,7 @@ const Login = () => {
         <Stack spacing={4} justifyContent='center' alignItems='center' flexGrow='1'>
           <Box
             component='img'
-            src={TECH_LOGO}
+            src={TechLogo}
             sx={{
               width: 435,
               height: 'auto'
@@ -55,41 +60,30 @@ const Login = () => {
           </Typography>
 
           <GoogleLogin
-            clientId="192806135807-ecaap9fck05fg52s6dja4mu3087tkrtt.apps.googleusercontent.com"
-            // buttonText="Ingresar con el correo de google"
+            clientId={CLIENT_ID}
             render={renderProps => (
               <Button
-              onClick={renderProps.onClick} 
-              disabled={renderProps.disabled}
-              startIcon={<GoogleIcon />}
-              variant='contained'
-              href='https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=195002437870-rp8bdf09m6uaan83vr7g9gs7cpalavsd.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Flogin.techo.org&state&scope=email&approval_prompt=auto'
-              disableElevation
-            >
-              Ingresar con el correo de google
-            </Button>
+                onClick={() => renderProps.onClick()}
+                disabled={renderProps.disabled}
+                startIcon={<GoogleIcon />}
+                variant='contained'
+                disableElevation
+              >
+                Ingresar con el correo de google
+              </Button>
             )}
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={'single_host_origin'}
+            onSuccess={onLoginSuccess}
+            onFailure={onLoginFailure}
+            cookiePolicy='single_host_origin'
           />
-
-          {/* <Button
-            startIcon={<GoogleIcon />}
-            variant='contained'
-            href='https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=195002437870-rp8bdf09m6uaan83vr7g9gs7cpalavsd.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Flogin.techo.org&state&scope=email&approval_prompt=auto'
-            disableElevation
-          >
-            Ingresar con el correo de google
-          </Button> */}
-
         </Stack>
         <Typography
           color='primary'
-          variant='h6'
+          variant='overline'
           sx={{
             textTransform: 'uppercase',
-            mb: 2
+            mb: 2,
+            fontWeight: 500
           }}
         >
           Copyright Techo © 2018-2021
@@ -98,5 +92,3 @@ const Login = () => {
     </Container>
   )
 }
-
-export default Login

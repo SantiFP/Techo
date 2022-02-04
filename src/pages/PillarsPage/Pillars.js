@@ -1,5 +1,4 @@
-import React from 'react'
-import { CustomDataGrid } from '../../components/CustomDataGrid'
+import CustomDataGrid from 'components/CustomDataGrid'
 
 const columns = [
   { id: 1, field: 'pillars', headerName: 'Pilar', flex: 1 },
@@ -14,6 +13,6 @@ const rows = [
   { id: 5, pillars: 'RMI Legal', status: true }
 ]
 
-export const Pillars = () => {
+export default function Pillars () {
   return <CustomDataGrid title='Pilares' columns={columns} rows={rows} isLoading={false} />
 }

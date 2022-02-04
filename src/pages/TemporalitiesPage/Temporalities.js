@@ -1,5 +1,4 @@
-import React from 'react'
-import { CustomDataGrid } from '../../components/CustomDataGrid'
+import CustomDataGrid from 'components/CustomDataGrid'
 
 const columns = [
   { id: 1, field: 'temporality', headerName: 'Temporalidad', flex: 1 },
@@ -13,6 +12,6 @@ const rows = [
   { id: 4, temporality: 'Trimestal', status: true }
 ]
 
-export const Temporalities = () => {
+export default function Temporalities () {
   return <CustomDataGrid title='Temporalidades' columns={columns} rows={rows} isLoading={false} />
 }

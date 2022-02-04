@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Typography,
   LinearProgress,
@@ -22,8 +22,9 @@ import PaginationItem from '@mui/material/PaginationItem'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import AddIcon from '@mui/icons-material/Add'
-import { GRID_DEFAULT_LOCALE_TEXT } from '../i18n/spanish/DataGrid'
-import AddModal from './AddModal'
+import { GRID_DEFAULT_LOCALE_TEXT } from 'i18n/spanish/DataGrid'
+import AddDialog from 'components/AddDialog'
+import DialogDetails from 'components/DialogDetails'
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   border: 0,
@@ -72,6 +73,9 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   },
   '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus': {
     outline: 'none'
+  },
+  '& .MuiDataGrid-row': {
+    cursor: 'pointer'
   }
 }))
 
@@ -134,20 +138,28 @@ const actions = {
   ]
 }
 
-export const CustomDataGrid = ({ title, rows, columns, isLoading }) => {
-  const [headers, setHeaders] = useState(columns)
+export default function CustomDataGrid ({ title, rows, columns, isLoading }) {
+  const [headers] = useState([...columns, actions])
   const [isOpenModal, setOpenModal] = useState(false)
+  const [isOpenModalDetails, setOpenModalDetails] = useState(false)
+  const [indicatorDetails, setIndicatorDetails] = useState({})
 
   const handleOpenModal = () => setOpenModal(true)
   const handleCloseModal = () => setOpenModal(false)
 
-  useEffect(() => {
-    setHeaders([...headers, actions])
-  }, [])
+  const handleOpenModalDetails = (indicator) => {
+    setIndicatorDetails(indicator)
+    setOpenModalDetails(true)
+  }
+  const handleCloseModalDetails = () => {
+    setIndicatorDetails({})
+    setOpenModalDetails(false)
+  }
 
   return (
     <>
-      <AddModal isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />
+      <DialogDetails isOpenModalDetails={isOpenModalDetails} handleCloseModalDetails={handleCloseModalDetails} indicatorDetails={indicatorDetails} columns={columns} />
+      <AddDialog isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />
       <Stack direction='row' alignItems='center' justifyContent='space-between' mb={4}>
         <Typography variant='h1' sx={{ textTransform: 'uppercase' }}>{title}</Typography>
         <Button
@@ -162,6 +174,7 @@ export const CustomDataGrid = ({ title, rows, columns, isLoading }) => {
 
       <div style={{ height: 500, width: '100%' }}>
         <StyledDataGrid
+          onRowClick={(params, event) => handleOpenModalDetails(params.row)}
           loading={isLoading}
           rows={rows}
           columns={headers}
