@@ -8,6 +8,7 @@ import Types from 'pages/TypesPage/Types'
 import Pillars from 'pages/PillarsPage/Pillars'
 import Indicators from 'pages/IndicatorsPage/Indicators'
 import PrivateRoute from 'components/PrivateRoute'
+import Planning from 'pages/PlanningPage/Planning'
 
 export default function Routing () {
   return (
@@ -38,6 +39,9 @@ export default function Routing () {
       {/* <PrivateRoute exact path='/spotlights'>
         <Spotlights />
       </PrivateRoute> */}
+      <PrivateRoute exact path='/planning'>
+        <Planning />
+      </PrivateRoute>
       <Route path='*'>
         <NoMatchRoute />
       </Route>

@@ -4,9 +4,10 @@ import {
   Box,
   AppBar,
   Toolbar,
-  Container,
+  // Container,
   Link,
-  Button
+  Button,
+  IconButton
 } from '@mui/material'
 import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
@@ -20,8 +21,12 @@ import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak'
 import EqualizerIcon from '@mui/icons-material/Equalizer'
 import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
 import useUser from 'hooks/useUser'
 import UserMenu from 'components/UserMenu'
+import { useColorMode } from 'theme/Theme'
+import { useTheme } from '@emotion/react'
 
 export const Logo = () => {
   return (
@@ -98,7 +103,8 @@ const menu = [
 
 ]
 
-export default function Header () {
+export default function Header() {
+
   const [anchorEl, setAnchorEl] = useState(null)
   const [sublinks, setSublinks] = useState([])
   const isMenuOpen = Boolean(anchorEl)
@@ -113,39 +119,53 @@ export default function Header () {
     setAnchorEl(null)
   }
 
+  const colorMode = useColorMode();
+  const theme = useTheme();
+
   return (
-    <AppBar position='sticky' elevation={0}>
-      <Container maxWidth={false}>
-        <Toolbar disableGutters>
-          <Logo />
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 5 }}>
-            {menu.map(item => (
-              <Button
-                key={item.name}
-                component={item.submenu ? null : RouterLink}
-                to={item.submenu ? null : item.to}
-                onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
-                startIcon={item.icon || null}
-                endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
-                sx={{ my: 2, ml: 2, color: 'white' }}
-              >
-                {item.name}
-              </Button>
-            ))}
-            <Submenu
-              isMenuOpen={isMenuOpen}
-              anchorEl={anchorEl}
-              onHandleClose={onHandleClose}
-              sublinks={sublinks}
-            />
-          </Box>
+    <AppBar position='sticky' elevation={0} enableColorOnDark >
+      {/* <Container maxWidth={false} > */}
+      <Toolbar >
+        <Logo />
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 5 }}>
+          {menu.map(item => (
+            <Button
+              key={item.name}
+              component={item.submenu ? null : RouterLink}
+              to={item.submenu ? null : item.to}
+              onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
+              startIcon={item.icon || null}
+              endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
+              sx={{ my: 2, ml: 2 }}
+              color="inherit"
+            >
+              {item.name}
+            </Button>
+          ))}
+          <Submenu
+            isMenuOpen={isMenuOpen}
+            anchorEl={anchorEl}
+            onHandleClose={onHandleClose}
+            sublinks={sublinks}
+          />
+        </Box>
 
-          {isLogged
-            ? <UserMenu />
-            : null}
-        </Toolbar>
-      </Container>
+        <IconButton
+          sx={{ ml: 1 }}
+          color="inherit"
+          onClick={colorMode.toggleColorMode}
+        >
+          {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
 
+
+
+
+        {isLogged
+          ? <UserMenu />
+          : null}
+      </Toolbar>
+      {/* </Container> */}
     </AppBar>
   )
 }

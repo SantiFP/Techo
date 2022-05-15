@@ -4,4 +4,5 @@ export const toSingular = (word) => {
   } else if (word.endsWith('s')) {
     return word.substring(0, word.length - 1)
   }
+  return word;
 }

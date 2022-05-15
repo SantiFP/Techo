@@ -4,16 +4,16 @@ import Routing from 'layout/Routing/Routing'
 import Theme from 'theme/Theme'
 import UserContextProvider from 'context/UserContext'
 
-export default function App () {
+export default function App() {
   return (
     <UserContextProvider>
-      <Theme>
-        <Router>
-          <Layout>
-            <Routing />
-          </Layout>
-        </Router>
-      </Theme>
+        <Theme>
+          <Router>
+            <Layout>
+              <Routing />
+            </Layout>
+          </Router>
+        </Theme>
     </UserContextProvider>
   )
 }

@@ -1,93 +1,21 @@
 import { useState } from 'react'
 import {
   Typography,
-  LinearProgress,
   Stack,
-  Button
+  Button,
+  Tooltip,
+  Container
   // CircularProgress
 } from '@mui/material'
-import {
-  gridPageCountSelector,
-  gridPageSelector,
-  useGridApiContext,
-  useGridSelector,
-  DataGrid,
-  GridActionsCellItem,
-  GridToolbar,
-  GridOverlay
-} from '@mui/x-data-grid'
-import { styled } from '@mui/material/styles'
-import Pagination from '@mui/material/Pagination'
-import PaginationItem from '@mui/material/PaginationItem'
+import { GridActionsCellItem } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import AddIcon from '@mui/icons-material/Add'
-import { GRID_DEFAULT_LOCALE_TEXT } from 'i18n/spanish/DataGrid'
 import AddDialog from 'components/AddDialog'
 import DialogDetails from 'components/DialogDetails'
-
-const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
-  border: 0,
-  color:
-    theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"'
-  ].join(','),
-  WebkitFontSmoothing: 'auto',
-  letterSpacing: 'normal',
-  '& .MuiDataGrid-columnsContainer': {
-    backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#1d1d1d'
-  },
-  '& .MuiDataGrid-iconSeparator': {
-    display: 'none'
-  },
-  '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-    borderRight: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-      }`
-  },
-  '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-    borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'
-      }`
-  },
-  '& .MuiDataGrid-cell:first-of-type': {
-    borderLeft: `1px solid ${theme.palette.mode === 'light' ? '#f0f0f0' : '#303030'}`
-  },
-  '& .MuiPaginationItem-root': {
-    borderRadius: 0
-  },
-  '& .MuiDataGrid-columnHeader': {
-    backgroundColor: theme.palette.primary.main,
-    color: '#f0f0f0'
-  },
-  '& .MuiDataGrid-sortIcon': {
-    color: '#f0f0f0'
-  },
-  '& .MuiDataGrid-columnHeader:focus, .MuiDataGrid-cell:focus': {
-    outline: 'none'
-  },
-  '& .MuiDataGrid-row': {
-    cursor: 'pointer'
-  }
-}))
-
-function LinearLoadingOverlay () {
-  return (
-    <GridOverlay sx={{ backgroundColor: '#fafafa' }}>
-      <div style={{ position: 'absolute', top: 0, width: '100%' }}>
-        <LinearProgress />
-      </div>
-    </GridOverlay>
-  )
-}
+import { FileCopy } from '@mui/icons-material'
+import CustomTable from './CustomTable'
+import AddPlanningDialog from './AddPlanningDialog'
 
 // function CircularLoadingOverlay () {
 //   return (
@@ -97,49 +25,45 @@ function LinearLoadingOverlay () {
 //   )
 // }
 
-function CustomPagination () {
-  const apiRef = useGridApiContext()
-  const page = useGridSelector(apiRef, gridPageSelector)
-  const pageCount = useGridSelector(apiRef, gridPageCountSelector)
+const actions = (page) => {
 
-  return (
-    <Pagination
-      color='primary'
-      variant='outlined'
-      shape='rounded'
-      page={page + 1}
-      count={pageCount}
-      // @ts-expect-error
-      renderItem={(props2) => <PaginationItem {...props2} disableRipple />}
-      onChange={(event, value) => apiRef.current.setPage(value - 1)}
-    />
-  )
+  return {
+
+    id: 3,
+    field: 'actions',
+    type: 'actions',
+    headerName: 'Acciones',
+    flex: 1,
+    minWidth: page.toLowerCase().includes('planificación') ? 120 : 100,
+    getActions: () => [
+      <GridActionsCellItem
+        key={1}
+        icon={<Tooltip title="Editar"><EditIcon /></Tooltip>}
+        label='Editar'
+        onClick={() => window.alert('Iría a EDITAR un elemento.')}
+      />,
+      ...(page.toLowerCase().includes('planificación') ?
+        [<GridActionsCellItem
+          key={3}
+          icon={<Tooltip title="Duplicar"><FileCopy /></Tooltip>}
+          label='Duplicar'
+          onClick={() => window.alert('Iría a DUPLICAR un elemento.')}
+        />]
+        : []),
+      <GridActionsCellItem
+        key={2}
+        icon={<Tooltip title="Eliminar"><DeleteIcon /></Tooltip>}
+        label='Eliminar'
+        onClick={() => window.alert('Iría a ELIMINAR un elemento.')}
+      />
+    ]
+
+  }
+
 }
 
-const actions = {
-  id: 3,
-  field: 'actions',
-  type: 'actions',
-  headerName: 'Acciones',
-  flex: 1,
-  getActions: () => [
-    <GridActionsCellItem
-      key={1}
-      icon={<EditIcon />}
-      label='Editar'
-      onClick={() => window.alert('Iría a EDITAR un elemento.')}
-    />,
-    <GridActionsCellItem
-      key={2}
-      icon={<DeleteIcon />}
-      label='Eliminar'
-      onClick={() => window.alert('Iría a ELIMINAR un elemento.')}
-    />
-  ]
-}
-
-export default function CustomDataGrid ({ title, rows, columns, isLoading }) {
-  const [headers] = useState([...columns, actions])
+export default function CustomDataGrid({ title, rows, columns, isLoading }) {
+  const headers = [...columns, actions(title)]
   const [isOpenModal, setOpenModal] = useState(false)
   const [isOpenModalDetails, setOpenModalDetails] = useState(false)
   const [indicatorDetails, setIndicatorDetails] = useState({})
@@ -159,7 +83,11 @@ export default function CustomDataGrid ({ title, rows, columns, isLoading }) {
   return (
     <>
       <DialogDetails isOpenModalDetails={isOpenModalDetails} handleCloseModalDetails={handleCloseModalDetails} indicatorDetails={indicatorDetails} columns={columns} />
-      <AddDialog isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />
+
+      {title.toLowerCase().includes('planificación') ?
+        <AddPlanningDialog isOpenModal={isOpenModal} handleOpenModalDetails={handleOpenModalDetails} handleCloseModal={handleCloseModal} title={title}/>
+        : <AddDialog isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />}
+
       <Stack direction='row' alignItems='center' justifyContent='space-between' mb={4}>
         <Typography variant='h1' sx={{ textTransform: 'uppercase' }}>{title}</Typography>
         <Button
@@ -172,24 +100,11 @@ export default function CustomDataGrid ({ title, rows, columns, isLoading }) {
         </Button>
       </Stack>
 
-      <div style={{ height: 500, width: '100%' }}>
-        <StyledDataGrid
-          onRowClick={(params, event) => handleOpenModalDetails(params.row)}
-          loading={isLoading}
-          rows={rows}
-          columns={headers}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          disableColumnMenu
-          disableSelectionOnClick
-          components={{
-            Pagination: CustomPagination,
-            Toolbar: GridToolbar,
-            LoadingOverlay: LinearLoadingOverlay
-          }}
-          localeText={GRID_DEFAULT_LOCALE_TEXT}
-        />
-      </div>
+      <Container maxWidth={false} sx={{ height: 640}}>
+
+        <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={5} hasCheckbox={false} isDisableSelectionOnClick={true}/>
+
+      </Container>
     </>
   )
 }
