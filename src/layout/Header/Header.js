@@ -12,8 +12,8 @@ import {
 import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import Submenu from 'components/Submenu'
-import HomeIcon from '@mui/icons-material/Home'
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
+// import HomeIcon from '@mui/icons-material/Home'
+// import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import ScheduleIcon from '@mui/icons-material/Schedule'
 import CategoryIcon from '@mui/icons-material/Category'
@@ -137,7 +137,7 @@ export default function Header() {
               onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
               startIcon={item.icon || null}
               endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
-              sx={{ my: 2, mr: 4, fontSize: '22px', fontWeight: 'bold' }}
+              sx={{ my: 2, mr: 4, fontSize: '22px', fontWeight: 'bold', lineHeight:1.2 }}
               color="inherit"
               variant={item.name.includes('Crear') ? 'outlined':null}
               disableRipple

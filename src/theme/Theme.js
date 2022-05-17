@@ -41,6 +41,7 @@ export default function Theme({ children }) {
       typography: {
         fontFamily: "'Work Sans', 'Arial', sans-serif",
         h1: {
+          color: (mode === 'light' ? '#005D8D': '#fff'),
           fontSize: '50px',
           fontWeight: 'bold'
         },

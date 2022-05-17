@@ -7,7 +7,8 @@ import {
     useGridSelector,
     GridToolbar,
     GridOverlay,
-    esES
+    esES,
+    gridClasses
 } from '@mui/x-data-grid';
 import Pagination from '@mui/material/Pagination'
 import PaginationItem from '@mui/material/PaginationItem'
@@ -24,13 +25,8 @@ function customCheckbox(theme) {
             border: `1px solid rgb(67, 67, 67)`,
             borderRadius: 4,
         },
-        // '& .MuiCheckbox-root svg path': {
-        //     borderColor: theme.palette.secondary.main,
-        // },
         '& .css-1umjlfl-MuiButtonBase-root-MuiCheckbox-root': {
-
-            color: 'white'
-
+            color: 'white',
         }
 
     };
@@ -38,8 +34,7 @@ function customCheckbox(theme) {
 
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     border: 0,
-    color:
-        theme.palette.mode === 'light' ? 'rgba(0,0,0,.85)' : 'rgba(255,255,255,0.85)',
+    color: 'rgba(0,0,0,.85)',
     fontFamily: [
         '-apple-system',
         'BlinkMacSystemFont',
@@ -55,7 +50,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     WebkitFontSmoothing: 'auto',
     letterSpacing: 'normal',
     '& .MuiDataGrid-columnHeaders': {
-        height: "100%"
+        borderRadius: '10px 10px 0 0',
     },
     '& .MuiDataGrid-columnsContainer': {
         backgroundColor: theme.palette.mode === 'light' ? '#fafafa' : '#424242'
@@ -63,14 +58,14 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     '& .MuiDataGrid-iconSeparator': {
         display: 'none'
     },
+    '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell, .MuiDataGrid-columnHeaders': {
+        border: 'none'
+    },
     '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-        borderRight: `1px solid ${theme.palette.mode === 'light' ? '#ccc' : '#424242'}`
+        borderRight: `2px solid ${theme.palette.mode === 'light' ? '#fff' : '#424242'}`
     },
-    '& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-        borderBottom: `1px solid ${theme.palette.mode === 'light' ? '#ccc' : '#424242'}`
-    },
-    '& .MuiDataGrid-cell:first-of-type': {
-        borderLeft: `1px solid ${theme.palette.mode === 'light' ? '#ccc' : '#424242'}`
+    '& .MuiDataGrid-columnHeader:last-of-type, .MuiDataGrid-cell:last-of-type ': {
+        borderRight: 'none'
     },
     '& .MuiPaginationItem-root': {
         borderRadius: 0
@@ -78,7 +73,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     '& .MuiDataGrid-columnHeader, .MuiDataGrid-columnHeadersInner': {
         backgroundColor: theme.palette.primary.main,
         color: '#f0f0f0',
-        height: '100%'
+        height: '100%',
     },
     '& .MuiDataGrid-sortIcon': {
         color: '#f0f0f0'
@@ -97,9 +92,15 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
         maxHeight: 'inherit !important',
         minHeight: 'inherit !important',
         padding: 12,
-        whiteSpace: 'normal'
+        whiteSpace: 'normal',
     },
-    ...customCheckbox(theme)
+    [`& .${gridClasses.row}.even`]: {
+        backgroundColor: '#E5E5E5',
+    },
+    [`& .${gridClasses.row}.odd`]: {
+        backgroundColor: '#D8D8D8',
+    },
+    ...customCheckbox(theme),
 }));
 
 function CustomPagination() {
@@ -152,6 +153,9 @@ const CustomTable = ({ handleOpenModalDetails, isLoading, rows, headers, hasChec
             localeText={esES.components.MuiDataGrid.defaultProps.localeText}
             // localeText={GRID_DEFAULT_LOCALE_TEXT}
             checkboxSelection={hasCheckbox}
+            getRowClassName={(params) =>
+                params.id % 2 === 0 ? 'even' : 'odd'
+              }
         />
 
     );

@@ -61,7 +61,7 @@ export default function UserMenu () {
             sx={{ width: 35, height: 35 }}
                      />}
           endIcon={<ArrowDropDownIcon />}
-          sx={{ my: 2, ml: 2, color: 'white',fontSize: '20px', textTransform: 'none' }}
+          sx={{ m: 2, color: 'white',fontSize: '20px', textTransform: 'none' }}
           onClick={handleClick}
         >
           {profile.givenName}

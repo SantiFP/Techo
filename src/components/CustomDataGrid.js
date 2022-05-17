@@ -25,7 +25,7 @@ import AddPlanningDialog from './AddPlanningDialog'
 //   )
 // }
 
-const actions = (page) => {
+const actions = (title) => {
 
   return {
 
@@ -34,27 +34,30 @@ const actions = (page) => {
     type: 'actions',
     headerName: 'Acciones',
     flex: 1,
-    minWidth: page.toLowerCase().includes('planificación') ? 120 : 100,
+    minWidth: title.toLowerCase().includes('planificación') ? 120 : 100,
     getActions: () => [
       <GridActionsCellItem
         key={1}
-        icon={<Tooltip title="Editar"><EditIcon /></Tooltip>}
+        icon={<Tooltip title="Editar"><EditIcon sx={{ color: '#fff' }} /></Tooltip>}
         label='Editar'
         onClick={() => window.alert('Iría a EDITAR un elemento.')}
+        sx={{ backgroundColor: '#0092DD', '&:hover': { backgroundColor: 'orange' } }}
       />,
-      ...(page.toLowerCase().includes('planificación') ?
+      ...(title.toLowerCase().includes('planificación') ?
         [<GridActionsCellItem
           key={3}
-          icon={<Tooltip title="Duplicar"><FileCopy /></Tooltip>}
+          icon={<Tooltip title="Duplicar"><FileCopy sx={{ color: '#fff' }} /></Tooltip>}
           label='Duplicar'
           onClick={() => window.alert('Iría a DUPLICAR un elemento.')}
+          sx={{ backgroundColor: '#0092DD', '&:hover': { backgroundColor: 'orange' } }}
         />]
         : []),
       <GridActionsCellItem
         key={2}
-        icon={<Tooltip title="Eliminar"><DeleteIcon /></Tooltip>}
+        icon={<Tooltip title="Eliminar"><DeleteIcon sx={{ color: '#fff' }} /></Tooltip>}
         label='Eliminar'
         onClick={() => window.alert('Iría a ELIMINAR un elemento.')}
+        sx={{ backgroundColor: '#0092DD', '&:hover': { backgroundColor: 'orange' } }}
       />
     ]
 
@@ -85,10 +88,10 @@ export default function CustomDataGrid({ title, rows, columns, isLoading }) {
       <DialogDetails isOpenModalDetails={isOpenModalDetails} handleCloseModalDetails={handleCloseModalDetails} indicatorDetails={indicatorDetails} columns={columns} />
 
       {title.toLowerCase().includes('planificación') ?
-        <AddPlanningDialog isOpenModal={isOpenModal} handleOpenModalDetails={handleOpenModalDetails} handleCloseModal={handleCloseModal} title={title}/>
+        <AddPlanningDialog isOpenModal={isOpenModal} handleOpenModalDetails={handleOpenModalDetails} handleCloseModal={handleCloseModal} title={title} />
         : <AddDialog isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />}
 
-      <Stack direction='row' alignItems='center' justifyContent='space-between' mb={4}>
+      <Stack direction='row' alignItems='center' justifyContent='center' spacing={4} mb={4}>
         <Typography variant='h1' sx={{ textTransform: 'uppercase' }}>{title}</Typography>
         <Button
           variant='contained'
@@ -100,9 +103,9 @@ export default function CustomDataGrid({ title, rows, columns, isLoading }) {
         </Button>
       </Stack>
 
-      <Container maxWidth={false} sx={{ height: 640}}>
+      <Container maxWidth={false} sx={{ height: 640, }}>
 
-        <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={5} hasCheckbox={false} isDisableSelectionOnClick={true}/>
+        <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={5} hasCheckbox={false} isDisableSelectionOnClick={true} />
 
       </Container>
     </>

@@ -1,4 +1,4 @@
-import { TextField, MenuItem, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Tabs, Tab, Box, Divider, Typography, Paper } from '@mui/material'
+import { TextField, MenuItem, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Tabs, Tab, Box, Divider, Typography} from '@mui/material'
 import { toSingular } from 'misc/utils'
 import CustomTable from './CustomTable'
 import indicators from './../data/indicators.json'
@@ -29,7 +29,7 @@ const years = [
 
 const IndicatorsDialogContent = ({ isLoading }) => {
     return (
-        <Box component={Paper} sx={{ height: 820, width: '100%' }}>
+        <Box sx={{ height: 820, width: '100%' }}>
             <CustomTable isLoading={isLoading} rows={indicatorsRows} headers={indicatorsColumns} pageSize={10} hasCheckbox={true} isDisableSelectionOnClick={false} />
         </Box>
     )
@@ -51,7 +51,7 @@ const HeadquarterDialogContent = () => {
 
     return (
 
-        <Box component={Paper} sx={{ height: 1100, width: '100%' }}>
+        <Box sx={{ height: 1100, width: '100%' }}>
             <CustomTable rows={headquartersRows} headers={headquartersColumns} pageSize={15} hasCheckbox={true} isDisableSelectionOnClick={false} />
         </Box>
 
