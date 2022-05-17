@@ -58,10 +58,10 @@ export default function UserMenu () {
           startIcon={<Avatar
             alt={profile.name}
             src={profile.imageUrl}
-            sx={{ width: 28, height: 28 }}
+            sx={{ width: 35, height: 35 }}
                      />}
           endIcon={<ArrowDropDownIcon />}
-          sx={{ my: 2, ml: 2, color: 'white' }}
+          sx={{ my: 2, ml: 2, color: 'white',fontSize: '20px', textTransform: 'none' }}
           onClick={handleClick}
         >
           {profile.givenName}

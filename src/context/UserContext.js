@@ -4,7 +4,7 @@ const UserContext = createContext({})
 
 export const useUserContext = () => useContext(UserContext)
 
-export default function UserContextProvider ({ children }) {
+export default function UserContextProvider({ children }) {
   const [profile, setProfile] = useState(
     () => JSON.parse(window.localStorage.getItem('profile'))
   )

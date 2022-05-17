@@ -32,16 +32,17 @@ export const Logo = () => {
   return (
     <Link
       component={RouterLink}
-      style={{ color: 'white', textDecoration: 'none' }}
+      style={{ color: 'white', textDecoration: 'none', backgroundColor: '#333', height: '115px', width: '245px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       to='/'
     >
       <Box
         component='img'
         sx={{
-          height: 30,
+          height: 50,
           width: 'auto',
-          display: 'flex',
-          justifyCenter: 'center'
+          // display: 'flex',
+          // justifyCenter: 'center',
+          // backgroundColor: 'black'
         }}
         alt='Techo Logo'
         src={TechoLogo}
@@ -53,13 +54,13 @@ export const Logo = () => {
 const menu = [
   {
     name: 'Inicio',
-    icon: <HomeIcon fontSize='small' />,
+    // icon: <HomeIcon fontSize='small' />,
     to: '/',
     submenu: null
   },
   {
     name: 'Registros',
-    icon: <AccountBalanceIcon fontSize='small' />,
+    // icon: <AccountBalanceIcon fontSize='small' />,
     to: null,
     submenu: [
       {
@@ -125,9 +126,9 @@ export default function Header() {
   return (
     <AppBar position='sticky' elevation={0} enableColorOnDark >
       {/* <Container maxWidth={false} > */}
-      <Toolbar >
+      <Toolbar disableGutters >
         <Logo />
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 5 }}>
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 4 }}>
           {menu.map(item => (
             <Button
               key={item.name}
@@ -136,8 +137,10 @@ export default function Header() {
               onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
               startIcon={item.icon || null}
               endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
-              sx={{ my: 2, ml: 2 }}
+              sx={{ my: 2, mr: 4, fontSize: '22px', fontWeight: 'bold' }}
               color="inherit"
+              variant={item.name.includes('Crear') ? 'outlined':null}
+              disableRipple
             >
               {item.name}
             </Button>
@@ -157,9 +160,6 @@ export default function Header() {
         >
           {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
-
-
-
 
         {isLogged
           ? <UserMenu />
