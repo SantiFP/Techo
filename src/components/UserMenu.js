@@ -64,7 +64,7 @@ export default function UserMenu () {
           sx={{ m: 2, color: 'white',fontSize: '20px', textTransform: 'none' }}
           onClick={handleClick}
         >
-          {profile.givenName}
+          {/* {profile.givenName} */}
         </Button>
         <Popover
           open={isMenuOpen}

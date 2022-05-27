@@ -17,7 +17,7 @@ import Submenu from 'components/Submenu'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import ScheduleIcon from '@mui/icons-material/Schedule'
 import CategoryIcon from '@mui/icons-material/Category'
-import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak'
+// import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak'
 import EqualizerIcon from '@mui/icons-material/Equalizer'
 import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import AddBoxIcon from '@mui/icons-material/AddBox'
@@ -89,18 +89,47 @@ const menu = [
         to: '/indicators'
       },
       {
-        name: 'Focos',
-        icon: <CenterFocusWeakIcon fontSize='small' />,
-        to: '/spotlights'
+        name: 'Crear planificación',
+        icon: <AddBoxIcon fontSize='small' />,
+        to: '/planning'
       }
     ]
   },
   {
-    name: 'Crear planificación',
-    icon: <AddBoxIcon fontSize='small' />,
-    to: '/planning',
+    name: 'Diagnóstico',
+    to: '/diagnostic',
     submenu: null
-  }
+  },
+  {
+    name: 'Metas',
+    to: '/goals',
+    submenu: null
+  },
+  {
+    name: 'Focos',
+    to: '/spotlights',
+    submenu: null
+  },
+  {
+    name: 'Presupuesto',
+    to: '/budget',
+    submenu: null
+  },
+  {
+    name: 'Planes Operativos',
+    to: '/operational-plans',
+    submenu: null
+  },
+  {
+    name: 'Objetivos Personales',
+    to: '/personal-goals',
+    submenu: null
+  },
+  {
+    name: 'Pedidos O.I',
+    to: '/orders',
+    submenu: null
+  },
 
 ]
 
@@ -124,11 +153,11 @@ export default function Header() {
   const theme = useTheme();
 
   return (
-    <AppBar position='sticky' elevation={0} enableColorOnDark >
+    <AppBar position='sticky' elevation={0} enableColorOnDark>
       {/* <Container maxWidth={false} > */}
-      <Toolbar disableGutters >
+      <Toolbar disableGutters>
         <Logo />
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, ml: 4 }}>
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' } }}>
           {menu.map(item => (
             <Button
               key={item.name}
@@ -137,9 +166,9 @@ export default function Header() {
               onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
               startIcon={item.icon || null}
               endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
-              sx={{ my: 2, mr: 4, fontSize: '22px', fontWeight: 'bold', lineHeight:1.2 }}
+              sx={{ fontSize: '22px', fontWeight: 'bold', lineHeight: 1.2, textAlign: 'center', minWidth: 'inherit', inlineSize: { md: 'min-content' } }}
               color="inherit"
-              variant={item.name.includes('Crear') ? 'outlined':null}
+              // variant={item.name.includes('Crear') ? 'outlined':null}
               disableRipple
             >
               {item.name}

@@ -100,6 +100,9 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     [`& .${gridClasses.row}.odd`]: {
         backgroundColor: '#D8D8D8',
     },
+    '.MuiDataGrid-booleanCell': {
+        color: 'rgba(0, 0, 0, 0.6)!important',
+    },
     ...customCheckbox(theme),
 }));
 
