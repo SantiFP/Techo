@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Submenu ({ isMenuOpen, anchorEl, onHandleClose, sublinks }) {
+export default function Submenu ({ isMenuOpen, anchorEl, onHandleClose, sublinks, handleButtonClick }) {
   const classes = useStyles()
   return (
     <Popover
@@ -48,6 +48,7 @@ export default function Submenu ({ isMenuOpen, anchorEl, onHandleClose, sublinks
                 to={sublink.to}
                 className={classes.link}
                 key={sublink.name}
+                onClick={() => handleButtonClick(-1)}
               >
                 <ListItem>
                   <ListItemIcon>

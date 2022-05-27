@@ -7,7 +7,9 @@ import {
   // Container,
   Link,
   Button,
-  IconButton
+  IconButton,
+  List,
+  ListItemButton
 } from '@mui/material'
 import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
@@ -133,14 +135,53 @@ const menu = [
 
 ]
 
+const buttonStyles = (index, selectedIndex) => {
+  return {
+    position: 'relative',
+    fontSize: '22px',
+    fontWeight: 'bold',
+    lineHeight: 1.2,
+    textAlign: 'center',
+    // minWidth: 'inherit',
+    inlineSize: { md: 'min-content' },
+    '&:hover': {
+      backgroundColor: 'inherit'
+    },
+    '&:before, &:after': {
+      position: 'absolute',
+      transition: 'all 0.35s ease',
+    },
+    '&:before': {
+      bottom: 0,
+      left: '0px',
+      display: 'block',
+      height: '4px',
+      width: selectedIndex === index ? '100%' : 0,
+      content: '""',
+      backgroundColor: '#F8C146',
+      borderRadius: '8px',
+    },
+    '&:hover:before': {
+      opacity: 1,
+      width: '100%',
+    },
+  }
+
+};
+
 export default function Header() {
 
   const [anchorEl, setAnchorEl] = useState(null)
   const [sublinks, setSublinks] = useState([])
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const isMenuOpen = Boolean(anchorEl)
   const { isLogged } = useUser()
 
-  const handleClick = (event, sublinks) => {
+  const handleButtonClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+
+  const handleSubmenuClick = (event, sublinks) => {
     setAnchorEl(anchorEl ? null : event.currentTarget)
     setSublinks(sublinks)
   }
@@ -157,18 +198,18 @@ export default function Header() {
       {/* <Container maxWidth={false} > */}
       <Toolbar disableGutters>
         <Logo />
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' } }}>
-          {menu.map(item => (
+        <Box component="nav" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'flex-end', justifyContent: 'space-between'},px: 4 }}>
+          {menu.map((item, index) => (
             <Button
               key={item.name}
               component={item.submenu ? null : RouterLink}
+              tabIndex={index}
               to={item.submenu ? null : item.to}
-              onClick={item.submenu ? (e) => handleClick(e, item.submenu) : null}
+              onClick={item.submenu ? (e) => handleSubmenuClick(e, item.submenu) : (event) => handleButtonClick(event, index)}
               startIcon={item.icon || null}
               endIcon={item.submenu ? <ArrowDropDownIcon /> : null}
-              sx={{ fontSize: '22px', fontWeight: 'bold', lineHeight: 1.2, textAlign: 'center', minWidth: 'inherit', inlineSize: { md: 'min-content' } }}
+              sx={buttonStyles(index, selectedIndex)}
               color="inherit"
-              // variant={item.name.includes('Crear') ? 'outlined':null}
               disableRipple
             >
               {item.name}
@@ -179,6 +220,7 @@ export default function Header() {
             anchorEl={anchorEl}
             onHandleClose={onHandleClose}
             sublinks={sublinks}
+            handleButtonClick={handleButtonClick}
           />
         </Box>
 
