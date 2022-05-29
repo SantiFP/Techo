@@ -1,6 +1,17 @@
-import React from 'react'
-import { Typography } from '@mui/material'
+import React from 'react';
+import { Typography } from '@mui/material';
+import GreenBox from './GreenBox/GreenBox';
+import './home.css';
 
 export const Home = () => {
-  return <Typography variant='h1'>Home</Typography>
+
+  const usuario = "ELÍAS";
+
+  return (
+    <div>
+      <Typography variant='h1' className='title'>¡HOLA {usuario}! 👋🏻</Typography>
+      <GreenBox />
+    </div>
+
+  )
 }
