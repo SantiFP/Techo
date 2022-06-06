@@ -1,4 +1,4 @@
-import CustomDataGrid from 'components/CustomDataGrid'
+import CustomDataGrid from 'components/records/CustomDataGrid'
 import indicators from './../../data/indicators.json'
 
 const columns = indicators.columns.filter(col => col.headerName !== "Estado" && col.headerName !== "Última actualización");

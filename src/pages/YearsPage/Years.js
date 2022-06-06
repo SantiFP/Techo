@@ -1,4 +1,4 @@
-import CustomDataGrid from 'components/CustomDataGrid'
+import CustomDataGrid from 'components/records/CustomDataGrid'
 
 const columns = [
   { id: 1, field: 'year', headerName: 'Año', flex: 1 },

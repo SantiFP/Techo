@@ -1,4 +1,4 @@
-import CustomDataGrid from 'components/CustomDataGrid'
+import CustomDataGrid from 'components/records/CustomDataGrid'
 import plans from './../../data/plans.json'
 
 const columns = plans.columns;

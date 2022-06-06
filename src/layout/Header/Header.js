@@ -8,8 +8,8 @@ import {
   Link,
   Button,
   IconButton,
-  List,
-  ListItemButton
+  // List,
+  // ListItemButton
 } from '@mui/material'
 import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
@@ -27,8 +27,8 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
 import useUser from 'hooks/useUser'
 import UserMenu from 'components/UserMenu'
-import { useColorMode } from 'theme/Theme'
-import { useTheme } from '@emotion/react'
+import { useThemeContext } from 'theme/Theme'
+// import { useTheme } from '@emotion/react'
 
 export const Logo = () => {
   return (
@@ -190,8 +190,9 @@ export default function Header() {
     setAnchorEl(null)
   }
 
-  const colorMode = useColorMode();
-  const theme = useTheme();
+  const {colorMode,theme} = useThemeContext();
+  // const {theme} = useThemeContext();
+  // const theme = useTheme();
 
   return (
     <AppBar position='sticky' elevation={0} enableColorOnDark>

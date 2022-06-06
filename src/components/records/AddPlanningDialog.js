@@ -1,9 +1,9 @@
 import { TextField, MenuItem, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Tabs, Tab, Box, Divider, Typography} from '@mui/material'
 import { toSingular } from 'misc/utils'
 import CustomTable from './CustomTable'
-import indicators from './../data/indicators.json'
-import deadlines from './../data/deadlines.json'
-import headquarters from './../data/headquarters.json'
+import indicators from './../../data/indicators.json'
+import deadlines from './../../data/deadlines.json'
+import headquarters from './../../data/headquarters.json'
 import { useState } from 'react';
 import CustomSimpleTable from './CustomSimpleTable'
 

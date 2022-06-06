@@ -1,8 +1,5 @@
 import { useState } from 'react'
 import {
-  Typography,
-  Stack,
-  Button,
   Tooltip,
   Container
   // CircularProgress
@@ -10,12 +7,12 @@ import {
 import { GridActionsCellItem } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
-import AddIcon from '@mui/icons-material/Add'
-import AddDialog from 'components/AddDialog'
-import DialogDetails from 'components/DialogDetails'
+import AddDialog from 'components/records/AddDialog'
+import DialogDetails from 'components/records/DialogDetails'
 import { FileCopy } from '@mui/icons-material'
 import CustomTable from './CustomTable'
 import AddPlanningDialog from './AddPlanningDialog'
+import PageTitle from 'components/PageTitle'
 
 // function CircularLoadingOverlay () {
 //   return (
@@ -91,17 +88,7 @@ export default function CustomDataGrid({ title, rows, columns, isLoading }) {
         <AddPlanningDialog isOpenModal={isOpenModal} handleOpenModalDetails={handleOpenModalDetails} handleCloseModal={handleCloseModal} title={title} />
         : <AddDialog isOpenModal={isOpenModal} handleCloseModal={handleCloseModal} title={title} />}
 
-      <Stack direction='row' alignItems='center' justifyContent='center' spacing={4} mb={4}>
-        <Typography variant='h1' sx={{ textTransform: 'uppercase' }}>{title}</Typography>
-        <Button
-          variant='contained'
-          startIcon={<AddIcon />}
-          onClick={handleOpenModal}
-          disableElevation
-        >
-          Agregar
-        </Button>
-      </Stack>
+      <PageTitle title={title} buttonTitle={"Agregar"} handleOpenModal={handleOpenModal} />
 
       <Container maxWidth={false} sx={{ height: 640, }}>
 

@@ -9,6 +9,7 @@ import Pillars from 'pages/PillarsPage/Pillars'
 import Indicators from 'pages/IndicatorsPage/Indicators'
 import PrivateRoute from 'components/PrivateRoute'
 import Planning from 'pages/PlanningPage/Planning'
+import PersonalGoals from 'pages/PersonalGoals/PersonalGoalsContainer'
 
 export default function Routing () {
   return (
@@ -41,6 +42,9 @@ export default function Routing () {
       </PrivateRoute> */}
       <PrivateRoute exact path='/planning'>
         <Planning />
+      </PrivateRoute>
+      <PrivateRoute exact path='/personal-goals'>
+        <PersonalGoals />
       </PrivateRoute>
       <Route path='*'>
         <NoMatchRoute />

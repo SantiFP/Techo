@@ -1,8 +1,9 @@
 import { createContext, useContext, useMemo, useState } from 'react'
 import { ThemeProvider, StyledEngineProvider, CssBaseline, createTheme } from '@mui/material'
+import colorStyles from 'assets/styles/colorStyles';
 // import { createTheme } from '@mui/material/styles'
 
-export const useColorMode = () => useContext(ThemeContext);
+export const useThemeContext = () => useContext(ThemeContext);
 
 const ThemeContext = createContext({});
 
@@ -26,22 +27,26 @@ export default function Theme({ children }) {
       palette: {
         mode,
         primary: {
-          main: '#0092DD'
+          main: colorStyles.azul
         },
         secondary: {
-          main: '#EA6D4F'
+          main: colorStyles.naranja
         },
-        ...(mode === 'dark' && {
+        ...(mode === 'dark' ? {
           background: {
-            default: '#303030',
+            default: colorStyles.negro,
             paper: '#424242'
+          }
+        } : {
+          background: {
+            default: colorStyles.gris
           }
         })
       },
       typography: {
         fontFamily: "'Work Sans', 'Arial', sans-serif",
         h1: {
-          color: (mode === 'light' ? '#005D8D': '#fff'),
+          color: (mode === 'light' && colorStyles.azul_oscuro),
           fontSize: '50px',
           fontWeight: 'bold'
         },
@@ -60,8 +65,16 @@ export default function Theme({ children }) {
         body1: {
           fontSize: '18px',
           fontWeight: 'lighter'
-        }
-      }
+        },
+
+      },
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+          },
+        },
+      },
 
     }), [mode]
 
@@ -69,7 +82,7 @@ export default function Theme({ children }) {
 
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeContext.Provider value={colorMode}>
+      <ThemeContext.Provider value={{ colorMode, theme }}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           {children}
