@@ -4,12 +4,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function BudgetTerritory() {
 
-  const labelOneTerritory = 'Territorio';
-  const labelTwoTerritory = 'Administrativos';
-  const dataOneTerritory = 52.3;
-  const dataTwoTerritory = 47.7;
+function YellowBoxGraph() {
+
+  const labelOneObjetivos = 'Armados';
+  const labelTwoObjetivos = 'Pendientes';
+  const dataOneObjetivos = 52.3;
+  const dataTwoObjetivos = 47.;
 
   const options = {
     plugins: {
@@ -27,23 +28,24 @@ function BudgetTerritory() {
   };
 
   const data = {
-    labels: [`${labelOneTerritory}: ${dataOneTerritory} %`, `${labelTwoTerritory}: ${dataTwoTerritory} %`],
+    labels: [`${labelOneObjetivos} ${dataOneObjetivos} % `, `${labelTwoObjetivos} ${dataTwoObjetivos} %`],
     datasets: [
       {
-        data: [dataOneTerritory, dataTwoTerritory],
+        data: [dataOneObjetivos, dataTwoObjetivos],
         backgroundColor: [
-          '#ea6d4f',
-          '#ffb4a3',
+          '#f8c146',
+          '#d78e01',
         ],
         borderColor: [
-          '#ea6d4f',
-          '#ffb4a3',
+          '#f8c146',
+          '#d78e01',
         ],
         borderWidth: 1,
+
       },
     ],
   };
   return <Doughnut data={data} options={options} />
 }
 
-export default BudgetTerritory
+export default YellowBoxGraph
