@@ -11,6 +11,7 @@ const PageTitle = ({ title, buttonTitle, handleOpenModal }) => {
                 startIcon={<AddIcon />}
                 onClick={handleOpenModal}
                 disableElevation
+                sx={{fontSize:"16px"}}
             >
                 {buttonTitle}
             </Button>
