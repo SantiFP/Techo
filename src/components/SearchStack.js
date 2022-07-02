@@ -15,10 +15,14 @@ const GoalsQuantity = styled(Typography)(({ theme }) => ({
 
 }));
 
+
+
+
+
 const SearchStack = ({quantity, title,searchPlaceholder}) => {
     return (
 
-        <Toolbar disableGutters sx={{ mb: 2 }}>
+        <Toolbar disableGutters sx={{ mb: 4 }}>
 
             <GoalsQuantity>{quantity}</GoalsQuantity>
             <Typography variant='subtitle1' sx={{ fontWeight: "bold", marginLeft: 2,textTransform: 'uppercase' }}>{title}</Typography>

@@ -6,12 +6,10 @@ import userImage from '../../assets/images/foto.png';
 
 const CustomCard = styled(Card)(({ theme }) => ({
 
-    backgroundColor: "#333",
-    color: "#F3F3F4",
-    border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: '10px',
+    backgroundColor: theme.palette.mode === "light" ? "#333" : "#F3F3F4",
+    color: theme.palette.background.default,
     maxWidth: '285px',
-    maxHeight: '640px',
+    borderRadius: '10px',
     padding: '20px',
     position: 'relative',
 
@@ -49,8 +47,7 @@ const EditButton = styled(EditIcon)(({ theme }) => ({
 
 }));
 
-const UserCard = ({handleEditUser}) => {
-
+const UserCard = () => {
     return (
 
         <CustomCard>
@@ -113,7 +110,7 @@ const UserCard = ({handleEditUser}) => {
                 </CustomStack>
             </CardContent>
 
-            <IconButton onClick={handleEditUser} sx={{ position: "absolute", top: "15px", right: "15px", padding:0 }} >
+            <IconButton sx={{ position: "absolute", top: "15px", right: "15px", padding:0 }} >
                 <EditButton />
             </IconButton>
 

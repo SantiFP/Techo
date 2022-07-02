@@ -8,6 +8,7 @@ const ViewChips = () => {
     return (
         <Stack direction='row' alignItems='center' justifyContent='start' spacing={4} mb={4} >
 
+
             <Chip
                 label='MIS OBJETIVOS'
                 onClick={() => { }}
@@ -15,9 +16,9 @@ const ViewChips = () => {
                 icon={<Avatar
                     alt={profile.name}
                     src={profile.imageUrl}
-                    sx={{ width: 28, height: 28 }}
+                    sx={{ width: 24, height: 24 }}
                 />}
-                sx={{ fontWeight: "bold", fontSize:"16px", p:.5 }}
+                sx={{ fontWeight: "bold" }}
             />
             <Chip
                 label='MI EQUIPO'
@@ -25,9 +26,8 @@ const ViewChips = () => {
                 onClick={() => { }}
                 color="secondary"
                 icon={<GroupsIcon />}
-                sx={{ fontWeight: "bold", fontSize:"16px", p:.5  }}
+                sx={{ fontWeight: "bold" }}
             />
-
         </Stack>
     );
 }
