@@ -73,7 +73,6 @@ export default function CustomDataGrid({ title, rows, columns, isLoading }) {
 
   const handleOpenModalDetails = (indicator) => {
     setIndicatorDetails(indicator)
-    console.log(indicator);
     setOpenModalDetails(true)
   }
   const handleCloseModalDetails = () => {
