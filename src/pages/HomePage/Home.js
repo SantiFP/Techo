@@ -49,13 +49,13 @@ export const Home = () => {
           <Typography variant='h4' sx={{ fontSize: '16px', textAlign: 'center' }}>CÓMO PLANIFICAMOS</Typography>
           <Box><FaLongArrowAltDown style={{ color: '#acacac' }} /></Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', boderRadius: '15px', padding: '5px', width: '100%' }}>
-            <Button sx={{ backgroundColor: '#acacac', color: 'white', textAlign: 'center', fontSize: '12px', minWidth: '100%', height: '80px' }} className='links'><Link to='' className='links' >DIAGNÓSTICO</Link></Button>
+            <Button sx={{ backgroundColor: '#acacac', color: 'white', textAlign: 'center', fontSize: '12px', minWidth: '100%', height: '80px' }} className='links'><Link to='./diagnostico' className='links' >DIAGNÓSTICO</Link></Button>
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%' }}>
                 <Button sx={{ backgroundColor: '#f8c146', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', width: '100%' }} className='links'><Link to='' className='links' >METAS</Link></Button>
                 <Button sx={{ backgroundColor: '#70ad47', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', width: '100%' }} className='links'><Link to='' className='links'>PRESUPUESTO</Link></Button>
               </Box>
-              <Button sx={{ backgroundColor: '#68c7ff', color: 'white', textAlign: 'center', fontSize: '12px', width: '20%', height: '160px' }} className='links'><Link to='' className='links' >FOCO</Link></Button>
+              <Button sx={{ backgroundColor: '#68c7ff', color: 'white', textAlign: 'center', fontSize: '12px', width: '40%', height: '160px' }} className='links'><Link to='' className='links' >FOCO</Link></Button>
             </Box>
             <Button sx={{ backgroundColor: '#0092dd', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', minWidth: '100%' }} className='links'><Link to='' className='links' >PLANES OPERATIVOS</Link></Button>
             <Button sx={{ backgroundColor: '#005d8d', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', minWidth: '100%' }} className='links'><Link to='' className='links' >OBJETIVOS PERSONALES</Link></Button>

@@ -4,6 +4,7 @@ import { Box, Container } from '@mui/material'
 import { Layout } from './layout/Layout'
 import { Theme } from './theme/Theme'
 import { Home } from './pages/HomePage/Home'
+import { Diagnostico } from './pages/Diagnostico'
 import { NoMatchRoute } from './pages/NoMatchRoutePage/NoMatchRoute'
 import { LoadingContextProvider } from './contexts/LoadingContext'
 
@@ -20,6 +21,11 @@ export const App = () => {
                     exact
                     path='/'
                     component={Home}
+                  />
+                  <Route
+                    exact
+                    path='/diagnostico'
+                    component={Diagnostico}
                   />
                   <Route path='*'>
                     <NoMatchRoute />
