@@ -10,6 +10,7 @@ import Indicators from 'pages/IndicatorsPage/Indicators'
 import PrivateRoute from 'components/PrivateRoute'
 import Planning from 'pages/PlanningPage/Planning'
 import PersonalGoals from 'pages/PersonalGoals/PersonalGoalsContainer'
+import Diagnostic from 'pages/DiagnosticsPage/Diagnostic'
 
 export default function Routing () {
   return (
@@ -45,6 +46,9 @@ export default function Routing () {
       </PrivateRoute>
       <PrivateRoute exact path='/personal-goals'>
         <PersonalGoals />
+      </PrivateRoute>
+      <PrivateRoute exact path='/diagnostic'>
+        <Diagnostic />
       </PrivateRoute>
       <Route path='*'>
         <NoMatchRoute />

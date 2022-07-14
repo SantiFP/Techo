@@ -1,19 +1,34 @@
-import CustomDataGrid from 'components/records/CustomDataGrid'
+import CustomDataGrid from 'components/records/CustomDataGrid';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 const columns = [
-  { id: 1, field: 'year', headerName: 'Año', flex: 1 },
-  { id: 2, field: 'status', type: 'boolean', headerName: 'Estado', flex: 1 }
-]
+  { id: 1, field: 'ano', headerName: 'Año', flex: 1 },
+  { id: 2, field: 'situation', type: 'boolean', headerName: 'Estado', flex: 1 },
+];
 
-const rows = [
-  { id: 1, year: 2021, status: true },
-  { id: 2, year: 2019, status: false },
-  { id: 3, year: 2022, status: true },
-  { id: 4, year: 2020, status: false },
-  { id: 5, year: 2018, status: false },
-  { id: 6, year: 2017, status: false }
-]
+export default function Years() {
+  const [data, setData] = useState([]);
+  const url = 'http://localhost:8000/api/ano';
 
-export default function Years () {
-  return <CustomDataGrid title='Años' columns={columns} rows={rows} isLoading={false} />
+  const getData = async () => {
+    await axios.get(url).then((res) => {
+      res.data.situation = res.data.situation === 1 ? true : false;
+      setData(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <CustomDataGrid
+      title="Años"
+      columns={columns}
+      rows={data}
+      isLoading={false}
+    />
+  );
 }

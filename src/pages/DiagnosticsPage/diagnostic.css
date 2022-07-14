@@ -1,0 +1,36 @@
+.textarea{
+    margin: 20px 10px 20px 10px;
+    width: 50%;
+    border-radius: 5px;
+}
+
+.select{
+    padding:5px 20px 5px 5px;
+    margin-bottom: 15px;
+    border-color: #22729b;
+    border-radius: 5px;
+}
+
+.input-button{
+    margin: auto;
+    background-color:#0092dd;
+    color: #ffffff; 
+    padding: 5px 15px 5px 15px;
+    border-radius: 5px;
+}
+.blue{
+    border-color: #80c8ee;
+
+}
+
+.green{
+    border-color: #b7d6a3;
+}
+
+.yellow{
+    border-color: #fbe0a2;
+}
+
+.orange{
+    border-color: #f4b6a7;
+}

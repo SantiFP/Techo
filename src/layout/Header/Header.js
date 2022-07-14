@@ -4,22 +4,16 @@ import {
   Box,
   AppBar,
   Toolbar,
-  // Container,
   Link,
   Button,
   IconButton,
-  // List,
-  // ListItemButton
 } from '@mui/material'
 import TechoLogo from 'assets/images/negative_logo.png'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import Submenu from 'components/Submenu'
-// import HomeIcon from '@mui/icons-material/Home'
-// import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
 import ScheduleIcon from '@mui/icons-material/Schedule'
 import CategoryIcon from '@mui/icons-material/Category'
-// import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak'
 import EqualizerIcon from '@mui/icons-material/Equalizer'
 import ViewColumnIcon from '@mui/icons-material/ViewColumn'
 import AddBoxIcon from '@mui/icons-material/AddBox'
@@ -28,7 +22,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4'
 import useUser from 'hooks/useUser'
 import UserMenu from 'components/UserMenu'
 import { useThemeContext } from 'theme/Theme'
-// import { useTheme } from '@emotion/react'
 
 export const Logo = () => {
   return (
@@ -42,9 +35,6 @@ export const Logo = () => {
         sx={{
           height: 50,
           width: 'auto',
-          // display: 'flex',
-          // justifyCenter: 'center',
-          // backgroundColor: 'black'
         }}
         alt='Techo Logo'
         src={TechoLogo}
@@ -56,13 +46,11 @@ export const Logo = () => {
 const menu = [
   {
     name: 'Inicio',
-    // icon: <HomeIcon fontSize='small' />,
     to: '/',
     submenu: null
   },
   {
     name: 'Registros',
-    // icon: <AccountBalanceIcon fontSize='small' />,
     to: null,
     submenu: [
       {
@@ -142,7 +130,6 @@ const buttonStyles = (index, selectedIndex) => {
     fontWeight: 'bold',
     lineHeight: 1.2,
     textAlign: 'center',
-    // minWidth: 'inherit',
     inlineSize: { md: 'min-content' },
     '&:hover': {
       backgroundColor: 'inherit'
@@ -191,12 +178,9 @@ export default function Header() {
   }
 
   const {colorMode,theme} = useThemeContext();
-  // const {theme} = useThemeContext();
-  // const theme = useTheme();
 
   return (
     <AppBar position='sticky' elevation={0} enableColorOnDark>
-      {/* <Container maxWidth={false} > */}
       <Toolbar disableGutters>
         <Logo />
         <Box component="nav" sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', alignItems: 'flex-end', justifyContent: 'space-between'},px: 4 }}>
@@ -237,7 +221,6 @@ export default function Header() {
           ? <UserMenu />
           : null}
       </Toolbar>
-      {/* </Container> */}
     </AppBar>
   )
 }
