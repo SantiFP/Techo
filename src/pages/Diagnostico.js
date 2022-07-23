@@ -1,73 +1,307 @@
-import { useRef, useState } from 'react';
+
+import React from 'react';
+import { useRef, useState, useContext } from 'react';
 import { Typography, Button, Box } from '@mui/material';
 import { display } from '@mui/system';
-import './diagnostico.css'
+import { NavLink } from 'react-router-dom';
+import FodaContext from '../contexts/FodaContext'
+import './diagnostico.css';
+
+
+
+
 
 export const Diagnostico = () => {
 
-    const [form, setForm] = useState([]);
+
+  const [tagsFortalezas, setTagsFortalezas] = useState([]);
+  const [tagsOportunidades, setTagsOportunidades] = useState([]);
+  const [tagsDebilidades, setTagsDebilidades] = useState([]);
+  const [tagsAmenazas, setTagsAmenazas] = useState([]);
 
 
-    const anioRef = useRef();
-    const fortalezasRef = useRef();
-    const oportunidadesRef = useRef();
-    const debilidadesRef = useRef();
-    const amenazasRef = useRef();
-    const formRef = useRef();
 
+  const { handleChange, takeFodaToContext, form, setForm, setPrueba } = useContext(FodaContext)
+
+
+  const anioRef = useRef();
+  // const fortalezasRef = useRef();
+  const oportunidadesRef = useRef();
+  const debilidadesRef = useRef();
+  const amenazasRef = useRef();
+  const formRef = useRef();
+  /*
     const handleChange = (e) => {
         console.log(e.target.value)
       };
+  */
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-       
-        setForm([
-            ...form,
-            {
-                Año: anioRef.current.value,
-              Fortalezas: fortalezasRef.current.value,
-              Oportunidades: oportunidadesRef.current.value,
-              Debilidades: debilidadesRef.current.value,
-              Amenazas: amenazasRef.current.value,
-          }
-          ]);
-       //   formRef.reset();
-          alert("El formulario se ha enviado");
-      };
 
-    return (
-        <Box>
-            <Typography variant='h2' sx={{ color: '#27759e', fontSize: '35px', textAlign:'center' }}>DIAGNÓSTICO</Typography>
-            <Box sx={{marginTop:'20px', marginBotton:'40px'}}>
-                <Button sx={{color:'#ea6d4f'}}>CREAR F.O.D.A.</Button>
-                <Button sx={{color:'#ea6d4f'}}>VER AÑOS ANTERIORES</Button>
-                <Button sx={{color:'#ea6d4f'}}>VER DATA STUDIO</Button>
-            </Box>
-            <Typography variant='h6' sx={{fontWeight:'bold'}}>AÑO</Typography>
-            <form  onSubmit={handleSubmit}  ref={formRef}>
-                <select name="anio" required className='select' onChange={handleChange} value={form.anio} ref={anioRef}>
-                    <option disabled selected>SELECCIONAR</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                </select>
-                <Box sx={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}>
-                    <Box sx={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                        <textarea placeholder='ESCRIBIR...' required className='textarea blue' rows='8'cols='115'wrap='hard' maxlength='500' onChange={handleChange} name="fortalezas" ref={fortalezasRef}></textarea>
-                        <textarea placeholder='ESCRIBIR...' required className='textarea green' rows='8'cols='115'wrap='hard' maxlength='500'   name="oportunidades"  onChange={handleChange} ref={oportunidadesRef}></textarea>
-                    </Box>
-                    <Box sx={{display:'flex', flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-                        <textarea placeholder='ESCRIBIR...' required className='textarea yellow' rows='8'cols='115'wrap='hard' maxlength='500'  name='debilidades'   onChange={handleChange} ref={debilidadesRef}></textarea>
-                        <textarea placeholder='ESCRIBIR...' required className='textarea orange' rows='8'cols='115'wrap='hard' maxlength='500'  name='amenazas'  onChange={handleChange} ref={amenazasRef}></textarea>
-                    </Box>
-                    <input type='submit' className='input-button' value='GUARDAR'></input>
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+
+    const anioBuscado = form.find((el) => el.anio == anioRef.current.value)
+    console.log(anioBuscado)
+    console.log(anioRef.current.value)
+    if (anioBuscado == undefined) {
+      setForm([
+        ...form,
+        {
+          anio: [anioRef.current.value],
+          fortalezas: [...tagsFortalezas],
+          oportunidades: [...tagsOportunidades],
+          debilidades: [...tagsDebilidades],
+          amenazas: [...tagsAmenazas],
+        }
+      ]);
+      
+
+      //   formRef.reset();
+      //  console.log(form[0].fortalezas)
+      alert("El formulario se ha enviado");
+      console.log(form)
+      takeFodaToContext()
+      e.target.value = ''
+      let formulario = document.getElementById('formulario');
+     // formulario.reset()
+      setTagsFortalezas([])
+      setTagsOportunidades([])
+      setTagsDebilidades([])
+      setTagsAmenazas([])
+      
+    } else {
+      alert(`El año ${anioBuscado.anio} ya se encuentra creado`)
+    }
+
+
+
+  };
+
+  const styleLinks = ({ isActive }) =>
+    isActive
+      ? {
+        color: '#ffffff',
+        background: '#ea6d4f',
+
+      }
+      : {
+        color: '#ea6d4f',
+      }
+
+
+  function handleKeyDownFortalezas(e) {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return
+    setTagsFortalezas([...tagsFortalezas, value])
+    e.target.value = ''
+  }
+
+  function handleKeyDownOportunidades(e) {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return
+    setTagsOportunidades([...tagsOportunidades, value])
+    e.target.value = ''
+  }
+
+  function handleKeyDownDebilidades(e) {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return
+    setTagsDebilidades([...tagsDebilidades, value])
+    e.target.value = ''
+  }
+
+  function handleKeyDownAmenazas(e) {
+    if (e.key !== 'Enter') return
+    const value = e.target.value
+    if (!value.trim()) return
+    setTagsAmenazas([...tagsAmenazas, value])
+    e.target.value = ''
+  }
+
+
+  function removeTagFortalezas(index) {
+    setTagsFortalezas(tagsFortalezas.filter((el, i) => i !== index))
+
+  }
+
+  function removeTagOportunidades(index) {
+    setTagsOportunidades(tagsOportunidades.filter((el, i) => i !== index))
+
+  }
+
+  function removeTagDebilidades(index) {
+    setTagsDebilidades(tagsDebilidades.filter((el, i) => i !== index))
+
+  }
+
+  function removeTagAmenazas(index) {
+    setTagsAmenazas(tagsAmenazas.filter((el, i) => i !== index))
+
+  }
+
+
+
+  return (
+    <Box>
+      <Typography variant='h2' sx={{ color: '#27759e', fontSize: '35px', textAlign: 'center' }}>DIAGNÓSTICO</Typography>
+      <nav className='diagnostico-nav'>
+
+        
+        <NavLink to="/diagnostico/fodaActual" style={styleLinks} className="navlinks">F.O.D.A ACTUAL</NavLink>
+        <NavLink to="/diagnostico" style={styleLinks} className="navlinks">CREAR F.O.D.A.</NavLink>
+        <NavLink to="/diagnostico/verFodaAnterior" style={styleLinks} className="navlinks">VER AÑOS ANTERIORES</NavLink>
+        <NavLink to="/diagnostico/dataStudio" style={styleLinks} className="navlinks">VER DATA STUDIO</NavLink>
+
+
+
+      </nav>
+      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>AÑO</Typography>
+
+      <form onSubmit={handleSubmit} ref={formRef} id="formulario" >
+        <select name="anio" required className='select' onChange={handleChange} ref={anioRef}>
+          <option disabled default >SELECCIONAR</option>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+        </select>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , width:'100%' }}>
+
+
+
+            <Box sx={{
+              margin: '20px 10px 20px 10px',
+              width: '100%',
+              height: '125px',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '0.5em', border: '2px solid #80c8ee', backgroundColor: '#ffffff'
+            }} onChange={handleChange} name="fortalezas"  >
+              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
+                <span className='text'>hello</span>
+                <span className='close'>&times;</span>
+          </Box>*/}
+              {tagsFortalezas.map((tag, index) => (
+                <Box sx={{ backgroundColor: '#CFE5F1', padding: '3px 5px ', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px"  }} key={index}>
+                  <span className='text'  >{tag}</span>
+                  <span className='close darkBlue' onClick={() => removeTagFortalezas(index)}>&times;</span>
                 </Box>
-                
-            </form>
+              ))}
+              <input type="text" className='tag-input' onKeyDown={handleKeyDownFortalezas} placeholder="Escribir y pulsar Enter para confirmar..."></input>
 
+            </Box>
+
+
+
+
+
+            <Box sx={{
+              margin: '20px 10px 20px 10px',
+              width: '100%',
+              height: '125px',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '0.5em', border: '2px solid #b7d6a3', backgroundColor: '#ffffff'
+            }} onChange={handleChange} name="fortalezas"  >
+              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
+                <span className='text'>hello</span>
+                <span className='close'>&times;</span>
+          </Box>*/}
+              {tagsOportunidades.map((tag, index) => (
+                <Box sx={{ backgroundColor: '#DFE9DA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                  <span className='text'  >{tag}</span>
+                  <span className='close darkGreen' onClick={() => removeTagOportunidades(index)}>&times;</span>
+                </Box>
+              ))}
+              <input type="text" className='tag-input' onKeyDown={handleKeyDownOportunidades} placeholder="Escribir y pulsar Enter para confirmar..."></input>
+
+            </Box>
+          </Box>
+
+
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width:'100%' }}>
+
+
+
+            <Box sx={{
+              margin: '20px 10px 20px 10px',
+              width: '100%',
+              height: '125px',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '0.5em', border: '2px solid #fbe0a2', backgroundColor: '#ffffff'
+            }} onChange={handleChange} name="fortalezas"  >
+              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
+                <span className='text'>hello</span>
+                <span className='close'>&times;</span>
+          </Box>*/}
+              {tagsDebilidades.map((tag, index) => (
+                <Box sx={{ backgroundColor: '#F4ECDA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                  <span className='text'  >{tag}</span>
+                  <span className='close darkYellow' onClick={() => removeTagDebilidades(index)}>&times;</span>
+                </Box>
+              ))}
+              <input type="text" className='tag-input' onKeyDown={handleKeyDownDebilidades} placeholder="Escribir y pulsar Enter para confirmar..."></input>
+
+            </Box>
+
+
+
+
+            <Box sx={{
+              margin: '20px 10px 20px 10px',
+              width: '100%',
+              height: '125px',
+              borderRadius: '5px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexWrap: 'wrap',
+              gap: '0.5em', border: '2px solid #f4b6a7', backgroundColor: '#ffffff'
+            }} onChange={handleChange} name="fortalezas"  >
+              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
+                <span className='text'>hello</span>
+                <span className='close'>&times;</span>
+          </Box>*/}
+              {tagsAmenazas.map((tag, index) => (
+                <Box sx={{ backgroundColor: '#F2DEDA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                  <span className='text'  >{tag}</span>
+                  <span className='close darkOrange' onClick={() => removeTagAmenazas(index)}>&times;</span>
+                </Box>
+              ))}
+              <input type="text" className='tag-input' onKeyDown={handleKeyDownAmenazas} placeholder="Escribir y pulsar Enter para confirmar..."></input>
+
+            </Box>
+
+
+
+
+
+          </Box>
+          <input type='button' className='input-button' value='GUARDAR' onClick={handleSubmit}></input>
         </Box>
 
+      </form>
 
-    )
+
+
+    </Box>
+
+
+  )
+
+
+
+
 }
+//para desabilitar el botón enter y evitar que envíe el formulario ante cada enter de nueva etiqueta creada, se pone en el <input type="button" onClick={handleSubmit}> Si se le pusiera type "submit", le da el mando a la etiqueta form y esta lleva el onclick y además funciona con la tecla enter, cosa que se quiere evitar aquí.

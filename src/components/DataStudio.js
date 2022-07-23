@@ -1,0 +1,49 @@
+
+import React from 'react'
+import { Typography, Button, Box } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import '../pages/diagnostico.css'
+import DataStudioTableOne from './DataStudioTableOne';
+import DataStudioTableTwo from './DataStudioTableTwo';
+
+function DataStudio() {
+
+  const styleLinks = ({ isActive }) =>
+    isActive
+      ? {
+        color: '#ffffff',
+        background: '#000000',
+        
+      }
+      : {
+        color: '#ea6d4',
+      }
+
+  return (
+    <Box>
+    <Typography variant='h2' sx={{ color: '#27759e', fontSize: '35px', textAlign:'center' }}>DIAGNÓSTICO</Typography>
+    <nav className='diagnostico-nav'>
+    <NavLink to="/diagnostico/fodaActual" style={styleLinks} className="navlinks">F.O.D.A ACTUAL</NavLink>
+          <NavLink to="/diagnostico" style={styleLinks} className="navlinks">CREAR F.O.D.A.</NavLink> 
+          <NavLink to="/diagnostico/verFodaAnterior" style={styleLinks} className="navlinks">VER AÑOS ANTERIORES</NavLink> 
+          <NavLink to="/diagnostico/dataStudio" style={styleLinks} className="navlinks">VER DATA STUDIO</NavLink> 
+              
+              
+             
+          </nav>
+          <Box sx={{backgroundColor:"#ffffff", display:"flex", flexDirection:"column", width:"100%"}}>
+<Box sx={{display:"flex", flexDirection:"row", marginTop:"10px"}}>
+  <Typography variant = "h6">TECHO</Typography>
+  <Typography variant="h5" sx={{fontSize:"15px", fontWeight:"bold", textDecoration:"underline"}}>Indicadores por pilar al cierre del 1er semestre</Typography>
+</Box>
+<Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+  <DataStudioTableOne />
+  <DataStudioTableTwo />
+</Box>
+          </Box>
+              </Box>
+
+  )
+}
+
+export default DataStudio
