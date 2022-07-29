@@ -18,6 +18,7 @@
     background-color: white;
 }
 
+
 .pinkBox-tbody tr:nth-child(even) {
     background-color: #dfdfdf;
 }

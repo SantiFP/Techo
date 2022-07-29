@@ -19,6 +19,7 @@ function VerFodaAnterior() {
   const [oportunidadesVer, setOportunidadesVer] = useState([]);
   const [debilidadesVer, setDebilidadesVer] = useState([]);
   const [amenazasVer, setAmenazasVer] = useState([]);
+  const [am, setAm] = useState([])
 
 
 
@@ -29,6 +30,7 @@ function VerFodaAnterior() {
   let objetoDelAnio = {}
   let objetoAnio=[];
   
+let objetoDelAnio2;
 
   let anioElegido;
   const handleChangeVer = (e) => {
@@ -37,19 +39,80 @@ function VerFodaAnterior() {
    // objetoDelAnio = form.find(el => el.anio == anioVerRef.current.value)
    let index = e.target.selectedIndex;
     console.log(e.target.options[index].text)
-    anioElegido = e.target.options[index].text
+     anioElegido = e.target.options[index].text
    
-   
+   anioBuscado(anioElegido)
     //console.log(anioElegido)
   }
-
- console.log(anioElegido)
-  
+let arrayFortalezas;
+let arrayOportunidades;
+let arrayDebilidades;
+let arrayAmenazas;
  
+function anioBuscado(anio) {
+  console.log(form)
+  console.log(anio)
+  objetoDelAnio2 = form.find(el => el.anio == anio)
+console.log(objetoDelAnio2)
+  if (objetoDelAnio2 !== undefined){
+console.log(objetoDelAnio2.fortalezas);
+   arrayFortalezas = objetoDelAnio2.fortalezas;
+   arrayOportunidades = objetoDelAnio2.oportunidades;
+   arrayDebilidades = objetoDelAnio2.debilidades;
+   arrayAmenazas = objetoDelAnio2.amenazas;
+
+    setFortalezasVer(arrayFortalezas);
+    setOportunidadesVer(arrayOportunidades);
+    setDebilidadesVer(arrayDebilidades);
+    setAmenazasVer(arrayAmenazas);
+    
+  }else{alert(`El año ${anio} no ha sido creado`)}
+  
+  /*
+  if (objetoDelAnio2 !== undefined) {
+
+    prueba2 = objetoDelAnio2.fortalezas;
+
+    setTagsVer([objetoDelAnio]);
+    objetoAnio = [objetoDelAnio]
+    console.log(tagsVer);
+    console.log(objetoAnio)
+    // console.log(form)
+    let arrAux = []
+    let arrAux2 = []
+    tagsVer.forEach(el => {
+      for (const key in el) {
+        arrAux.push(el[key])
+      }
+    });
+
+    objetoAnio.forEach(el => {
+      for (const key in el) {
+        arrAux2.push(el[key])
+      }
+    });
+
+
+
+    setFortalezasVer(arrAux[1]);
+    setOportunidadesVer(arrAux[2]);
+    setDebilidadesVer(arrAux[3]);
+    setAmenazasVer(arrAux[4])
+
+    
+
+   
+  } 
+  */
+}
+
+
+console.log(arrayFortalezas)
 
 
 
 
+/*
 
 useEffect(() => {
    
@@ -100,7 +163,7 @@ console.log(objetoDelAnio)
   // console.log(tagsVer)
  // console.log(fortalezasVer)
 
-
+*/
 
   const styleLinks = ({ isActive }) =>
     isActive
@@ -115,52 +178,6 @@ console.log(objetoDelAnio)
 
       
 
-/*
-  const handleChangeVer = (e) => {
-    setFortalezasVer([]);
-
-    objetoDelAnio = form.find(el => el.anio == anioVerRef.current.value)
-
-    if (objetoDelAnio !== undefined) {
-
-      setTagsVer([objetoDelAnio]);
-      objetoAnio = [objetoDelAnio]
-      console.log(tagsVer);
-      console.log(objetoAnio)
-      // console.log(form)
-      let arrAux = []
-      let arrAux2 = []
-      tagsVer.forEach(el => {
-        for (const key in el) {
-          arrAux.push(el[key])
-        }
-      });
-
-      objetoAnio.forEach(el => {
-        for (const key in el) {
-          arrAux2.push(el[key])
-        }
-      });
-
-
-
-      setFortalezasVer(arrAux[1]);
-      setOportunidadesVer(arrAux[2]);
-      setDebilidadesVer(arrAux[3]);
-      setAmenazasVer(arrAux[4])
-
-      
-fortalezasVer2 = arrAux2[1];
-let oportunidadesVer2 = arrAux2[2];
-let debilidadesVer2 = arrAux2[3];
-let amenazasVer2 = arrAux2[4]
-console.log(fortalezasVer2)
-     
-    } else {
-      alert(`Año ${anioVerRef.current.value} no ha sido creado`)
-    }
-  };
-*/
 
   function removeTagVer(index) {
     setTagsVer(tagsVer.filter((el, i) => i !== index))
@@ -184,7 +201,7 @@ console.log(fortalezasVer2)
       <Typography variant='h6' sx={{ fontWeight: 'bold' }}>AÑO</Typography>
       <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
       <select name="anio" required className='select' id ="anios" onChange={handleChangeVer} ref={anioVerRef}>
-        <option disabled>SELECCIONAR</option>
+        <option disabled selected="true">SELECCIONAR</option>
         <option value="2022">2022</option>
         <option value="2021">2021</option>
         <option value="2020">2020</option>
@@ -204,8 +221,9 @@ console.log(fortalezasVer2)
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #26a7ec', backgroundColor: '#CFE5F1', 
           
           display: 'flex', flexDirection:'row',
-          alignItems: 'flex-start',
+          justifyContent:'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
               {
                 fortalezasVer
@@ -223,8 +241,9 @@ console.log(fortalezasVer2)
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>OPORTUNIDADES</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #70AD47', backgroundColor: '#DFE9DA',  display: 'flex',
-          alignItems: 'flex-start',
+          justifyContent:'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
               {
                 oportunidadesVer
@@ -241,8 +260,9 @@ console.log(fortalezasVer2)
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>DEBILIDADES</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #F8C146', backgroundColor: '#F4ECDA',  display: 'flex',
-          alignItems: 'flex-start',
+          justifyContent:'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em',  }}>
               {
                 debilidadesVer
@@ -256,8 +276,10 @@ console.log(fortalezasVer2)
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>AMENAZAS</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #EA6D4F', backgroundColor: '#F2DEDA',  display: 'flex',
-          alignItems: 'flex-start',
+         
+          justifyContent:'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
               {
                 amenazasVer

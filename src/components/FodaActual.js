@@ -6,7 +6,7 @@ import { useRef, useState, useContext, useEffect } from 'react';
 import FodaContext from '../contexts/FodaContext'
 import { KeyOffRounded, KeyOffTwoTone, LensTwoTone, Tag } from '@mui/icons-material';
 import '../pages/diagnostico.css'
-import Tags from './Tags';
+
 import { FaEdit} from 'react-icons/fa';
 import { RiDeleteBin5Fill } from 'react-icons/ri'
 
@@ -19,15 +19,57 @@ function VerFodaAnterior() {
   const [debilidadesActual, setDebilidadesActual] = useState([]);
   const [amenazasActual, setAmenazasActual] = useState([]);
 
+  const [edit, setEdit] = useState(false)
+
+ 
+
+  const { handleChange, takeFodaToContext, form, setForm, setContextFortalezas, contextFortalezas,  } = useContext(FodaContext);
 
 
-  console.log(fortalezasActual)
-  const { handleChange, takeFodaToContext, form, setForm, setContextFortalezas, contextFortalezas } = useContext(FodaContext);
+  let anioActual = 2022;
 
-
+useEffect(() => {
+  
 
   
-  console.log(fortalezasActual)
+  // console.log(fortalezasActual)
+ 
+ 
+  let arrayFortalezasActual;
+ let arrayOportunidadesActual;
+ let arrayDebilidadesActual;
+ let arrayAmenazasActual;
+  let objetoDelAnioActual;
+ 
+  // console.log(form)
+  // console.log(anio)
+   objetoDelAnioActual = form.find(el => el.anio == anioActual)
+ //console.log(objetoDelAnioActual)
+   if (objetoDelAnioActual !== undefined){
+ //console.log(objetoDelAnioActual.fortalezas);
+    arrayFortalezasActual = objetoDelAnioActual.fortalezas;
+    arrayOportunidadesActual = objetoDelAnioActual.oportunidades;
+    arrayDebilidadesActual = objetoDelAnioActual.debilidades;
+    arrayAmenazasActual = objetoDelAnioActual.amenazas;
+ 
+     setFortalezasActual(arrayFortalezasActual);
+     setOportunidadesActual(arrayOportunidadesActual);
+     setDebilidadesActual(arrayDebilidadesActual);
+     setAmenazasActual(arrayAmenazasActual);
+     
+   }else{
+
+    setFortalezasActual([]);
+    setOportunidadesActual([]);
+    setDebilidadesActual([]);
+    setAmenazasActual([]);
+
+   }
+ 
+ 
+}, [form])
+
+
 
 
 
@@ -41,58 +83,140 @@ function VerFodaAnterior() {
       : {
         color: '#ea6d4f',
       }
+/*
+      let objetoDelAnio = {}
 
-useEffect(() => {
-  
-    const objetoDelAnioActual = form.find(el => el.anio == 2022)
-    if (objetoDelAnioActual !== undefined) {
-
-      setTagsActual([objetoDelAnioActual]);
-      console.log(tagsActual);
-      // console.log(form)
-      let arrAuxActual = []
-      tagsActual.forEach(el => {
-        for (const key in el) {
-          arrAuxActual.push(el[key])
-        }
-      });
-
-      setFortalezasActual(arrAuxActual[1]);
-      setOportunidadesActual(arrAuxActual[2]);
-      setDebilidadesActual(arrAuxActual[3]);
-      setAmenazasActual(arrAuxActual[4])
-
-      console.log(fortalezasActual)
-    } else {
-      alert(`Año 2022 no ha sido creado`)
-    }
-
-  
-}, [form])
-
-
+      
+      useEffect(() => {
    
 
+        objetoDelAnio = form.find(el => el.anio == anioActual)
+       // console.log(objetoDelAnio)
+            if (objetoDelAnio !== undefined) {
+        
+              setTagsActual([objetoDelAnio]);
+            
+             
+              // console.log(form)
+              let arrAux = []
+             
+              tagsActual.forEach(el => {
+                for (const key in el) {
+                  arrAux.push(el[key])
+                }
+              });
+        
+             
+        
+        
+        
+              setFortalezasActual(arrAux[1]);
+              setOportunidadesActual(arrAux[2]);
+              setDebilidadesActual(arrAux[3]);
+              setAmenazasActual(arrAux[4])
+        
+              
+        
+             
+            } 
+           
+          }, [ handleSubmitActual])
 
+*/
   function removeTagVer(index) {
     setTagsActual(tagsActual.filter((el, i) => i !== index))
 
   }
 
-  function handleSubmitVer () {
-    console.log("submit")
+  function handleSubmitActual () {
+    
+
+
+  
+    
+    
+      const aniosNoActuales = form.filter((el) => el.anio != anioActual)
+      console.log(aniosNoActuales)
+      console.log(fortalezasActual)
+      setForm([]);
+      console.log(form)
+      
+        
+        setForm([
+          ...aniosNoActuales,
+          {
+            anio: [anioActual],
+            fortalezas: [...fortalezasActual],
+            oportunidades: [...oportunidadesActual],
+            debilidades: [...debilidadesActual],
+            amenazas: [...amenazasActual],
+          }
+        ]);
+        
+    
+        //   formRef.reset();
+        //  console.log(form[0].fortalezas)
+        alert(`El año ${anioActual} se ha guardado`);
+        console.log(form)
+        takeFodaToContext()
+       
+       
+        
+     
+        
+      
+    
+    
+    
+    
   }
 
-  function handleCancelVer () {
-    console.log("cancel")
+  function handleCancelActual () {
+    let arrayFortalezasActual;
+    let arrayOportunidadesActual;
+    let arrayDebilidadesActual;
+    let arrayAmenazasActual;
+     let objetoDelAnioActual;
+    
+     // console.log(form)
+     // console.log(anio)
+      objetoDelAnioActual = form.find(el => el.anio == anioActual)
+    //console.log(objetoDelAnioActual)
+      if (objetoDelAnioActual !== undefined){
+    //console.log(objetoDelAnioActual.fortalezas);
+       arrayFortalezasActual = objetoDelAnioActual.fortalezas;
+       arrayOportunidadesActual = objetoDelAnioActual.oportunidades;
+       arrayDebilidadesActual = objetoDelAnioActual.debilidades;
+       arrayAmenazasActual = objetoDelAnioActual.amenazas;
+    
+        setFortalezasActual(arrayFortalezasActual);
+        setOportunidadesActual(arrayOportunidadesActual);
+        setDebilidadesActual(arrayDebilidadesActual);
+        setAmenazasActual(arrayAmenazasActual);
+        
+      }else{
+   
+       setFortalezasActual([]);
+       setOportunidadesActual([]);
+       setDebilidadesActual([]);
+       setAmenazasActual([]);
+   
+      }
+    
+    
+
+
+
   }
 
-  function handleEliminarVer () {
-    console.log("eliminar")
+  function handleEliminarActual () {
+let filtrados = form.filter((el=>el.anio != anioActual));
+setForm(filtrados)
+console.log(filtrados)
   }
 
-  function handleEditarVer (){
-    console.log("editar")
+  function handleEditarActual (){
+   setEdit(!edit)
   }
 
   const buttonStyle = {
@@ -104,6 +228,64 @@ useEffect(() => {
   padding:'10px',
   border:'2px solid  #0092DD'
 }
+
+
+function handleKeyDownActualFortalezas(e) {
+  if (e.key !== 'Enter') return
+  const value = e.target.value
+  if (!value.trim()) return
+  setFortalezasActual([...fortalezasActual, value])
+  e.target.value = ''
+}
+
+function handleKeyDownActualOportunidades(e) {
+  if (e.key !== 'Enter') return
+  const value = e.target.value
+  if (!value.trim()) return
+  setOportunidadesActual([...oportunidadesActual, value])
+  e.target.value = ''
+}
+
+function handleKeyDownActualDebilidades(e) {
+  if (e.key !== 'Enter') return
+  const value = e.target.value
+  if (!value.trim()) return
+  setDebilidadesActual([...debilidadesActual, value])
+  e.target.value = ''
+}
+
+function handleKeyDownActualAmenazas(e) {
+  if (e.key !== 'Enter') return
+  const value = e.target.value
+  if (!value.trim()) return
+  setAmenazasActual([...amenazasActual, value])
+  e.target.value = ''
+}
+
+
+function removeTagFortalezasActual(index) {
+  setFortalezasActual(fortalezasActual.filter((el, i) => i !== index))
+
+}
+
+function removeTagOportunidadesActual(index) {
+  setOportunidadesActual(oportunidadesActual.filter((el, i) => i !== index))
+
+}
+
+function removeTagDebilidadesActual(index) {
+  setDebilidadesActual(debilidadesActual.filter((el, i) => i !== index))
+
+}
+
+function removeTagAmenazasActual(index) {
+  setAmenazasActual(amenazasActual.filter((el, i) => i !== index))
+
+}
+
+
+
+
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -118,12 +300,12 @@ useEffect(() => {
 
       </nav>
       <Box sx={{display:'flex', flexDirection:'row', justifyContent:'space-between', marginBottom:"10px"}}>
-      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>AÑO 2022</Typography>
+      <Typography variant='h6' sx={{ fontWeight: 'bold' }}>AÑO {anioActual}</Typography>
       <Box sx={{display:'flex', flexDirection:'row', justifyContent:'flex-end'}}>
     
      
-        <button type='button' style={buttonStyle} onClick={handleEditarVer}><FaEdit style={{marginRight:'5px'}}/>EDITAR</button>
-        <button style={buttonStyle} onClick={handleEliminarVer}><RiDeleteBin5Fill style={{marginRight:'5px'}}/>ELIMINAR</button>
+        <button type='button' style={buttonStyle} onClick={handleEditarActual}><FaEdit style={{marginRight:'5px'}}/>EDITAR</button>
+        <button style={buttonStyle} onClick={handleEliminarActual}><RiDeleteBin5Fill style={{marginRight:'5px'}} />ELIMINAR</button>
         
       </Box>
       
@@ -141,14 +323,39 @@ useEffect(() => {
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #26a7ec', backgroundColor: '#CFE5F1', 
           
           display: 'flex', flexDirection:'row',
-          alignItems: 'flex-start',
+          alignItems: 'center',
+          justifyContent: 'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
+            
+
+
+
               {
-                fortalezasActual
-                  ? <Tags tagProp={fortalezasActual} backgroundCol={'#80c8ee'} x={'#0092DD'}></Tags>
-                  : <p></p>
-              }
+              
+              fortalezasActual.map((tag, index) => (
+        <Box sx={{ backgroundColor: '#80c8ee', padding: '3px 5px ', borderRadius: '5px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:'5px', flexWrap: 'nowrap'  }} key={index}>
+          <Box sx={{color:'#000000'}}  >{tag}</Box>
+
+          <Box sx={{height: '20px',
+width: '20px',
+
+display:'inline-block',
+color: '#0092DD',
+borderRadius: '50%',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+marginLeft: '.5em',
+fontSize: '18px',
+fontWeight: 'bolder',
+cursor: 'pointer', }} onClick={() => removeTagFortalezasActual(index)}>&times;</Box>
+        </Box>
+      ))}
+{edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualFortalezas}></input>
+}
+
 
 
             </Box>
@@ -160,15 +367,35 @@ useEffect(() => {
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>OPORTUNIDADES</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #70AD47', backgroundColor: '#DFE9DA',  display: 'flex',
-          alignItems: 'flex-start',
+          alignItems: 'center',
+          justifyContent: 'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
-              {
-                oportunidadesActual
-                  ? <Tags tagProp={oportunidadesActual} backgroundCol={'#b7d6a3'} x={'#70AD47'}></Tags>
-                  : <p></p>
-              }
 
+
+
+              {
+              
+              oportunidadesActual.map((tag, index) => (
+        <Box sx={{ backgroundColor: '#b7d6a3', padding: '3px 5px ', borderRadius: '5px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:'5px', flexWrap: 'nowrap'  }} key={index}>
+          <Box sx={{color:'#000000'}}  >{tag}</Box>
+          <Box sx={{height: '20px',
+width: '20px',
+
+display:'inline-block',
+color: '#70AD47',
+borderRadius: '50%',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+marginLeft: '.5em',
+fontSize: '18px',
+fontWeight: 'bolder',
+cursor: 'pointer', }} onClick={() => removeTagOportunidadesActual(index)}>&times;</Box>
+        </Box>
+      ))}
+      {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualOportunidades}></input>}
 
             </Box>
           </Box>
@@ -178,14 +405,35 @@ useEffect(() => {
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>DEBILIDADES</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #F8C146', backgroundColor: '#F4ECDA',  display: 'flex',
-          alignItems: 'flex-start',
+          alignItems: 'center',
+          justifyContent: 'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em',  }}>
+              
+              
+
               {
-                debilidadesActual
-                  ? <Tags tagProp={debilidadesActual} backgroundCol={'#fbe0a2'} x={'#F8C146'}></Tags>
-                  : <p></p>
-              }
+              
+              debilidadesActual.map((tag, index) => (
+        <Box sx={{ backgroundColor: '#fbe0a2', padding: '3px 5px ', borderRadius: '5px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:'5px', flexWrap: 'nowrap'  }} key={index}>
+          <Box sx={{color:'#000000'}}  >{tag}</Box>
+          <Box sx={{height: '20px',
+width: '20px',
+
+display:'inline-block',
+color: '#F8C146',
+borderRadius: '50%',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+marginLeft: '.5em',
+fontSize: '18px',
+fontWeight: 'bolder',
+cursor: 'pointer', }} onClick={() => removeTagDebilidadesActual(index)}>&times;</Box>
+        </Box>
+      ))}
+       {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualDebilidades}></input>}
 
 
             </Box>
@@ -193,14 +441,35 @@ useEffect(() => {
           <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <Typography variant='h6' sx={{ fontWeight: 'bold', fontSize: 15, marginLeft: 2 }}>AMENAZAS</Typography>
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #EA6D4F', backgroundColor: '#F2DEDA',  display: 'flex',
-          alignItems: 'flex-start',
+          alignItems: 'center',
+          justifyContent: 'center',
           flexWrap: 'wrap',
+          overflow: 'scroll',
           gap: '0.5em', }}>
+              
+
+
               {
-                amenazasActual
-                  ? <Tags tagProp={amenazasActual} backgroundCol={'#f4b6a7'} x={'#EA6D4F'}></Tags>
-                  : <p></p>
-              }
+              
+              amenazasActual.map((tag, index) => (
+        <Box sx={{ backgroundColor: '#f4b6a7', padding: '3px 5px ', borderRadius: '5px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:'5px', flexWrap: 'nowrap'  }} key={index}>
+          <Box sx={{color:'#000000'}}  >{tag}</Box>
+          <Box sx={{height: '20px',
+width: '20px',
+
+display:'inline-block',
+color: '#EA6D4F',
+borderRadius: '50%',
+display: 'flex',
+justifyContent: 'center',
+alignItems: 'center',
+marginLeft: '.5em',
+fontSize: '18px',
+fontWeight: 'bolder',
+cursor: 'pointer', }} onClick={() => removeTagAmenazasActual(index)}>&times;</Box>
+        </Box>
+      ))}
+       {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualAmenazas}></input>}
 
 
             </Box>
@@ -208,8 +477,8 @@ useEffect(() => {
 
         </Box>
         <Box sx={{display:'flex', flexDirection:'row', marginTop:'10px'}}>
-        <input type='button' style={buttonStyle} onClick={handleSubmitVer} value="GUARDAR"></input>
-        <button style={buttonStyle} onClick={handleCancelVer}>CANCELAR</button>
+        <button style={buttonStyle} onClick={handleSubmitActual}>GUARDAR</button>
+        <button style={buttonStyle} onClick={handleCancelActual}>CANCELAR</button>
         </Box>
         
       </Box>
