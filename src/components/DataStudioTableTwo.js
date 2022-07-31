@@ -3,8 +3,8 @@ import Box from '@mui/material/Box';
 
 function DataStudioTableTwo() {
   return (
-    <Box sx={{width:"30%", margin:"10px"}}>
-        <select style={{width:"100%", padding:"5px", borderRadius:"5px", borderColor:"#dfdfdf", }}>
+    <Box sx={{width:"100%", margin:"10px"}}>
+        <select style={{width:"90%", padding:"5px", borderRadius:"5px", borderColor:"#dfdfdf", }}>
           <option  default >País</option>
           <option value="brasil">Brasil</option>
           <option value="argentina">Argentina</option>

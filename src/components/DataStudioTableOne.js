@@ -125,7 +125,7 @@ function DataStudioTableOne() {
             backgroundColor: '#ffffff',
             borderRadius: '10px',
             padding: '1rem',
-            width: '70%',
+            width: '100%',
             height: '300px',
             margin: '2px',
         }}>
