@@ -182,7 +182,7 @@ export const Diagnostico = () => {
               display: 'flex',
               alignItems: 'flex-start',
               flexWrap: 'wrap',
-              overflow: 'scroll',
+              overflow: 'auto',
               gap: '0.5em', border: '2px solid #80c8ee', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
               {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
@@ -211,7 +211,7 @@ export const Diagnostico = () => {
               display: 'flex',
               alignItems: 'flex-start',
               flexWrap: 'wrap',
-              overflow: 'scroll',
+              overflow: 'auto',
               gap: '0.5em', border: '2px solid #b7d6a3', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
               {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
@@ -242,7 +242,7 @@ export const Diagnostico = () => {
               display: 'flex',
               alignItems: 'flex-start',
               flexWrap: 'wrap',
-              overflow: 'scroll',
+              overflow: 'auto',
               gap: '0.5em', border: '2px solid #fbe0a2', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
               {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
@@ -270,7 +270,7 @@ export const Diagnostico = () => {
               display: 'flex',
               alignItems: 'flex-start',
               flexWrap: 'wrap',
-              overflow: 'scroll',
+              overflow: 'auto',
               gap: '0.5em', border: '2px solid #f4b6a7', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
               {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>

@@ -326,7 +326,7 @@ function removeTagAmenazasActual(index) {
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
             
 
@@ -370,7 +370,7 @@ cursor: 'pointer', }} onClick={() => removeTagFortalezasActual(index)}>{edit && 
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
 
 
@@ -408,7 +408,7 @@ cursor: 'pointer', }} onClick={() => removeTagOportunidadesActual(index)}>{edit 
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em',  }}>
               
               
@@ -445,7 +445,7 @@ cursor: 'pointer', }} onClick={() => removeTagDebilidadesActual(index)}>{edit &&
           alignItems: 'center',
           justifyContent: 'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
               
 

@@ -223,7 +223,7 @@ console.log(objetoDelAnio)
           display: 'flex', flexDirection:'row',
           justifyContent:'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
               {
                 fortalezasVer
@@ -243,7 +243,7 @@ console.log(objetoDelAnio)
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #70AD47', backgroundColor: '#DFE9DA',  display: 'flex',
           justifyContent:'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
               {
                 oportunidadesVer
@@ -262,7 +262,7 @@ console.log(objetoDelAnio)
             <Box sx={{ height: '100px', borderRadius: '5px', margin: '10px', border: '4px solid #F8C146', backgroundColor: '#F4ECDA',  display: 'flex',
           justifyContent:'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em',  }}>
               {
                 debilidadesVer
@@ -279,7 +279,7 @@ console.log(objetoDelAnio)
          
           justifyContent:'center',
           flexWrap: 'wrap',
-          overflow: 'scroll',
+          overflow: 'auto',
           gap: '0.5em', }}>
               {
                 amenazasVer
