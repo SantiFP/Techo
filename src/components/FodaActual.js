@@ -264,22 +264,22 @@ function handleKeyDownActualAmenazas(e) {
 
 
 function removeTagFortalezasActual(index) {
-  setFortalezasActual(fortalezasActual.filter((el, i) => i !== index))
+  edit && setFortalezasActual(fortalezasActual.filter((el, i) => i !== index))
 
 }
 
 function removeTagOportunidadesActual(index) {
-  setOportunidadesActual(oportunidadesActual.filter((el, i) => i !== index))
+  edit && setOportunidadesActual(oportunidadesActual.filter((el, i) => i !== index))
 
 }
 
 function removeTagDebilidadesActual(index) {
-  setDebilidadesActual(debilidadesActual.filter((el, i) => i !== index))
+  edit && setDebilidadesActual(debilidadesActual.filter((el, i) => i !== index))
 
 }
 
 function removeTagAmenazasActual(index) {
-  setAmenazasActual(amenazasActual.filter((el, i) => i !== index))
+  edit && setAmenazasActual(amenazasActual.filter((el, i) => i !== index))
 
 }
 
@@ -350,7 +350,7 @@ alignItems: 'center',
 marginLeft: '.5em',
 fontSize: '18px',
 fontWeight: 'bolder',
-cursor: 'pointer', }} onClick={() => removeTagFortalezasActual(index)}>&times;</Box>
+cursor: 'pointer', }} onClick={() => removeTagFortalezasActual(index)}>{edit && "x"}</Box>
         </Box>
       ))}
 {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualFortalezas}></input>
@@ -392,7 +392,7 @@ alignItems: 'center',
 marginLeft: '.5em',
 fontSize: '18px',
 fontWeight: 'bolder',
-cursor: 'pointer', }} onClick={() => removeTagOportunidadesActual(index)}>&times;</Box>
+cursor: 'pointer', }} onClick={() => removeTagOportunidadesActual(index)}>{edit && "x"}</Box>
         </Box>
       ))}
       {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualOportunidades}></input>}
@@ -430,8 +430,9 @@ alignItems: 'center',
 marginLeft: '.5em',
 fontSize: '18px',
 fontWeight: 'bolder',
-cursor: 'pointer', }} onClick={() => removeTagDebilidadesActual(index)}>&times;</Box>
+cursor: 'pointer', }} onClick={() => removeTagDebilidadesActual(index)}>{edit && "x"}</Box>
         </Box>
+        
       ))}
        {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualDebilidades}></input>}
 
@@ -466,7 +467,7 @@ alignItems: 'center',
 marginLeft: '.5em',
 fontSize: '18px',
 fontWeight: 'bolder',
-cursor: 'pointer', }} onClick={() => removeTagAmenazasActual(index)}>&times;</Box>
+cursor: 'pointer', }} onClick={() => removeTagAmenazasActual(index)}>{edit && "x"}</Box>
         </Box>
       ))}
        {edit && <input type="text" className='tag-input'  placeholder="Escribir y pulsar Enter para confirmar..."  onKeyDown={handleKeyDownActualAmenazas}></input>}
