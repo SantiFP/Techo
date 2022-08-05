@@ -6,34 +6,23 @@ import './dataStudioTableOne.css';
 
 function DataStudioTableThree() {
 
-    const id ="al backend darle a cada uno un id"
-  
+    const id = "al backend darle a cada uno un id"
+
     const data = [
         {
             check: "Desarrollo comunitario",
-            
-           
-            
         },
         {
             check: "Desarrollo institucional",
-           
-            
         },
         {
             check: "Incidencia en política",
-          
-           
         },
         {
             check: "Promoción de la conciencia y acción social",
-           
-           
         },
         {
             check: "RMI legal",
-           
-           
         },
     ]
 
@@ -42,13 +31,11 @@ function DataStudioTableThree() {
             {
                 Header: "",
                 accessor: "check",
-               
             },
             {
                 Header: "PILAR (1)",
                 accessor: ""
             },
-           
         ],
         []
     );
@@ -71,12 +58,8 @@ function DataStudioTableThree() {
             borderRadius: '10px',
             padding: '1rem',
             width: '100%',
-          
             margin: '2px',
-           
-         
         }}>
-            
 
             <table {...getTableProps()} className="dataBox-table" >
                 <thead className="dataBox-thead" >
@@ -96,7 +79,7 @@ function DataStudioTableThree() {
                                 <input type="checkbox" id={id} value="id"></input>
                                 {row.cells.map((cell) => {
                                     return (
-                                        
+
                                         <td {...cell.getCellProps()} className="dataBox-td" >{cell.render("Cell")}</td>
                                     );
                                 })}
@@ -108,7 +91,5 @@ function DataStudioTableThree() {
         </Box>
     );
 }
-
-    
 
 export default DataStudioTableThree

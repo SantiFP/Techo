@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useRef, useState, useContext } from 'react';
 import { Typography, Button, Box } from '@mui/material';
@@ -7,40 +6,23 @@ import { NavLink } from 'react-router-dom';
 import FodaContext from '../contexts/FodaContext'
 import './diagnostico.css';
 
-
-
-
-
 export const Diagnostico = () => {
-
 
   const [tagsFortalezas, setTagsFortalezas] = useState([]);
   const [tagsOportunidades, setTagsOportunidades] = useState([]);
   const [tagsDebilidades, setTagsDebilidades] = useState([]);
   const [tagsAmenazas, setTagsAmenazas] = useState([]);
 
-
-
   const { handleChange, takeFodaToContext, form, setForm, setPrueba } = useContext(FodaContext)
 
-
   const anioRef = useRef();
-  // const fortalezasRef = useRef();
   const oportunidadesRef = useRef();
   const debilidadesRef = useRef();
   const amenazasRef = useRef();
   const formRef = useRef();
-  /*
-    const handleChange = (e) => {
-        console.log(e.target.value)
-      };
-  */
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
 
     const anioBuscado = form.find((el) => el.anio == anioRef.current.value)
     console.log(anioBuscado)
@@ -56,27 +38,21 @@ export const Diagnostico = () => {
           amenazas: [...tagsAmenazas],
         }
       ]);
-      
 
-      //   formRef.reset();
-      //  console.log(form[0].fortalezas)
       alert("El formulario se ha enviado");
       console.log(form)
       takeFodaToContext()
       e.target.value = ''
       let formulario = document.getElementById('formulario');
-     // formulario.reset()
+
       setTagsFortalezas([])
       setTagsOportunidades([])
       setTagsDebilidades([])
       setTagsAmenazas([])
-      
+
     } else {
       alert(`El año ${anioBuscado.anio} ya se encuentra creado`)
     }
-
-
-
   };
 
   const styleLinks = ({ isActive }) =>
@@ -126,38 +102,29 @@ export const Diagnostico = () => {
 
   function removeTagFortalezas(index) {
     setTagsFortalezas(tagsFortalezas.filter((el, i) => i !== index))
-
   }
 
   function removeTagOportunidades(index) {
     setTagsOportunidades(tagsOportunidades.filter((el, i) => i !== index))
-
   }
 
   function removeTagDebilidades(index) {
     setTagsDebilidades(tagsDebilidades.filter((el, i) => i !== index))
-
   }
 
   function removeTagAmenazas(index) {
     setTagsAmenazas(tagsAmenazas.filter((el, i) => i !== index))
-
   }
-
-
 
   return (
     <Box>
-      <Typography variant='h2' sx={{ color: '#27759e', fontSize: '35px', textAlign: 'center',  }}>DIAGNÓSTICO</Typography>
+      <Typography variant='h2' sx={{ color: '#27759e', fontSize: '35px', textAlign: 'center', }}>DIAGNÓSTICO</Typography>
       <nav className='diagnostico-nav'>
 
-        
         <NavLink to="/diagnostico/fodaActual" style={styleLinks} className="navlinks">F.O.D.A ACTUAL</NavLink>
         <NavLink to="/diagnostico" style={styleLinks} className="navlinks">CREAR F.O.D.A.</NavLink>
         <NavLink to="/diagnostico/verFodaAnterior" style={styleLinks} className="navlinks">VER AÑOS ANTERIORES</NavLink>
         <NavLink to="/diagnostico/dataStudio" style={styleLinks} className="navlinks">VER DATA STUDIO</NavLink>
-
-
 
       </nav>
       <Typography variant='h6' sx={{ fontWeight: 'bold' }}>AÑO</Typography>
@@ -170,9 +137,7 @@ export const Diagnostico = () => {
           <option value="2020">2020</option>
         </select>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' , width:'100%' }}>
-
-
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
 
             <Box sx={{
               margin: '20px 10px 20px 10px',
@@ -185,12 +150,9 @@ export const Diagnostico = () => {
               overflow: 'auto',
               gap: '0.5em', border: '2px solid #80c8ee', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
-              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
-                <span className='text'>hello</span>
-                <span className='close'>&times;</span>
-          </Box>*/}
+
               {tagsFortalezas.map((tag, index) => (
-                <Box sx={{ backgroundColor: '#CFE5F1', padding: '3px 5px ', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px"  }} key={index}>
+                <Box sx={{ backgroundColor: '#CFE5F1', padding: '3px 5px ', borderRadius: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: "5px" }} key={index}>
                   <span className='text'  >{tag}</span>
                   <span className='close darkBlue' onClick={() => removeTagFortalezas(index)}>&times;</span>
                 </Box>
@@ -198,10 +160,6 @@ export const Diagnostico = () => {
               <input type="text" className='tag-input' onKeyDown={handleKeyDownFortalezas} placeholder="Escribir y pulsar Enter para confirmar..."></input>
 
             </Box>
-
-
-
-
 
             <Box sx={{
               margin: '20px 10px 20px 10px',
@@ -214,12 +172,9 @@ export const Diagnostico = () => {
               overflow: 'auto',
               gap: '0.5em', border: '2px solid #b7d6a3', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
-              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
-                <span className='text'>hello</span>
-                <span className='close'>&times;</span>
-          </Box>*/}
+
               {tagsOportunidades.map((tag, index) => (
-                <Box sx={{ backgroundColor: '#DFE9DA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                <Box sx={{ backgroundColor: '#DFE9DA', padding: '3px 5px', borderRadius: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: "5px" }} key={index}>
                   <span className='text'  >{tag}</span>
                   <span className='close darkGreen' onClick={() => removeTagOportunidades(index)}>&times;</span>
                 </Box>
@@ -229,10 +184,7 @@ export const Diagnostico = () => {
             </Box>
           </Box>
 
-
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width:'100%' }}>
-
-
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
 
             <Box sx={{
               margin: '20px 10px 20px 10px',
@@ -245,12 +197,9 @@ export const Diagnostico = () => {
               overflow: 'auto',
               gap: '0.5em', border: '2px solid #fbe0a2', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
-              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
-                <span className='text'>hello</span>
-                <span className='close'>&times;</span>
-          </Box>*/}
+
               {tagsDebilidades.map((tag, index) => (
-                <Box sx={{ backgroundColor: '#F4ECDA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                <Box sx={{ backgroundColor: '#F4ECDA', padding: '3px 5px', borderRadius: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: "5px" }} key={index}>
                   <span className='text'  >{tag}</span>
                   <span className='close darkYellow' onClick={() => removeTagDebilidades(index)}>&times;</span>
                 </Box>
@@ -258,9 +207,6 @@ export const Diagnostico = () => {
               <input type="text" className='tag-input' onKeyDown={handleKeyDownDebilidades} placeholder="Escribir y pulsar Enter para confirmar..."></input>
 
             </Box>
-
-
-
 
             <Box sx={{
               margin: '20px 10px 20px 10px',
@@ -273,12 +219,9 @@ export const Diagnostico = () => {
               overflow: 'auto',
               gap: '0.5em', border: '2px solid #f4b6a7', backgroundColor: '#ffffff'
             }} onChange={handleChange} name="fortalezas"  >
-              {/*<Box sx={{ backgroundColor: 'rgb(218,216,216)', display: 'inline-block', padding: '.5em .7em', borderRadius: '20px' }}>
-                <span className='text'>hello</span>
-                <span className='close'>&times;</span>
-          </Box>*/}
+
               {tagsAmenazas.map((tag, index) => (
-                <Box sx={{ backgroundColor: '#F2DEDA', padding: '3px 5px', borderRadius: '8px', display:'flex', flexDirection:'row', justifyContent:'center', alignItems:'center', margin:"5px" }} key={index}>
+                <Box sx={{ backgroundColor: '#F2DEDA', padding: '3px 5px', borderRadius: '8px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', margin: "5px" }} key={index}>
                   <span className='text'  >{tag}</span>
                   <span className='close darkOrange' onClick={() => removeTagAmenazas(index)}>&times;</span>
                 </Box>
@@ -286,26 +229,13 @@ export const Diagnostico = () => {
               <input type="text" className='tag-input' onKeyDown={handleKeyDownAmenazas} placeholder="Escribir y pulsar Enter para confirmar..."></input>
 
             </Box>
-
-
-
-
-
           </Box>
           <input type='button' className='input-button' value='GUARDAR' onClick={handleSubmit}></input>
         </Box>
-
       </form>
-
-
-
     </Box>
 
-
   )
-
-
-
 
 }
 //para desabilitar el botón enter y evitar que envíe el formulario ante cada enter de nueva etiqueta creada, se pone en el <input type="button" onClick={handleSubmit}> Si se le pusiera type "submit", le da el mando a la etiqueta form y esta lleva el onclick y además funciona con la tecla enter, cosa que se quiere evitar aquí.

@@ -1,9 +1,7 @@
 import { useMemo } from "react";
 import { Column, useTable } from "react-table";
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
 import './dataStudioTableOne.css';
-
 
 function DataStudioTableOne() {
 
@@ -78,7 +76,6 @@ function DataStudioTableOne() {
             real1s: 0,
             cumplimiento1s: 0,
         },
-
     ]
 
     const columns = useMemo(
@@ -119,7 +116,6 @@ function DataStudioTableOne() {
         footerGroups
     } = tableInstance;
 
-
     return (
         <Box sx={{
             backgroundColor: '#ffffff',
@@ -129,7 +125,7 @@ function DataStudioTableOne() {
             height: '300px',
             margin: '2px',
         }}>
-            
+
 
             <table {...getTableProps()} className="dataBox-table" >
                 <thead className="dataBox-thead" >
