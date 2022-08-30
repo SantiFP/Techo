@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Box, Typography, Link, Divider } from '@mui/material'
 
@@ -13,7 +12,7 @@ const Copyright = () => {
   )
 }
 
-export const Footer = () => {
+export default function Footer () {
   return (
     <Box sx={{ marginTop: 'auto' }}>
       <Divider />

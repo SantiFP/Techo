@@ -1,19 +1,23 @@
-import React from 'react'
-import { Box } from '@mui/material'
-import { Footer } from './Footer/Footer'
-import { Header } from './Header/Header'
+import { Box, Container } from '@mui/material'
+import Footer from 'layout/Footer/Footer'
+import Header from 'layout/Header/Header'
+import useUser from 'hooks/useUser'
+import Login from 'pages/Login/Login'
 
-export const Layout = ({ children }) => {
+export default function Layout({ children }) {
+  const { isLogged } = useUser()
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      style={{ minHeight: '100vh' }}
-      sx={{ bgcolor: '#f9f9f9' }}
-    >
-      <Header />
-      {children}
-      <Footer />
-    </Box>
+    isLogged ?
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <Header />
+        {/* Agregar la siguiente prop para centrar verticalmente el contenido
+        sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flexGrow: 1, py: 5 }} */}
+        <Container maxWidth={"xl"} sx={{ py: 5,}}>
+          {children}
+        </Container>
+        <Footer />
+      </Box>
+      :
+      <Login />
   )
 }
