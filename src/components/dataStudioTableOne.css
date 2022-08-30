@@ -1,38 +1,37 @@
-.pinkBox-table {
+.dataBox-table {
     border-radius: 10px;
-    border: 2px solid #ea6d4f;
+    border: none;
     border-collapse: collapse;
 }
 
-.pinkBox-thead {
-    background-color: #ea6d4f;
+.dataBox-thead {
+    background-color: #000000;
     color: white;
+    font-size: 10px;
+}
+
+.dataBox-tbody {
     font-size: 12px;
 }
 
-.pinkBox-tbody {
-    font-size: 12px;
-}
-
-.pinkBox-tbody tr:nth-child(odd) {
+.dataBox-tbody tr:nth-child(odd) {
     background-color: white;
 }
 
-
-.pinkBox-tbody tr:nth-child(even) {
+.dataBox-tbody tr:nth-child(even) {
     background-color: #dfdfdf;
 }
 
-
-.pinkBox-th {
+.dataBox-th {
     padding: 10px;
-    border: 1px solid white;
+
+    border: none;
 }
 
-.pinkBox-td {
+.dataBox-td {
 
     text-align: center;
-    border-right: 1px solid #ea6d4f;
+    border-right: none;
     padding: 3px;
 }
 

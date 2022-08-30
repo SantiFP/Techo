@@ -51,7 +51,9 @@ export default function Home () {
           <Typography variant='h4' sx={{ fontSize: '16px', textAlign: 'center' }}>CÓMO PLANIFICAMOS</Typography>
           <Box><FaLongArrowAltDown style={{ color: '#acacac' }} /></Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', boderRadius: '15px', padding: '5px', width: '100%' }}>
+
           <Button sx={{ backgroundColor: '#acacac', color: 'white', textAlign: 'center', fontSize: '12px', minWidth: '100%', height: '80px' }} className='links'><Link to='./diagnostico' className='links' >DIAGNÓSTICO</Link></Button>
+
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%' }}>
                 <Button sx={{ backgroundColor: '#f8c146', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', width: '100%' }} className='links'><Link to='' className='links' >METAS</Link></Button>
