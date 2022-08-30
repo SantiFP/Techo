@@ -7,15 +7,17 @@ import YellowBox from './YellowBox/YellowBox';
 import Box from '@mui/material/Box';
 import { FaLongArrowAltDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom'
+import useUser from 'hooks/useUser'
 
-export const Home = () => {
+export default function Home () {
 
-  const usuario = "ELÍAS";
+  const { profile} = useUser();
+  const usuario = profile.givenName;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-        <Typography variant='h1' sx={{ fontSize: '30px' }}>¡HOLA {usuario}! 👋🏻</Typography>
+        <Typography variant='h1' sx={{ fontSize: '30px', textTransform: 'uppercase' }}>¡HOLA {usuario}! 👋🏻</Typography>
 
         <Box sx={{ borderRadius: '50px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: '5px' }}>
 
@@ -25,7 +27,7 @@ export const Home = () => {
               <Typography sx={{ fontSize: '12px' }}>JUNTAR PLATA</Typography>
             </Box>
             <Box sx={{ backgroundColor: '#323232', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '140px', height: '70px', borderEndEndRadius: '10px', borderTopRightRadius: '10px' }}>
-              <img src='https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113__340.png' style={{ width: '30px' }} />
+              <img src='https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113__340.png' alt='avatar' style={{ width: '30px' }} />
               <Typography sx={{ color: '#ffffff', textAlign: 'center', fontSize: '12px' }}>{usuario}</Typography>
             </Box>
           </Box>
@@ -36,7 +38,7 @@ export const Home = () => {
               <Typography sx={{ fontSize: '12px' }}>TENER EQUIPO</Typography>
             </Box>
             <Box sx={{ backgroundColor: '#323232', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', width: '140px', height: '70px', borderEndEndRadius: '10px', borderTopRightRadius: '10px' }}>
-              <img src='https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113__340.png' style={{ width: '30px' }} />
+              <img src='https://cdn.pixabay.com/photo/2017/02/23/13/05/avatar-2092113__340.png' alt='avatar' style={{ width: '30px' }} />
               <Typography sx={{ color: '#ffffff', textAlign: 'center', fontSize: '12px' }}>{usuario}</Typography>
             </Box>
           </Box>
@@ -49,7 +51,9 @@ export const Home = () => {
           <Typography variant='h4' sx={{ fontSize: '16px', textAlign: 'center' }}>CÓMO PLANIFICAMOS</Typography>
           <Box><FaLongArrowAltDown style={{ color: '#acacac' }} /></Box>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', boderRadius: '15px', padding: '5px', width: '100%' }}>
-            <Button sx={{ backgroundColor: '#acacac', color: 'white', textAlign: 'center', fontSize: '12px', minWidth: '100%', height: '80px' }} className='links'><Link to='./diagnostico' className='links' >DIAGNÓSTICO</Link></Button>
+
+          <Button sx={{ backgroundColor: '#acacac', color: 'white', textAlign: 'center', fontSize: '12px', minWidth: '100%', height: '80px' }} className='links'><Link to='./diagnostico' className='links' >DIAGNÓSTICO</Link></Button>
+
             <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
               <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%' }}>
                 <Button sx={{ backgroundColor: '#f8c146', color: 'white', textAlign: 'center', fontSize: '12px', height: '80px', width: '100%' }} className='links'><Link to='' className='links' >METAS</Link></Button>

@@ -1,64 +1,21 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Box, Container } from '@mui/material'
-import { Layout } from './layout/Layout'
-import { Theme } from './theme/Theme'
-import { Home } from './pages/HomePage/Home'
-import { Diagnostico } from './pages/Diagnostico'
-import { NoMatchRoute } from './pages/NoMatchRoutePage/NoMatchRoute'
-import { LoadingContextProvider } from './contexts/LoadingContext'
-import CrearFoda from './components/CrearFoda'
-import DataStudio from './components/DataStudio'
-import VerFodaAnterior from './components/VerFodaAnterior'
-import { FodaContextProvider } from './contexts/FodaContext'
-import FodaActual from './components/FodaActual'
 
+import { BrowserRouter as Router } from 'react-router-dom'
+import Layout from 'layout/Layout'
+import Routing from 'layout/Routing/Routing'
+import Theme from 'theme/Theme'
+import UserContextProvider from 'context/UserContext'
 
-export const App = () => {
+export default function App() {
   return (
-    <LoadingContextProvider>
-      <FodaContextProvider>
-        <Router>
-          <Theme>
+
+    <UserContextProvider>
+        <Theme>
+          <Router>
             <Layout>
-              <Container>
-                <Box sx={{ py: 4 }}>
-                  <Switch>
-                    <Route
-                      exact
-                      path='/'
-                      component={Home}
-                    />
-                    <Route
-                      exact
-                      path='/diagnostico'
-                      component={Diagnostico}
-                    />
-                    <Route
-                      exact
-                      path='/diagnostico/dataStudio'
-                      component={DataStudio}
-                    />
-                    <Route
-                      exact
-                      path='/diagnostico/verFodaAnterior'
-                      component={VerFodaAnterior}
-                    />
-                    <Route
-                      exact
-                      path='/diagnostico/fodaActual'
-                      component={FodaActual}
-                    />
-                    <Route path='*'>
-                      <NoMatchRoute />
-                    </Route>
-                  </Switch>
-                </Box>
-              </Container>
+              <Routing />
             </Layout>
-          </Theme>
-        </Router>
-      </FodaContextProvider>
-    </LoadingContextProvider>
+          </Router>
+        </Theme>
+    </UserContextProvider>
   )
 }
