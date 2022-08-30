@@ -59,11 +59,12 @@ export const Diagnostico = () => {
     isActive
       ? {
         color: '#ffffff',
-        background: '#ea6d4f',
+        backgroundColor: '#ea6d4f',
 
       }
       : {
         color: '#ea6d4f',
+        
       }
 
 

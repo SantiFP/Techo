@@ -10,13 +10,14 @@ function DataStudio() {
 
   const styleLinks = ({ isActive }) =>
     isActive
-      ? {
-        color: '#ffffff',
-        background: '#000000',
+    ? {
+      color: '#ffffff',
+      backgroundColor: '#ea6d4f',
 
-      }
-      : {
-        color: '#ea6d4',
+    }
+    : {
+      color: '#ea6d4f',
+     
       }
 
   return (
