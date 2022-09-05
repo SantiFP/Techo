@@ -9,7 +9,7 @@ const ThemeContext = createContext({});
 
 export default function Theme({ children }) {
 
-  const [mode, setMode] = useState('dark');
+  const [mode, setMode] = useState('light');
 
   const colorMode = useMemo(
     () => ({
