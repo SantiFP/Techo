@@ -25,6 +25,7 @@ const FodaContextProvider = ({ children }) => {
   const cargarFodaDeLocalStorage = () => {
 
     let storageFoda = JSON.parse(localStorage.getItem("FODA"));
+    console.log(storageFoda);
     if (localStorage.getItem("FODA") !== null) { setForm(storageFoda) };
   }
 

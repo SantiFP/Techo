@@ -4,7 +4,6 @@ import { Typography, Button, Box } from '@mui/material';
 function Tags({ tagProp, backgroundCol, x }) {
 
   let tag = tagProp
-  console.log(tag)
 
   return (
     <Box>

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import '../pages/diagnostico.css'
+import '../pages/DiagnosticsPage/diagnostico.css'
 import { useState, useContext, useEffect } from 'react';
-import FodaContext from '../contexts/FodaContext'
-import '../pages/diagnostico.css'
+import FodaContext from '../context/FodaContext'
+import './../pages/DiagnosticsPage/diagnostico.css'
 import { FaEdit } from 'react-icons/fa';
 import { RiDeleteBin5Fill } from 'react-icons/ri'
 
-function VerFodaAnterior() {
+function FodaActual() {
   const [tagsActual, setTagsActual] = useState([]);
   const [fortalezasActual, setFortalezasActual] = useState([]);
   const [oportunidadesActual, setOportunidadesActual] = useState([]);
@@ -16,7 +16,7 @@ function VerFodaAnterior() {
   const [amenazasActual, setAmenazasActual] = useState([]);
   const [edit, setEdit] = useState(false)
 
-  const { takeFodaToContext, form, setForm, } = useContext(FodaContext);
+  const { takeFodaToContext, form, setForm, cargarFodaDeLocalStorage} = useContext(FodaContext);
 
   let anioActual = 2022;
 
@@ -28,6 +28,7 @@ function VerFodaAnterior() {
     let arrayAmenazasActual;
     let objetoDelAnioActual;
 
+    cargarFodaDeLocalStorage();
     objetoDelAnioActual = form.find(el => el.anio == anioActual)
 
     if (objetoDelAnioActual !== undefined) {
@@ -50,7 +51,7 @@ function VerFodaAnterior() {
       setAmenazasActual([]);
 
     }
-  }, [form])
+  }, [])
 
   const styleLinks = ({ isActive }) =>
     isActive
@@ -377,4 +378,4 @@ function VerFodaAnterior() {
   )
 }
 
-export default VerFodaAnterior
+export default FodaActual
