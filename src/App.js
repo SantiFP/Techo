@@ -4,11 +4,13 @@ import Layout from 'layout/Layout'
 import Routing from 'layout/Routing/Routing'
 import Theme from 'theme/Theme'
 import UserContextProvider from 'context/UserContext'
+import { FodaContextProvider } from 'context/FodaContext'
 
 export default function App() {
   return (
 
     <UserContextProvider>
+      <FodaContextProvider>
         <Theme>
           <Router>
             <Layout>
@@ -16,6 +18,7 @@ export default function App() {
             </Layout>
           </Router>
         </Theme>
+        </FodaContextProvider>
     </UserContextProvider>
   )
 }

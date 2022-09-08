@@ -1,10 +1,9 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import '../pages/diagnostico.css'
 import { useRef, useState, useContext, } from 'react';
-import FodaContext from '../contexts/FodaContext'
-import '../pages/diagnostico.css'
+import FodaContext from '../context/FodaContext'
+import '../pages/DiagnosticsPage/diagnostico.css'
 import Tags from './Tags';
 
 function VerFodaAnterior() {
@@ -15,7 +14,6 @@ function VerFodaAnterior() {
   const [amenazasVer, setAmenazasVer] = useState([]);
 
   const anioVerRef = useRef();
-  console.log(fortalezasVer)
   const { form, } = useContext(FodaContext);
 
   let objetoDelAnio = {}

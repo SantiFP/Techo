@@ -10,7 +10,10 @@ import Indicators from 'pages/IndicatorsPage/Indicators'
 import PrivateRoute from 'components/PrivateRoute'
 import Planning from 'pages/PlanningPage/Planning'
 import PersonalGoals from 'pages/PersonalGoals/PersonalGoalsContainer'
-import Diagnostic from 'pages/DiagnosticsPage/Diagnostic'
+import Diagnostico from 'pages/DiagnosticsPage/Diagnostico'
+import FodaActual from 'components/FodaActual'
+import VerFodaAnterior from 'components/VerFodaAnterior'
+import DataStudio from 'components/DataStudio'
 
 export default function Routing () {
   return (
@@ -47,8 +50,17 @@ export default function Routing () {
       <PrivateRoute exact path='/personal-goals'>
         <PersonalGoals />
       </PrivateRoute>
-      <PrivateRoute exact path='/diagnostic'>
-        <Diagnostic />
+      <PrivateRoute exact path='/diagnostico'>
+        <Diagnostico />
+      </PrivateRoute>
+      <PrivateRoute exact path='/diagnostico/fodaActual'>
+        <FodaActual />
+      </PrivateRoute>
+      <PrivateRoute exact path='/diagnostico/verFodaAnterior'>
+        <VerFodaAnterior />
+      </PrivateRoute>
+      <PrivateRoute exact path='/diagnostico/dataStudio'>
+        <DataStudio />
       </PrivateRoute>
       <Route path='*'>
         <NoMatchRoute />

@@ -87,7 +87,7 @@ const menu = [
   },
   {
     name: 'Diagnóstico',
-    to: '/diagnostic',
+    to: '/diagnostico',
     submenu: null
   },
   {

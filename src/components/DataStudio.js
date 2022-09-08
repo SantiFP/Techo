@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
-import '../pages/diagnostico.css'
+import '../pages/DiagnosticsPage/diagnostico.css'
 import DataStudioTableOne from './DataStudioTableOne';
 import DataStudioTableTwo from './DataStudioTableTwo';
 import DataStudioTableThree from './DataStudioTableThree';
