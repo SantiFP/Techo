@@ -14,6 +14,7 @@ import Diagnostico from 'pages/DiagnosticsPage/Diagnostico'
 import FodaActual from 'components/FodaActual'
 import VerFodaAnterior from 'components/VerFodaAnterior'
 import DataStudio from 'components/DataStudio'
+import Goals from 'pages/Goals/Goals'
 
 export default function Routing () {
   return (
@@ -52,6 +53,9 @@ export default function Routing () {
       </PrivateRoute>
       <PrivateRoute exact path='/diagnostico'>
         <Diagnostico />
+      </PrivateRoute>
+      <PrivateRoute exact path='/goals'>
+        <Goals/>
       </PrivateRoute>
       <PrivateRoute exact path='/diagnostico/fodaActual'>
         <FodaActual />
