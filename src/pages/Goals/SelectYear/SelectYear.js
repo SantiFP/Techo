@@ -1,15 +1,14 @@
 //Material
 import { Box, InputLabel, MenuItem ,FormControl , Select, Typography  } from '@mui/material';
 
-//Hooks
-import { useState } from 'react';
 
-const SelectYear = () =>{
-    const [year, setYear] = useState('');
 
-    const handleChange = (event) => {
-        setYear(event.target.value);
+const SelectYear = ({ cantidad , actualizarCantidad }) =>{
+
+    const addProduct = ( event ) =>{
+        actualizarCantidad(event.target.value);
     }
+   
    
     return(
         <>
@@ -22,9 +21,9 @@ const SelectYear = () =>{
                     <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={year}
+                    value={cantidad}
                     label="SELECCIONAR"
-                    onChange={handleChange}
+                    onChange={addProduct}
                     >
                     <MenuItem value={2022}>2022</MenuItem>
                     <MenuItem value={2021}>2021</MenuItem>
