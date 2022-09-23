@@ -165,3 +165,4 @@ const CustomTable = ({ handleOpenModalDetails, isLoading, rows, headers, hasChec
 }
 
 export default CustomTable;
+export {customCheckbox};
