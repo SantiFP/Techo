@@ -33,7 +33,8 @@ export const Logo = () => {
       <Box
         component='img'
         sx={{
-          height: 50,
+          //modificacion logo tamaño anterior 50
+          height: 45,
           width: 'auto',
         }}
         alt='Techo Logo'
@@ -126,7 +127,8 @@ const menu = [
 const buttonStyles = (index, selectedIndex) => {
   return {
     position: 'relative',
-    fontSize: '22px',
+    //modif tipografia navbar
+    fontSize: '16px',
     fontWeight: 'bold',
     lineHeight: 1.2,
     textAlign: 'center',

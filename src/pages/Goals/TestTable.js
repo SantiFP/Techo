@@ -5,7 +5,6 @@ import { Button  } from '@mui/material';
 import * as XLSX from 'xlsx'
 import { useState } from 'react';
 
-
 const columns = [
   
   
@@ -82,7 +81,7 @@ export default function DataGridDemo() {
         
       <DataGrid
      
-        rows={rows}
+        data={rows}
         columns={colDefs}
         pageSize={5}
         rowsPerPageOptions={[5]}
@@ -90,6 +89,7 @@ export default function DataGridDemo() {
         disableSelectionOnClick
         experimentalFeatures={{ newEditingApi: true }}
       />
+       
     </Box>
   );
 }

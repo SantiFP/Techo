@@ -17,3 +17,11 @@
 .four-header{
     border-bottom: solid 2px white;
 }
+
+ .css-lvnl5m-MuiInputBase-root-MuiInput-root:before{
+    border-bottom: 0px !important;
+}
+
+.css-lvnl5m-MuiInputBase-root-MuiInput-root:after{
+    border-bottom: 0px !important;
+}

@@ -18,6 +18,7 @@ import {
 
   import DataGridDemo from '../TestTable';
   import { Grid } from '@mui/material';
+import TablePerYear from './TablePerYear/TablePerYear';
 
 
   const actions = (title) => {
@@ -59,13 +60,12 @@ import {
     return(
         <>
             <DialogDetails isOpenModalDetails={isOpenModalDetails} handleCloseModalDetails={handleCloseModalDetails} indicatorDetails={indicatorDetails} columns={columns} />
-            <Container maxWidth={false} sx={{ height: 640, }}>
+            <Container maxWidth={false} sx={{ height: 640, marginBottom:50 }}>
                 <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={8} hasCheckbox={false} isDisableSelectionOnClick={true} />
-                <GoalsTableDatagrid handleOpenModalDetails={handleOpenModalDetails} hasCheckbox={false} isDisableSelectionOnClick={true} isLoading={isLoading}  />
-                <Grid>
-                <DataGridDemo/>
-
-                </Grid>
+               
+            </Container>
+            <Container maxWidth={false} sx={{ height: 640, marginBottom:50 }}>
+            <TablePerYear/>
             </Container>
 
         </>

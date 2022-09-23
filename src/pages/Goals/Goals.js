@@ -11,14 +11,14 @@ import { useState } from 'react';
 
 //Records
 import { columnsSelectYear , rowsSelectYear } from './recordsGoals/RecordsGoals';
+import TablePerYear from "./GoalsTable/TablePerYear/TablePerYear";
 
-
-
+import DataGridDemo from "./TestTable";
 
 
 const Goals = () =>{
     const [year, setYear] = useState('Año');
-
+    
     return(
         <>
             <Container maxWidth="xl" > 
@@ -35,11 +35,9 @@ const Goals = () =>{
                     <Grid item xs={11} container>
                         <Typography variant='subtitle1' sx={{ fontWeight: "bold", marginTop: 4,textTransform: 'uppercase' }}>{year}</Typography>
                     </Grid>
+                    
                   <GoalsTable columns={columnsSelectYear} rows={rowsSelectYear} isLoading={false} />
                 </Grid>
-                
-               
-               
             </Container>
         </>
     )

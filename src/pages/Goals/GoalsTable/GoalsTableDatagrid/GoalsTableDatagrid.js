@@ -5,7 +5,7 @@ import {
     gridPageSelector,
     useGridApiContext,
     useGridSelector,
-    GridToolbar,
+    GridToolbarQuickFilter,
     GridOverlay,
     esES,
     gridClasses
@@ -14,9 +14,11 @@ import Pagination from '@mui/material/Pagination'
 import PaginationItem from '@mui/material/PaginationItem'
 import React from 'react';
 import { LinearProgress } from '@mui/material';
-
+import Box from '@mui/material/Box';
 
 import './GoalsTableDatagrid.css'
+
+
 
 function customCheckbox(theme) {
     return {
@@ -80,6 +82,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
         color: '#f0f0f0',
         height: '100%',
     },
+    
     '& .MuiDataGrid-columnHeader':{
         padding:0
     },
@@ -130,63 +133,89 @@ const rows = [
 ];
 
 const columns = [
-  { field: 'Indicadores', headerName: '', width: 450  },
-  { field: 'Tipo', headerName: '', width: 170 },
-  { field: 'Pilar', headerName: '', width: 170 },
+  { field: 'Indicadores', 
+  headerName:  
+  <Box
+    sx={{
+      p: 0,
+      pb: 0,
+    }}>
+    <GridToolbarQuickFilter sx={{
+      borderTop:3,
+      paddingLeft:2,
+      paddingRight:2,
+      width: 350,
+      backgroundColor : "white",
+      borderRadius : 3,
+      }} placeholder="Buscar…" /> 
+  </Box>, width: 450 , editable: true  },
+  { field: 'Tipo', headerName: '', width: 170 , editable: true  },
+  { field: 'Pilar', headerName: '', width: 170 , editable: true  },
   {
     field: 'planannual',
     headerName: 'PLAN',
     width: 100,
+    editable: true 
   },
   {
     field: 'realannual',
     headerName: 'REAL',
     width: 100,
+    editable: true 
   },
   {
     field: 'rpannual',
     headerName: '%(R/P)',
     width: 100,
+    editable: true 
   },
   {
     field: 'plan1',
     headerName: 'PLAN',
     width: 100,
+    editable: true 
   },
   {
     field: 'real1',
     headerName: 'REAL',
     width: 100,
+    editable: true 
   },
   {
     field: 'rp1',
     headerName: '%(R/P)',
     width: 100,
+    editable: true 
   },
   {
     field: 'plan2',
     headerName: 'PLAN',
     width: 100,
+    editable: true 
   },
   {
     field: 'real2',
     headerName: 'REAL',
     width: 100,
+    editable: true 
   },
   {
     field: 'rp2',
     headerName: '%(R/P)',
     width: 100,
+    editable: true 
   },
   {
     field: 'plan3',
     headerName: 'PLAN',
     width: 100,
+    editable: true 
   },
   {
     field: 'real3',
     headerName: 'REAL',
     width: 100,
+    editable: true 
   },
   {
     field: 'rp3',
@@ -197,16 +226,19 @@ const columns = [
     field: 'plan4',
     headerName: 'PLAN',
     width: 100,
+    editable: true 
   },
   {
     field: 'real4',
     headerName: 'REAL',
     width: 100,
+    editable: true 
   },
   {
     field: 'rp4',
     headerName: '%(R/P)',
     width: 100,
+    editable: true 
   },
 ];
 
@@ -303,23 +335,31 @@ export default function GoalsTableDatagrid( handleOpenModalDetails , isDisableSe
        loading={isLoading}
         rows={rows}
         columns={columns}
-        experimentalFeatures={{ columnGrouping: true }}
+        experimentalFeatures={{ columnGrouping: true , newEditingApi: true }}
         pageSize={8}
         rowsPerPageOptions={[5]}
         disableColumnMenu
+        disableColumnFilter
+        disableColumnSelector
+        disableDensitySelector
         disableSelectionOnClick={isDisableSelectionOnClick}
         localeText={esES.components.MuiDataGrid.defaultProps.localeText}   
         columnGroupingModel={columnGroupingModel}
         components={{
             Pagination: CustomPagination,
-            Toolbar: GridToolbar,
             LoadingOverlay: LinearLoadingOverlay
         }}
+        /*componentsProps={{
+          toolbar: {
+            showQuickFilter: true,
+            quickFilterProps: { debounceMs: 500 },
+          },
+        }}
+        */
         checkboxSelection={hasCheckbox}
         getRowClassName={(params) =>
             params.id % 2 === 0 ? 'even' : 'odd'
           }  
-        
       />
     </div>
   );

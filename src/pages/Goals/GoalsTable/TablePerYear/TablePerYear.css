@@ -1,0 +1,62 @@
+table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size:14px;
+    
+  }
+  
+  table tr:nth-child(even){background-color: #E5E5E5;}
+  
+  table th {
+    text-align: left;
+    background-color:#0092DD;
+    color: white;
+  }
+
+  /* Checkbox style */
+
+.cb{
+  margin: 4px;
+  overflow: hidden;
+  float: left;
+}
+
+.cb label {
+  float: left; 
+  cursor: pointer;
+  text-transform: capitalize;
+  border-radius: 5px;
+}
+
+.cb label span {
+  text-align: center;
+  display: block;
+  padding: 5px 15px;
+  font-size: 14px;
+}
+
+.cb label input {
+  position: absolute;
+  display: none;
+  color: white
+}
+/* selects all of the text within the input element and changes the color of the text */
+.cb label input + span{
+  color:#DA7457;
+  font-weight: 500;
+} 
+
+
+/* This will declare how a selected input will look giving generic properties */
+.cb input:checked + span {
+    color: white;
+    font-weight: 500;
+    
+}
+.action input:checked + span{
+  background-color: #DA7457;
+  color: white;
+  border-radius: 10px;
+ 
+}
