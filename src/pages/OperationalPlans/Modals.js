@@ -8,8 +8,7 @@ import operationalPlans from '../../data/operationalPlans'
 const crearObjetivo = true
 
 const rows= operationalPlans.rows
-
-console.log(rows)
+console.log('rows', rows[0].RESPONSABLE)
 
 export const style = {
   position: 'absolute',
@@ -34,12 +33,13 @@ const styleLinks = ({ isActive }) =>
       color: '#ea6d4f',
     };
 
-export const Body = ({crearObjetivo, titleModal}) =>{
+export const Body = ({crearObjetivo, titleModal, isEditButton}) =>{
+
 
   return(
     <div >
     <Typography variant='h1}2' sx={{ textTransform: 'uppercase' }} id="modal-modal-title" component="h2" align='center' color='#005D8D'>
-    {titleModal}
+    {isEditButton ? "Editar resultado clave" : titleModal}
     </Typography>
     <Typography color='#005D8D' id="modal-modal-description" sx={{ textTransform: 'uppercase', fontSize: 15, fontWeight: 'bold' }}>
       Categoría
@@ -85,34 +85,23 @@ export const Body = ({crearObjetivo, titleModal}) =>{
     <Toolbar disableGutters >
       <Typography sx={{ mr: 4, textTransform: 'uppercase', fontSize: 15, fontWeight: 'bold' }} id="modal-modal-title" align='left' color='#005D8D'>
         Descripción resultado clave
-        <input placeholder='ESCRIBIR...' style={{ border: `1px solid #0092DD`, borderRadius: 5, height: 40, width: '100%' }} ></input>
+        <input placeholder='ESCRIBIR...' style={{ border: `1px solid #0092DD`, borderRadius: 5, height: 40, width: '100%' }} />
       </Typography>
       <Typography sx={{ ml: 2, textTransform: 'uppercase', fontSize: 15, fontWeight: 'bold' }} id="modal-modal-title" align='center' color='#005D8D'>
         responsable resultado
         <select name="responsable" id="responsable" style={{ border: `1px solid #0092DD`, borderRadius: 5, height: 40, width: '82%' }} >
-          <option>JUAN PEREZ </option>
-          <option>JUAN PEREZ </option>
-          <option>JUAN PEREZ </option>
+        {rows.map(row => {
+          const {RESPONSABLE, id} = row
+          return(
+            <option key={id}>{RESPONSABLE}</option>
+            )
+          
+        })}
         </select>
-        {/* <select name="provincia" id="provincia"></select>
-    <script type="text/javascript">
-        function cargar_provincias()
-        {
-            var array = ["Cantabria", "Asturias", "Galicia", "Andalucia", "Extremadura"];
-            for(var i in array)
-            { 
-                document.getElementById("provincia").innerHTML += "<option value='"+array[i]+"'>"+array[i]+"</option>"; 
-
-            }
-    }
-
-    cargar_provincias();
-
-    </script> */}
       </Typography>
     </Toolbar>
     <Typography sx={{ mt: 2, textTransform: 'uppercase', fontSize: 15, fontWeight: 'bold' }} id="modal-modal-title" align='left' color='#005D8D'>
-      evaluacion
+      evaluación
     </Typography>
     <Toolbar>
       <Typography sx={{ m: 2, textTransform: 'uppercase', fontSize: 15, fontWeight: 'bold' }} id="modal-modal-title" align='left' color='#005D8D'>
@@ -137,9 +126,10 @@ export const Body = ({crearObjetivo, titleModal}) =>{
       <input style={{ border: `1px solid #0092DD`, borderRadius: 5, height: 40, width: '10%' }} ></input>
     </Toolbar>
     <hr />
+    {!isEditButton && 
     <Button>
       Agregar otro resultado
-    </Button>
+    </Button>}
     <br />
 
   </div>

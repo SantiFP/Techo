@@ -3,11 +3,11 @@ import { useState } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 import operationalPlans from './../../data/operationalPlans'
 import { Tooltip, Button } from '@mui/material'
-import { GridActionsCellItem } from '@mui/x-data-grid'
+import { GridActionsCellItem, gridClasses } from '@mui/x-data-grid'
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 import AddIcon from '@mui/icons-material/Add'
-import { Modal, Box, Typography, Toolbar } from '@mui/material';
+import { Modal, Box} from '@mui/material';
 import { Body, style } from './Modals';
 
 const columns = operationalPlans.columns
@@ -18,7 +18,7 @@ const crearObjetivo = false
 
 let titleModal = "AGREGAR RESULTADO CLAVE"
 
-const actions = (handleOpenModal) => {
+const actions = (handleOpenEditModal) => {
 
     return {
 
@@ -26,14 +26,15 @@ const actions = (handleOpenModal) => {
         field: 'actions',
         type: 'actions',
         headerName: 'OPCIONES',
-        // flex: 1,
+        align:'center',
         width: 150,
         getActions: () => [
             <GridActionsCellItem
+                field= 'EDITAR'
                 key={1}
                 icon={<Tooltip title="Editar"><EditIcon sx={{ color: '#fff' }} /></Tooltip>}
                 label='Editar'
-                onClick={handleOpenModal}
+                onClick={handleOpenEditModal}
                 sx={{ backgroundColor: '#0092DD', '&:hover': { backgroundColor: 'orange' } }}
             />,
             <GridActionsCellItem
@@ -61,9 +62,20 @@ const columnGroupingModel = [
 ];
 
 export default function BasicGroupingDemo() {
-    const [isOpenModal, setOpenModal] = useState(false)
-    const handleCloseModal = () => setOpenModal(false)
-    const handleOpenModal = () => setOpenModal(true)
+    const [isOpenModal, setOpenModal] = useState(false);
+    const [isEditButton, setEditButton] = useState(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => {
+        setOpenModal(false);
+        setEditButton(false)
+    }
+         
+    const handleOpenEditModal = ()=>{
+        setOpenModal(true)
+        setEditButton(true)
+    }
+
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <div align="right">
@@ -86,7 +98,7 @@ export default function BasicGroupingDemo() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Body crearObjetivo= {crearObjetivo} titleModal={titleModal}/>
+                    <Body crearObjetivo= {crearObjetivo} titleModal={titleModal} isEditButton={isEditButton}/>
 
                     <div align='center'>
                         <Button
@@ -104,7 +116,6 @@ export default function BasicGroupingDemo() {
                             // onClick={}
                             disableElevation
                             sx={{}}
-                            // 
                             colSpan={12}
                         >
                             CONFIRMAR
@@ -134,7 +145,7 @@ export default function BasicGroupingDemo() {
                         borderRadius: '10px 10px 0 0',
                     },
                     '& .MuiDataGrid-columnHeader, .MuiDataGrid-cell': {
-                        borderRight: `2px solid #FFFFFF`
+                        borderRight: `2px solid #FFFFFF`     
                     },
                     '& .MuiDataGrid-columnHeader:last-of-type, .MuiDataGrid-cell:last-of-type ': {
                         borderRight: 'none'
@@ -142,22 +153,24 @@ export default function BasicGroupingDemo() {
                     '& .MuiDataGrid-columnHeader, .MuiDataGrid-columnHeadersInner': {
                         backgroundColor: '#0092DD',
                         color: '#f0f0f0',
-                        fontSize: ''
-                        // height: '100px',
-                    },
+                        fontSize: '',
+                        // height: '0px',
+                        lineHeight:'px'
 
-                    '.MuiDataGrid-booleanCell': {
-                        color: 'rgba(0, 0, 0, 0.6)!important',
                     },
                 }}
                 experimentalFeatures={{ columnGrouping: true }}
                 rows={rows}
-                columns={[...columns, actions(handleOpenModal)]}
+                columns={[...columns, actions(handleOpenEditModal)]}
                 disableSelectionOnClick
                 columnGroupingModel={columnGroupingModel}
                 hideFooter
+                headerHeight={35}
+                rowHeight={45}
+                autoHeight= {true}
 
             />
+            
         </div>
     );
 }

@@ -6,6 +6,7 @@ import SearchStack from '../../components/SearchStack';
 import { Container } from '@mui/system';
 import { Modal, Box, Typography, Toolbar, Button } from '@mui/material';
 import { Body, style } from './Modals';
+import Example from './Carrousel'
 
 const title = "Planes Operativos"
 const crearObjetivo = true 
@@ -26,7 +27,8 @@ const OperationalPlans = () => {
     const [isOpenModalDetails, setOpenModalDetails] = useState(false)
     const [indicatorDetails, setIndicatorDetails] = useState({})
 
-    const handleOpenModal = () => setOpenModal(true)
+
+    const handleOpenModal = () =>setOpenModal(true)
     const handleCloseModal = () => setOpenModal(false)
 
     const handleOpenModalDetails = (indicator) => {
@@ -37,6 +39,7 @@ const OperationalPlans = () => {
         setIndicatorDetails({})
         setOpenModalDetails(false)
     }
+
     return (
         <>
             <Container>
@@ -72,9 +75,9 @@ const OperationalPlans = () => {
                     title="Objetivos en total"
                     searchPlaceholder="Buscar objetivo"
                 />
+                <BasicGroupingDemo/>
                 <BasicGroupingDemo />
-                <br /><br />
-                <BasicGroupingDemo />
+                <Example/>
             </Container>
             <Modal
                 open={isOpenModal}
