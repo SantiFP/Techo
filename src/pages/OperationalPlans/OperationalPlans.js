@@ -5,7 +5,7 @@ import BasicGroupingDemo from './Table2';
 import SearchStack from '../../components/SearchStack';
 import { Container } from '@mui/system';
 import { Modal, Box, Typography, Toolbar, Button } from '@mui/material';
-import { Body, style } from './Modals';
+import { ModalBody, style } from './ModalBody';
 import Example from './Carrousel'
 
 const title = "Planes Operativos"
@@ -86,7 +86,7 @@ const OperationalPlans = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <Body crearObjetivo= {crearObjetivo}  titleModal={titleModal}/>
+                    <ModalBody crearObjetivo= {crearObjetivo}  titleModal={titleModal}/>
 
                     <div align='center'>
                         <Button

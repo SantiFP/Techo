@@ -3,8 +3,9 @@
 
         {
             "id": 1,
-            "field": "RESULTADOS CLAVE",
+            "field": "resultados_clave",
             "label": "RESULTADOSCLAVE",
+            "headerName": "RESULTADOS CLAVE",
             "width": 500,
             "editable": true,
             "minWidth": 170,
@@ -14,8 +15,9 @@
         },
         {
             "id": 2,
-            "field": "RESPONSABLE",
-            "label": "RESPONSABLE",
+            "field": "responsable",
+            "label": "responsable",
+            "headerName": "RESPONSABLE",
             "width": 242,
             "editable": true,
             "minWidth": 170,
@@ -70,8 +72,8 @@
     "rows": [
         {
             "id": 1,
-            "RESULTADOS CLAVE": "CREAR PROTOTIPOS EN PAPEL 1",
-            "RESPONSABLE": "JUAN PEREZ",
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 1",
+            "responsable": "JUAN PEREZ",
             "T1": 4,
             "T2": 4,
             "T3": 4,
@@ -80,8 +82,8 @@
         },
         {
             "id": 2,
-            "RESULTADOS CLAVE": "CREAR PROTOTIPOS EN PAPEL 2",
-            "RESPONSABLE": "CARLOS JUAREZ",
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 2",
+            "responsable": "CARLOS JUAREZ",
             "T1": 4,
             "T2": 4,
             "T3": 4,
@@ -90,8 +92,8 @@
         },
         {
             "id": 3,
-            "RESULTADOS CLAVE": "CREAR PROTOTIPOS EN PAPEL 3",
-            "RESPONSABLE": "MIRTA MARTINEZ",
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 3",
+            "responsable": "MIRTA MARTINEZ",
             "T1": 4,
             "T2": 4,
             "T3": 4,
@@ -100,8 +102,8 @@
         },
         {
             "id": 4,
-            "RESULTADOS CLAVE": "CREAR PROTOTIPOS EN PAPEL 4",
-            "RESPONSABLE": "LUCIA GOMEZ",
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 4",
+            "responsable": "LUCIA GOMEZ",
             "T1": 4,
             "T2": 4,
             "T3": 4,
