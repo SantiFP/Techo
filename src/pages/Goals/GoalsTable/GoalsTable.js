@@ -1,16 +1,23 @@
 //mui
-import { Tooltip, Container } from "@mui/material";
-import { GridActionsCellItem } from "@mui/x-data-grid";
-import EditIcon from "@mui/icons-material/Edit";
+import { Tooltip, Container } from '@mui/material';
+import { GridActionsCellItem } from '@mui/x-data-grid';
+import EditIcon from '@mui/icons-material/Edit';
 
 //Components
-import DialogDetails from "components/records/DialogDetails";
-import CustomTable from "components/records/CustomTable";
-import TablePerYear from "./TablePerYear/TablePerYear";
+import DialogDetails from 'components/records/DialogDetails';
+import CustomTable from 'components/records/CustomTable';
+import TablePerYear from './TablePerYear/TablePerYear';
 
 //react
+<<<<<<< HEAD
 import { useState } from "react";
 
+=======
+import { useState, useEffect } from 'react';
+
+//records
+import { selectRows } from '../recordsGoals/RecordsGoals';
+>>>>>>> 06acf4ca79cd2a47a4ee7ca5cce42dd5f568172a
 
 const GoalsTable = ({
   title,
@@ -27,23 +34,23 @@ const GoalsTable = ({
   const actions = (title) => {
     return {
       id: 3,
-      field: "actions",
-      type: "actions",
-      headerName: "Acciones",
+      field: 'actions',
+      type: 'actions',
+      headerName: 'Acciones',
       flex: 1,
       getActions: () => [
         <GridActionsCellItem
           key={1}
           icon={
             <Tooltip title="Ir al detalle de la sede">
-              <EditIcon sx={{ color: "#fff" }} />
+              <EditIcon sx={{ color: '#fff' }} />
             </Tooltip>
           }
           label="Ir al detalle de la sede"
           onClick={(e) => detailsHeadquarter(e)}
           sx={{
-            backgroundColor: "#0092DD",
-            "&:hover": { backgroundColor: "orange" },
+            backgroundColor: '#0092DD',
+            '&:hover': { backgroundColor: 'orange' },
           }}
         />,
       ],
