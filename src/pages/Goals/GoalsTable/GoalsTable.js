@@ -9,12 +9,21 @@ import CustomTable from "components/records/CustomTable";
 import TablePerYear from "./TablePerYear/TablePerYear";
 
 //react
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-//records 
-import { selectRows } from "../recordsGoals/RecordsGoals";
 
-const GoalsTable = ({ title, rows, columns, isLoading , year , rowsSelection , detailsHeadquarter , openTable , setOpenTable , setRows}) => {
+const GoalsTable = ({
+  title,
+  rows,
+  columns,
+  isLoading,
+  year,
+  rowsSelection,
+  detailsHeadquarter,
+  openTable,
+  setOpenTable,
+  setRows,
+}) => {
   const actions = (title) => {
     return {
       id: 3,
@@ -43,9 +52,9 @@ const GoalsTable = ({ title, rows, columns, isLoading , year , rowsSelection , d
 
   const headers = [...columns, actions(title)];
 
-  const [ isOpenModalDetails, setOpenModalDetails ] = useState(false);
-  const [ indicatorDetails, setIndicatorDetails ] = useState({});
-  
+  const [isOpenModalDetails, setOpenModalDetails] = useState(false);
+  const [indicatorDetails, setIndicatorDetails] = useState({});
+
   const handleOpenModalDetails = (indicator) => {
     setIndicatorDetails(indicator);
     setOpenModalDetails(true);
@@ -54,7 +63,6 @@ const GoalsTable = ({ title, rows, columns, isLoading , year , rowsSelection , d
     setIndicatorDetails({});
     setOpenModalDetails(false);
   };
-
 
   return (
     <>
