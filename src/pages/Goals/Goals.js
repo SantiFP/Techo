@@ -1,104 +1,107 @@
-import { Grid , Typography } from "@mui/material"
-import { Container } from "@mui/system"
+import { Grid, Typography } from '@mui/material';
+import { Container } from '@mui/system';
 
 //Components
-import PageTitle from "components/PageTitle"
-import SelectYear from "pages/Goals/SelectYear/SelectYear"
-import GoalsTable from "./GoalsTable/GoalsTable";
+import PageTitle from 'components/PageTitle';
+import SelectYear from 'pages/Goals/SelectYear/SelectYear';
+import GoalsTable from './GoalsTable/GoalsTable';
 
 //Hooks
-import { useState , useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 //Records
-import { columnsSelectYear , selectRows } from './recordsGoals/RecordsGoals';
+import { columnsSelectYear, selectRows } from './recordsGoals/RecordsGoals';
 
-const Goals = () =>{
-    const [year, setYear] = useState('Año');
+const Goals = () => {
+  const [year, setYear] = useState('');
 
-    const [ rowsSelection , setRows] = useState();
-    const [ headquarter , setHeadquarter] = useState();
+  const [rowsSelection, setRows] = useState();
+  const [headquarter, setHeadquarter] = useState();
 
-    const [ openTable, setOpenTable ] = useState(true);
+  const [openTable, setOpenTable] = useState(true);
 
-    const addProduct = ( event ) =>{
+  const addProduct = (event) => {
+    setYear(event.target.value);
 
-        setYear(event.target.value);  
-
-        for (let i = 0; i < selectRows.length; i++) {
-       
-            if(selectRows[i].headquarter === headquarter){
-                 
-                 const selecter = selectRows[i].element;
-                 for (let i = 0; i < selecter.length; i++) {
-                   
-                    if(selecter[i].year === event.target.value){
-                     
-                        setOpenTable(false)
-                        setRows(selecter[i].elements);
-
-                        console.log(selecter[i].elements);
-
-                       
-                    }
-                 }
-            }  
-        }
-    }
-
-
- 
-function detailsHeadquarter(e) {
-   
     for (let i = 0; i < selectRows.length; i++) {
-        
-      if ((e.target.closest(".MuiDataGrid-row").getAttribute("data-id") === (selectRows[i].id).toString()) ){
-       
-        setHeadquarter(selectRows[i].headquarter)
-        
+      if (selectRows[i].headquarter === headquarter) {
+        const selecter = selectRows[i].element;
+        for (let i = 0; i < selecter.length; i++) {
+          if (selecter[i].year === event.target.value) {
+            setOpenTable(false);
+            setRows(selecter[i].elements);
+
+            // console.log(selecter[i].elements);
+          }
+        }
+      }
+    }
+  };
+
+  function detailsHeadquarter(e) {
+    for (let i = 0; i < selectRows.length; i++) {
+      if (
+        e.target.closest('.MuiDataGrid-row').getAttribute('data-id') ===
+        selectRows[i].id.toString()
+      ) {
+        setHeadquarter(selectRows[i].headquarter);
+
         const selected = selectRows[i].element;
         for (let i = 0; i < selected.length; i++) {
-           
-          if(selected[i].year === year){
-            
-           
-            setOpenTable(false)
+          if (selected[i].year === year) {
+            setOpenTable(false);
             setRows(selected[i].elements);
-          } 
+          }
         }
       }
     }
   }
 
   useEffect(() => {
-    
-   
     setOpenTable(openTable);
-    
+
     setRows(rowsSelection);
-    
-  }, [openTable , rowsSelection]);
+  }, [openTable, rowsSelection]); 
 
-    return(
-        <>
-            <Container maxWidth="xl" > 
-                <PageTitle
-                title="Metas"
-                />
-                <Grid 
-                container 
-                justifyContent="center"
-                alignItems="center">
-                    <Grid item xs={11} container>
-                        <SelectYear cantidad = {year} addProduct={addProduct}/>
-                    </Grid>
-                    <Grid item xs={11} container>
-                        <Typography variant='subtitle1' sx={{ fontWeight: "bold", marginTop: 4,textTransform: 'uppercase' }}>{year}</Typography>
-                    </Grid>
-                  <GoalsTable columns={columnsSelectYear} rows={selectRows} openTable={openTable} setOpenTable={setOpenTable} rowsSelection={rowsSelection} isLoading={false} year={year} setRows={setRows} detailsHeadquarter={detailsHeadquarter} />
-                </Grid>
-            </Container>
-        </>
-    )
-}
+  useEffect(() => {
+    console.log(rowsSelection);
+  },[ rowsSelection])
 
-export default Goals
+  return (
+    <>
+      <Container maxWidth="xl">
+        <PageTitle title="Metas" />
+        <Grid container justifyContent="center" alignItems="center">
+          <Grid item xs={11} container>
+            <SelectYear cantidad={year} addProduct={addProduct} />
+          </Grid>
+          <Grid item xs={11} container>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 'bold',
+                marginTop: 4,
+                textTransform: 'uppercase',
+              }}
+            >
+             Año {year}
+            </Typography>
+          </Grid>
+          <GoalsTable
+            columns={columnsSelectYear}
+            rows={selectRows}
+            openTable={openTable}
+            setOpenTable={setOpenTable}
+            rowsSelection={rowsSelection}
+            isLoading={false}
+            year={year}
+            setRows={setRows}
+            detailsHeadquarter={detailsHeadquarter}
+          />
+        </Grid>
+      </Container>
+    </>
+  );
+};
+
+export default Goals;

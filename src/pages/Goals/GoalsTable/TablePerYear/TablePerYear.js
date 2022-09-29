@@ -1,15 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   useTable,
   useSortBy,
   useGlobalFilter,
   useBlockLayout,
   usePagination,
-} from "react-table";
-import { useSticky } from "react-table-sticky";
+} from 'react-table';
+import { useSticky } from 'react-table-sticky';
 
-import { GlobalFilter } from "./GlobalFilter";
+import { GlobalFilter } from './GlobalFilter';
 import {
   TableContainer,
   Paper,
@@ -17,16 +16,16 @@ import {
   Button,
   Box,
   Typography,
-} from "@mui/material";
-import { forwardRef, useEffect, useRef } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import UpLoadFile, { DownLoadFile } from "pages/Goals/recordsGoals/IconsGoals";
-import "./TablePerYear.css";
-import { CSVLink } from "react-csv";
-import Header from "layout/Header/Header";
+} from '@mui/material';
+import { forwardRef, useEffect, useRef,  useMemo, useState } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import UpLoadFile, { DownLoadFile } from 'pages/Goals/recordsGoals/IconsGoals';
+import './TablePerYear.css';
+import { CSVLink } from 'react-csv';
+import Header from 'layout/Header/Header';
 
 const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
@@ -150,7 +149,7 @@ const EditableCell = ({
   column: { id },
   updateMyData,
 }) => {
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = useState(initialValue);
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -160,20 +159,20 @@ const EditableCell = ({
     updateMyData(index, id, value);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue(initialValue);
   }, [initialValue]);
   if (
-    id === "planannual" ||
-    id === "realannual" ||
-    id === "real1" ||
-    id === "plan1" ||
-    id === "plan2" ||
-    id === "real2" ||
-    id === "plan3" ||
-    id === "real3" ||
-    id === "plan4" ||
-    id === "real4"
+    id === 'planannual' ||
+    id === 'realannual' ||
+    id === 'real1' ||
+    id === 'plan1' ||
+    id === 'plan2' ||
+    id === 'real2' ||
+    id === 'plan3' ||
+    id === 'real3' ||
+    id === 'plan4' ||
+    id === 'real4'
   ) {
     return <input value={value} onChange={onChange} onBlur={onBlur} />;
   }
@@ -184,10 +183,9 @@ const defaultColumn = {
   Cell: EditableCell,
 };
 
-const borderLineTop = "borderLineTop";
+const borderLineTop = 'borderLineTop';
 
 function Table({ columns, data, updateMyData, skipPageReset }) {
-  
   const {
     getTableProps,
     getTableBodyProps,
@@ -226,18 +224,17 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
 
   return (
     <>
-   
       <Grid
         item
         sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          flexWrap: "nowrap",
-          alignItems: "center",
-          marginBottom: "1.5rem",
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexWrap: 'nowrap',
+          alignItems: 'center',
+          marginBottom: '1.5rem',
         }}
       >
-        <Grid item sx={{ display: "flex" }}>
+        <Grid item sx={{ display: 'flex' }}>
           <Grid>
             <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} />
           </Grid>
@@ -247,7 +244,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 type="checkbox"
                 onClick={() =>
                   allColumns.forEach(
-                    (c) => c.parent.Header === "ANUAL" && c.toggleHidden()
+                    (c) => c.parent.Header === 'ANUAL' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -262,7 +259,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === "1ER TRIMESTRE" && c.toggleHidden()
+                      c.parent.Header === '1ER TRIMESTRE' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -276,7 +273,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === "2DO TRIMESTRE" && c.toggleHidden()
+                      c.parent.Header === '2DO TRIMESTRE' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -290,7 +287,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === "3ER TRIMESTRE" && c.toggleHidden()
+                      c.parent.Header === '3ER TRIMESTRE' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -304,7 +301,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === "4TO TRIMESTRE" && c.toggleHidden()
+                      c.parent.Header === '4TO TRIMESTRE' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -312,19 +309,19 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
             </label>
           </Grid>
         </Grid>
-        <Box sx={{ display: "flex", marginLeft: 2 }}>
+        <Box sx={{ display: 'flex', marginLeft: 2 }}>
           <CSVLink
             data={data}
             filename="Techo-Metas"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: 'none' }}
           >
             <Button
               variant="contained"
               sx={{
-                marginRight: "1rem",
-                paddingTop: "5px",
-                paddingBottom: "5px",
-                height: "39px",
+                marginRight: '1rem',
+                paddingTop: '5px',
+                paddingBottom: '5px',
+                height: '39px',
               }}
               startIcon={<DownLoadFile />}
             >
@@ -334,11 +331,11 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
           <Button
             variant="outlined"
             sx={{
-              paddingRight: "25px",
-              paddingLeft: "25px",
-              paddingTop: "5px",
-              paddingBottom: "5px",
-              height: "39px",
+              paddingRight: '25px',
+              paddingLeft: '25px',
+              paddingTop: '5px',
+              paddingBottom: '5px',
+              height: '39px',
             }}
             startIcon={<UpLoadFile />}
           >
@@ -350,9 +347,9 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
       <TableContainer
         sx={{
           padding: 0,
-          height: "650px",
-          borderTopLeftRadius: "8px",
-          borderTopRightRadius: "8px",
+          height: '650px',
+          borderTopLeftRadius: '8px',
+          borderTopRightRadius: '8px',
         }}
       >
         <table className="table-options" {...getTableProps()}>
@@ -362,35 +359,35 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 {headerGroup.headers.map((column) => (
                   <th
                     className={`titleHeaderGroup ${
-                      (column.Header === "REAL" ||
-                        column.Header === "PLAN" ||
-                        column.Header === "% (R/P)") &&
+                      (column.Header === 'REAL' ||
+                        column.Header === 'PLAN' ||
+                        column.Header === '% (R/P)') &&
                       borderLineTop
                     }`}
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                   >
-                    {column.render("Header")}
-                    {column.id === "Indicadores" && (
+                    {column.render('Header')}
+                    {column.id === 'Indicadores' && (
                       <div
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          marginRight: "1rem",
+                          display: 'flex',
+                          alignItems: 'center',
+                          marginRight: '1rem',
                         }}
                       >
-                        {" "}
+                        {' '}
                         <GlobalFilter
                           filter={globalFilter}
                           setFilter={setGlobalFilter}
-                        />{" "}
+                        />{' '}
                         <p>{`(${data.length})`}</p>
                       </div>
                     )}
-                    {column.Header === "REAL" ||
-                    column.Header === "PLAN" ||
-                    column.Header === "% (R/P)" ||
-                    column.id === "Indicadores" ||
-                    column.Header === "" ? (
+                    {column.Header === 'REAL' ||
+                    column.Header === 'PLAN' ||
+                    column.Header === '% (R/P)' ||
+                    column.id === 'Indicadores' ||
+                    column.Header === '' ? (
                       column.isSorted ? (
                         column.isSortedDesc ? (
                           <KeyboardArrowDownIcon />
@@ -401,7 +398,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                         <KeyboardArrowDownIcon />
                       )
                     ) : (
-                      ""
+                      ''
                     )}
                   </th>
                 ))}
@@ -415,7 +412,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     );
                   })}
                 </tr>
@@ -423,7 +420,6 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
             })}
           </tbody>
         </table>
-       
       </TableContainer>
       <Grid className="dividerLine"></Grid>
       <Grid className="buttonName">
@@ -431,7 +427,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
           className={
-            "css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root navigatePage"
+            'css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root navigatePage'
           }
         >
           <NavigateBeforeIcon />
@@ -443,7 +439,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
               onClick={() => gotoPage(page)}
               disabled={page === pageIndex}
               className={
-                "btnPageNumber css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root"
+                'btnPageNumber css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root'
               }
             >
               {page + 1}
@@ -454,7 +450,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
           onClick={() => nextPage()}
           disabled={!canNextPage}
           className={
-            "css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root navigatePage"
+            'css-1cw8co2-MuiButtonBase-root-MuiPaginationItem-root navigatePage'
           }
         >
           <NavigateNextIcon />
@@ -464,134 +460,133 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
   );
 }
 
-function TablePerYear(rowsSelection) {
- 
-  const columns = React.useMemo(
+function TablePerYear({rowsSelection}) {
+  const columns = useMemo(
     () => [
       {
-        Header: "INDICADORES",
-        sticky: "left",
+        Header: 'INDICADORES',
+        sticky: 'left',
 
         columns: [
           {
-            Header: "",
-            accessor: "Indicadores",
-            sticky: "left",
+            Header: '',
+            accessor: 'Indicadores',
+            sticky: 'left',
             width: 520,
           },
         ],
       },
       {
-        Header: "TIPO",
+        Header: 'TIPO',
         columns: [
           {
-            Header: "",
-            accessor: "Tipo",
+            Header: '',
+            accessor: 'Tipo',
             width: 180,
           },
         ],
       },
       {
-        Header: "PILAR",
+        Header: 'PILAR',
         columns: [
           {
-            Header: "",
-            accessor: "Pilar",
+            Header: '',
+            accessor: 'Pilar',
             width: 180,
           },
         ],
       },
       {
-        Header: "ANUAL",
+        Header: 'ANUAL',
         columns: [
           {
-            Header: "PLAN",
-            accessor: "planannual",
+            Header: 'PLAN',
+            accessor: 'planannual',
           },
           {
-            Header: "REAL",
-            accessor: "realannual",
+            Header: 'REAL',
+            accessor: 'realannual',
           },
           {
-            Header: "% (R/P)",
-            accessor: "rpannual",
+            Header: '% (R/P)',
+            accessor: 'rpannual',
           },
         ],
       },
       {
-        Header: "1ER TRIMESTRE",
+        Header: '1ER TRIMESTRE',
         columns: [
           {
-            Header: "PLAN",
-            accessor: "plan1",
+            Header: 'PLAN',
+            accessor: 'plan1',
           },
           {
-            Header: "REAL",
-            accessor: "real1",
+            Header: 'REAL',
+            accessor: 'real1',
           },
           {
-            Header: "% (R/P)",
-            accessor: "rp1",
+            Header: '% (R/P)',
+            accessor: 'rp1',
           },
         ],
       },
       {
-        Header: "2DO TRIMESTRE",
+        Header: '2DO TRIMESTRE',
         columns: [
           {
-            Header: "PLAN",
-            accessor: "plan2",
+            Header: 'PLAN',
+            accessor: 'plan2',
           },
           {
-            Header: "REAL",
-            accessor: "real2",
+            Header: 'REAL',
+            accessor: 'real2',
           },
           {
-            Header: "% (R/P)",
-            accessor: "rp2",
+            Header: '% (R/P)',
+            accessor: 'rp2',
           },
         ],
       },
       {
-        Header: "3ER TRIMESTRE",
+        Header: '3ER TRIMESTRE',
         columns: [
           {
-            Header: "PLAN",
-            accessor: "plan3",
+            Header: 'PLAN',
+            accessor: 'plan3',
           },
           {
-            Header: "REAL",
-            accessor: "real3",
+            Header: 'REAL',
+            accessor: 'real3',
           },
           {
-            Header: "% (R/P)",
-            accessor: "rp3",
+            Header: '% (R/P)',
+            accessor: 'rp3',
           },
         ],
       },
       {
-        Header: "4TO TRIMESTRE",
+        Header: '4TO TRIMESTRE',
         columns: [
           {
-            Header: "PLAN",
-            accessor: "plan4",
+            Header: 'PLAN',
+            accessor: 'plan4',
           },
           {
-            Header: "REAL",
-            accessor: "real4",
+            Header: 'REAL',
+            accessor: 'real4',
           },
           {
-            Header: "% (R/P)",
-            accessor: "rp4",
+            Header: '% (R/P)',
+            accessor: 'rp4',
           },
         ],
       },
     ],
     []
   );
-  const [data, setData] = React.useState(() => rowsSelection.rowsSelection);
-  const [originalData] = React.useState(data);
-  const [skipPageReset, setSkipPageReset] = React.useState(false);
+  const [data, setData] = useState(rowsSelection);
+  const [originalData] = useState(data);
+  const [skipPageReset, setSkipPageReset] = useState(false);
 
   const updateMyData = (rowIndex, columnId, value) => {
     setSkipPageReset(true);
@@ -609,9 +604,14 @@ function TablePerYear(rowsSelection) {
     );
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSkipPageReset(false);
   }, [data]);
+
+  useEffect(() => {
+    setData(rowsSelection);
+  }, [rowsSelection])
+  
 
   const resetData = () => setData(originalData);
   return (
