@@ -9,27 +9,16 @@ import CustomTable from 'components/records/CustomTable';
 import TablePerYear from './TablePerYear/TablePerYear';
 
 //react
-<<<<<<< HEAD
 import { useState } from "react";
-
-=======
-import { useState, useEffect } from 'react';
-
-//records
-import { selectRows } from '../recordsGoals/RecordsGoals';
->>>>>>> 06acf4ca79cd2a47a4ee7ca5cce42dd5f568172a
 
 const GoalsTable = ({
   title,
   rows,
   columns,
   isLoading,
-  year,
   rowsSelection,
   detailsHeadquarter,
   openTable,
-  setOpenTable,
-  setRows,
 }) => {
   const actions = (title) => {
     return {

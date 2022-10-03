@@ -1,10 +1,12 @@
-import React from 'react';
-import { useRef, useState, useContext } from 'react';
-import { Typography, Button, Box } from '@mui/material';
-import { display } from '@mui/system';
-import { NavLink } from 'react-router-dom';
-import FodaContext from '../../context/FodaContext';
-import './diagnostico.css';
+import React from "react";
+import { useRef, useState, useContext } from "react";
+import { Typography, Button, Box } from "@mui/material";
+import { display } from "@mui/system";
+import { NavLink } from "react-router-dom";
+import FodaContext from "../../context/FodaContext";
+import "./diagnostico.css";
+import DialogSuccess from "components/records/DialogSuccess";
+import { useHistory } from "react-router-dom";
 
 const Diagnostico = () => {
   const [tagsFortalezas, setTagsFortalezas] = useState([]);
@@ -21,6 +23,19 @@ const Diagnostico = () => {
   const amenazasRef = useRef();
   const formRef = useRef();
 
+  const [open, setOpen] = React.useState(false);
+
+  const [yearModal, setYearModal] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  let history = useHistory ();
+  const handleClose = () => {
+    setOpen(false);
+    history.push('/diagnostico/fodaActual')
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,61 +51,74 @@ const Diagnostico = () => {
           amenazas: [...tagsAmenazas],
         },
       ]);
-
-      alert('El formulario se ha enviado');
+      handleClickOpen();
+      alert("El formulario se ha enviado");
       takeFodaToContext();
-      e.target.value = '';
-      let formulario = document.getElementById('formulario');
+      e.target.value = "";
+      let formulario = document.getElementById("formulario");
+
+      //set year for modal
+      setYearModal(anioBuscado.anio);
 
       setTagsFortalezas([]);
       setTagsOportunidades([]);
       setTagsDebilidades([]);
       setTagsAmenazas([]);
     } else {
+      handleClickOpen();
       alert(`El año ${anioBuscado.anio} ya se encuentra creado`);
+      //set year for modal
+      setYearModal(anioBuscado.anio);
     }
   };
+
+  
+
+  //Text for modal
+  const diagnosticSubtitle = `El mismo estará disponible en la pestaña F.O.D.A. ${yearModal} y podras editarlo las veces que sientas necesarias`;
+  const diagnosticTitle = "¡F.O.D.A. CREADO CON EXITO!";
+  const buttonPrimaryText = "VER F.O.D.A.";
 
   const styleLinks = ({ isActive }) =>
     isActive
       ? {
-          color: '#ffffff',
-          background: '#ea6d4f',
+          color: "#ffffff",
+          background: "#ea6d4f",
         }
       : {
-          color: '#ea6d4f',
+          color: "#ea6d4f",
         };
 
   function handleKeyDownFortalezas(e) {
-    if (e.key !== 'Enter') return;
+    if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
     setTagsFortalezas([...tagsFortalezas, value]);
-    e.target.value = '';
+    e.target.value = "";
   }
 
   function handleKeyDownOportunidades(e) {
-    if (e.key !== 'Enter') return;
+    if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
     setTagsOportunidades([...tagsOportunidades, value]);
-    e.target.value = '';
+    e.target.value = "";
   }
 
   function handleKeyDownDebilidades(e) {
-    if (e.key !== 'Enter') return;
+    if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
     setTagsDebilidades([...tagsDebilidades, value]);
-    e.target.value = '';
+    e.target.value = "";
   }
 
   function handleKeyDownAmenazas(e) {
-    if (e.key !== 'Enter') return;
+    if (e.key !== "Enter") return;
     const value = e.target.value;
     if (!value.trim()) return;
     setTagsAmenazas([...tagsAmenazas, value]);
-    e.target.value = '';
+    e.target.value = "";
   }
 
   function removeTagFortalezas(index) {
@@ -113,7 +141,7 @@ const Diagnostico = () => {
     <Box>
       <Typography
         variant="h2"
-        sx={{ color: '#27759e', fontSize: '35px', textAlign: 'center' }}
+        sx={{ color: "#27759e", fontSize: "35px", textAlign: "center" }}
       >
         DIAGNÓSTICO
       </Typography>
@@ -143,7 +171,7 @@ const Diagnostico = () => {
           VER DATA STUDIO
         </NavLink>
       </nav>
-      <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
         AÑO
       </Typography>
 
@@ -164,34 +192,34 @@ const Diagnostico = () => {
         </select>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
             }}
           >
             <Box
               sx={{
-                margin: '20px 10px 20px 10px',
-                width: '100%',
-                height: '125px',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap',
-                overflow: 'auto',
-                gap: '0.5em',
-                border: '2px solid #80c8ee',
-                backgroundColor: '#ffffff',
+                margin: "20px 10px 20px 10px",
+                width: "100%",
+                height: "125px",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                overflow: "auto",
+                gap: "0.5em",
+                border: "2px solid #80c8ee",
+                backgroundColor: "#ffffff",
               }}
               onChange={handleChange}
               name="fortalezas"
@@ -199,14 +227,14 @@ const Diagnostico = () => {
               {tagsFortalezas.map((tag, index) => (
                 <Box
                   sx={{
-                    backgroundColor: '#CFE5F1',
-                    padding: '3px 5px ',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: '5px',
+                    backgroundColor: "#CFE5F1",
+                    padding: "3px 5px ",
+                    borderRadius: "8px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "5px",
                   }}
                   key={index}
                 >
@@ -229,17 +257,17 @@ const Diagnostico = () => {
 
             <Box
               sx={{
-                margin: '20px 10px 20px 10px',
-                width: '100%',
-                height: '125px',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap',
-                overflow: 'auto',
-                gap: '0.5em',
-                border: '2px solid #b7d6a3',
-                backgroundColor: '#ffffff',
+                margin: "20px 10px 20px 10px",
+                width: "100%",
+                height: "125px",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                overflow: "auto",
+                gap: "0.5em",
+                border: "2px solid #b7d6a3",
+                backgroundColor: "#ffffff",
               }}
               onChange={handleChange}
               name="fortalezas"
@@ -247,14 +275,14 @@ const Diagnostico = () => {
               {tagsOportunidades.map((tag, index) => (
                 <Box
                   sx={{
-                    backgroundColor: '#DFE9DA',
-                    padding: '3px 5px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: '5px',
+                    backgroundColor: "#DFE9DA",
+                    padding: "3px 5px",
+                    borderRadius: "8px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "5px",
                   }}
                   key={index}
                 >
@@ -278,26 +306,26 @@ const Diagnostico = () => {
 
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
             }}
           >
             <Box
               sx={{
-                margin: '20px 10px 20px 10px',
-                width: '100%',
-                height: '125px',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap',
-                overflow: 'auto',
-                gap: '0.5em',
-                border: '2px solid #fbe0a2',
-                backgroundColor: '#ffffff',
+                margin: "20px 10px 20px 10px",
+                width: "100%",
+                height: "125px",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                overflow: "auto",
+                gap: "0.5em",
+                border: "2px solid #fbe0a2",
+                backgroundColor: "#ffffff",
               }}
               onChange={handleChange}
               name="fortalezas"
@@ -305,14 +333,14 @@ const Diagnostico = () => {
               {tagsDebilidades.map((tag, index) => (
                 <Box
                   sx={{
-                    backgroundColor: '#F4ECDA',
-                    padding: '3px 5px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: '5px',
+                    backgroundColor: "#F4ECDA",
+                    padding: "3px 5px",
+                    borderRadius: "8px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "5px",
                   }}
                   key={index}
                 >
@@ -335,17 +363,17 @@ const Diagnostico = () => {
 
             <Box
               sx={{
-                margin: '20px 10px 20px 10px',
-                width: '100%',
-                height: '125px',
-                borderRadius: '5px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                flexWrap: 'wrap',
-                overflow: 'auto',
-                gap: '0.5em',
-                border: '2px solid #f4b6a7',
-                backgroundColor: '#ffffff',
+                margin: "20px 10px 20px 10px",
+                width: "100%",
+                height: "125px",
+                borderRadius: "5px",
+                display: "flex",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
+                overflow: "auto",
+                gap: "0.5em",
+                border: "2px solid #f4b6a7",
+                backgroundColor: "#ffffff",
               }}
               onChange={handleChange}
               name="fortalezas"
@@ -353,14 +381,14 @@ const Diagnostico = () => {
               {tagsAmenazas.map((tag, index) => (
                 <Box
                   sx={{
-                    backgroundColor: '#F2DEDA',
-                    padding: '3px 5px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: '5px',
+                    backgroundColor: "#F2DEDA",
+                    padding: "3px 5px",
+                    borderRadius: "8px",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "5px",
                   }}
                   key={index}
                 >
@@ -389,6 +417,13 @@ const Diagnostico = () => {
           ></input>
         </Box>
       </form>
+      <DialogSuccess
+        open={open}
+        handleClose={handleClose}
+        title={diagnosticTitle}
+        subtitle={diagnosticSubtitle}
+        buttonPrimaryText={buttonPrimaryText}
+      />
     </Box>
   );
 };

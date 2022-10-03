@@ -11,11 +11,9 @@ import { useSticky } from 'react-table-sticky';
 import { GlobalFilter } from './GlobalFilter';
 import {
   TableContainer,
-  Paper,
   Grid,
   Button,
   Box,
-  Typography,
 } from '@mui/material';
 import { forwardRef, useEffect, useRef,  useMemo, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -24,8 +22,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import UpLoadFile, { DownLoadFile } from 'pages/Goals/recordsGoals/IconsGoals';
 import './TablePerYear.css';
-import { CSVLink } from 'react-csv';
-import Header from 'layout/Header/Header';
+import * as XLSX from 'xlsx'
 
 const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   const defaultRef = useRef();
@@ -196,7 +193,6 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
     canNextPage,
     canPreviousPage,
     gotoPage,
-    pageCount,
     state,
     pageOptions,
     setGlobalFilter,
@@ -221,6 +217,15 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
 
   const { pageIndex } = state;
   const { globalFilter } = state;
+
+    const handleOnExport = () =>{
+      var wb = XLSX.utils.book_new(),
+      ws = XLSX.utils.json_to_sheet(data);
+      
+      XLSX.utils.book_append_sheet(wb , ws , 'TECHO');
+
+      XLSX.writeFile(wb,'TECHO.xlsx');
+    }
 
   return (
     <>
@@ -310,12 +315,8 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
           </Grid>
         </Grid>
         <Box sx={{ display: 'flex', marginLeft: 2 }}>
-          <CSVLink
-            data={data}
-            filename="Techo-Metas"
-            style={{ textDecoration: 'none' }}
-          >
             <Button
+              onClick={handleOnExport}
               variant="contained"
               sx={{
                 marginRight: '1rem',
@@ -327,7 +328,6 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
             >
               DESCARGAR
             </Button>
-          </CSVLink>
           <Button
             variant="outlined"
             sx={{
@@ -585,7 +585,7 @@ function TablePerYear({rowsSelection}) {
     []
   );
   const [data, setData] = useState(rowsSelection);
-  const [originalData] = useState(data);
+ 
   const [skipPageReset, setSkipPageReset] = useState(false);
 
   const updateMyData = (rowIndex, columnId, value) => {
@@ -612,8 +612,6 @@ function TablePerYear({rowsSelection}) {
     setData(rowsSelection);
   }, [rowsSelection])
   
-
-  const resetData = () => setData(originalData);
   return (
     <Styles id="styles">
       <Table
