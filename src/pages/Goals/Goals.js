@@ -11,6 +11,8 @@ import { useState , useEffect } from "react";
 
 //Records
 import { columnsSelectYear, selectRows } from "./recordsGoals/RecordsGoals";
+
+//**** archivo de testeo para importar datos desde excel ****
 import TestLoad from "./GoalsTable/TestLoad";
 
 const Goals = () => {
@@ -97,7 +99,7 @@ const Goals = () => {
           />
         </Grid>
       </Container>
-      <TestLoad/>
+     
     </>
   );
 };
