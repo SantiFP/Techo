@@ -33,7 +33,8 @@ export const Logo = () => {
       <Box
         component='img'
         sx={{
-          height: 50,
+          //modificacion logo tamaño anterior 50
+          height: 45,
           width: 'auto',
         }}
         alt='Techo Logo'
