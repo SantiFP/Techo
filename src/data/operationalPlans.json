@@ -1,0 +1,114 @@
+{
+    "columns": [
+
+        {
+            "id": 1,
+            "field": "resultados_clave",
+            "label": "RESULTADOSCLAVE",
+            "headerName": "RESULTADOS CLAVE",
+            "width": 500,
+            "editable": true,
+            "minWidth": 170,
+            "align": "left"
+
+
+        },
+        {
+            "id": 2,
+            "field": "responsable",
+            "label": "responsable",
+            "headerName": "RESPONSABLE",
+            "width": 242,
+            "editable": true,
+            "minWidth": 170,
+            "align": "left"
+        },
+        {
+            "id": 4,
+            "field": "T1",
+            "label": "T1",
+            "editable": false,
+            "width": 50,
+            "secundary": true,
+            "align": "center"
+        },
+        {
+            "id": 5,
+            "field": "T2",
+            "label": "T2",
+            "editable": false,
+            "width": 50,
+            "secundary": true,
+            "align": "center"
+        },
+        {
+            "id": 6,
+            "field": "T3",
+            "label": "T3",
+            "editable": false,
+            "width": 50,
+            "secundary": true,
+            "align": "center"
+        },
+        {
+            "id": 7,
+            "field": "T4",
+            "label": "T4",
+            "editable": false,
+            "width": 50,
+            "secundary": true,
+            "align": "center"
+        },
+        {
+            "id": 8,
+            "field": "AÑO",
+            "label": "AÑO",
+            "editable": false,
+            "width": 60,
+            "secundary": true,
+            "align": "center"
+        }
+    ],
+    "rows": [
+        {
+            "id": 1,
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 1",
+            "responsable": "JUAN PEREZ",
+            "T1": 4,
+            "T2": 4,
+            "T3": 4,
+            "T4": 4,
+            "AÑO": 2022
+        },
+        {
+            "id": 2,
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 2",
+            "responsable": "CARLOS JUAREZ",
+            "T1": 4,
+            "T2": 4,
+            "T3": 4,
+            "T4": 4,
+            "AÑO": 2022
+        },
+        {
+            "id": 3,
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 3",
+            "responsable": "MIRTA MARTINEZ",
+            "T1": 4,
+            "T2": 4,
+            "T3": 4,
+            "T4": 4,
+            "AÑO": 2022
+        },
+        {
+            "id": 4,
+            "resultados_clave": "CREAR PROTOTIPOS EN PAPEL 4",
+            "responsable": "LUCIA GOMEZ",
+            "T1": 4,
+            "T2": 4,
+            "T3": 4,
+            "T4": 4,
+            "AÑO": 2022
+        }
+    ]
+}
