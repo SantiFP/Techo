@@ -8,7 +8,7 @@ import { FodaContextProvider } from 'context/FodaContext'
 
 export default function App() {
   return (
-
+  
     <UserContextProvider>
       <FodaContextProvider>
         <Theme>
