@@ -62,8 +62,8 @@ const columnGroupingModel = [
   {
     groupId: 'REALIZAR DISEÑO DEL SISTEMA DE PLANIFICACIÓN',
     children: [
-      { field: 'RESULTADOS CLAVE' },
-      { field: 'RESPONSABLE' },
+      { field: 'resultados_clave' },
+      { field: 'responsable' },
       {
         groupId: 'EVALUACIÓN',
         children: [
@@ -79,7 +79,7 @@ const columnGroupingModel = [
   },
 ];
 
-export default function BasicGroupingDemo() {
+export default function TableOperationalPlans() {
   const [isOpenModal, setOpenModal] = useState(false);
   const [isEditButton, setEditButton] = useState(false);
   const [rows, setRows] = useState(operationalPlans.rows);
@@ -113,13 +113,34 @@ export default function BasicGroupingDemo() {
     });
 
   };
-
   const handleSubmit = () => {
 
     setRows([...rows,modalData]);
     handleCloseModal();
 
   }
+  const handleAdd = (e) => {
+    setBody([
+      ...body,
+      <ModalBody titleModal={titleModal} 
+      handleChange={handleChange}
+      crearObjetivo={crearObjetivo}
+    isEditButton={isEditButton}
+    handleCloseModal={handleCloseModal}
+    handleAdd={handleAdd}
+    handleSubmit={handleSubmit} />,
+    ]);
+  };
+
+  const [body, setBody] = useState([
+    <ModalBody crearObjetivo={crearObjetivo}
+    titleModal={titleModal}
+    isEditButton={isEditButton}
+    handleChange={handleChange}
+    handleCloseModal={handleCloseModal}
+    handleAdd={handleAdd}
+    handleSubmit={handleSubmit} />,
+  ]);
 
  useEffect(() => {
     console.log(modalData);
@@ -153,34 +174,10 @@ export default function BasicGroupingDemo() {
             titleModal={titleModal}
             isEditButton={isEditButton}
             handleChange={handleChange}
+            handleCloseModal={handleCloseModal}
+            handleAdd={handleAdd}
+            handleSubmit={handleSubmit}
           />
-
-          <div align="center">
-            <Button
-              variant="contained"
-              onClick={handleCloseModal}
-              disableElevation
-              sx={{
-                mr: 4,
-                backgroundColor: 'white',
-                color: '#0092DD',
-                border: `1px solid #0092DD`,
-              }}
-              //
-              colSpan={12}
-            >
-              CANCELAR
-            </Button>
-            <Button
-              variant="contained"
-              onClick={handleSubmit}
-              disableElevation
-              sx={{}}
-              colSpan={12}
-            >
-              CONFIRMAR
-            </Button>
-          </div>
         </Box>
       </Modal>
       <DataGrid
@@ -215,7 +212,6 @@ export default function BasicGroupingDemo() {
             backgroundColor: '#0092DD',
             color: '#f0f0f0',
             fontSize: '',
-            // height: '0px',
             lineHeight: 'px',
           },
         }}
@@ -228,6 +224,8 @@ export default function BasicGroupingDemo() {
         headerHeight={35}
         rowHeight={45}
         autoHeight={true}
+        disableColumnMenu
+        isCellEditable={'false'}        
       />
     </Stack>
   );

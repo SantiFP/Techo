@@ -26,18 +26,21 @@ export const style = {
 const styleLinks = ({ isActive }) =>
   isActive
     ? {
-        color: '#ffffff',
-        background: '#ea6d4f',
-      }
+      color: '#ffffff',
+      background: '#ea6d4f',
+    }
     : {
-        color: '#ea6d4f',
-      };
+      color: '#ea6d4f',
+    };
 
 export const ModalBody = ({
   crearObjetivo,
   titleModal,
   isEditButton,
   handleChange,
+  handleCloseModal,
+  handleAdd,
+  handleSubmit
 }) => {
   return (
     <div>
@@ -296,8 +299,25 @@ export const ModalBody = ({
         />
       </Toolbar>
       <hr />
-      {!isEditButton && <Button>Agregar otro resultado</Button>}
-      <br />
+      <div align='center'>
+        <Button
+          variant='contained'
+          onClick={handleCloseModal}
+          disableElevation
+          sx={{ mr: 4, backgroundColor: 'white', color: '#0092DD', border: `1px solid #0092DD` }}
+          colSpan={12}
+        >
+          CANCELAR
+        </Button>
+        <Button
+          variant='contained'
+          onClick={handleSubmit}
+          disableElevation
+          colSpan={12}
+        >
+          CONFIRMAR
+        </Button>
+      </div>
     </div>
   );
 };

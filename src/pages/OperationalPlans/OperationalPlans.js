@@ -1,12 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import PageTitle from 'components/PageTitle'
 import { useState } from 'react'
-import BasicGroupingDemo from './Table2';
 import SearchStack from '../../components/SearchStack';
 import { Container } from '@mui/system';
-import { Modal, Box, Typography, Toolbar, Button } from '@mui/material';
+import { Modal, Box} from '@mui/material';
 import { ModalBody, style } from './ModalBody';
-import Example from './Carrousel'
+import TableOperationalPlans from './TableOperationalPlans';
 
 const title = "Planes Operativos"
 const crearObjetivo = true 
@@ -24,21 +23,10 @@ const styleLinks = ({ isActive }) =>
 
 const OperationalPlans = () => {
     const [isOpenModal, setOpenModal] = useState(false)
-    const [isOpenModalDetails, setOpenModalDetails] = useState(false)
-    const [indicatorDetails, setIndicatorDetails] = useState({})
 
 
     const handleOpenModal = () =>setOpenModal(true)
     const handleCloseModal = () => setOpenModal(false)
-
-    const handleOpenModalDetails = (indicator) => {
-        setIndicatorDetails(indicator)
-        setOpenModalDetails(true)
-    }
-    const handleCloseModalDetails = () => {
-        setIndicatorDetails({})
-        setOpenModalDetails(false)
-    }
 
     return (
         <>
@@ -75,9 +63,9 @@ const OperationalPlans = () => {
                     title="Objetivos en total"
                     searchPlaceholder="Buscar objetivo"
                 />
-                <BasicGroupingDemo/>
-                <BasicGroupingDemo />
-                <Example/>
+                <TableOperationalPlans/>
+                <br/><br/>
+                <TableOperationalPlans />
             </Container>
             <Modal
                 open={isOpenModal}
@@ -86,30 +74,7 @@ const OperationalPlans = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <ModalBody crearObjetivo= {crearObjetivo}  titleModal={titleModal}/>
-
-                    <div align='center'>
-                        <Button
-                            variant='contained'
-                            onClick={handleCloseModal}
-                            disableElevation
-                            sx={{ mr: 4, backgroundColor: 'white', color: '#0092DD', border: `1px solid #0092DD` }}
-                            // 
-                            colSpan={12}
-                        >
-                            CANCELAR
-                        </Button>
-                        <Button
-                            variant='contained'
-                            // onClick={}
-                            disableElevation
-                            sx={{}}
-                            // 
-                            colSpan={12}
-                        >
-                            CONFIRMAR
-                        </Button>
-                    </div>
+                    <ModalBody crearObjetivo= {crearObjetivo}  titleModal={titleModal} handleCloseModal={handleCloseModal}/>
                 </Box>
             </Modal>
         </>
