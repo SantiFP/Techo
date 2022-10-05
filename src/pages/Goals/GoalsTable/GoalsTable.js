@@ -59,7 +59,7 @@ const GoalsTable = ({
     setIndicatorDetails({});
     setOpenModalDetails(false);
   };
-
+  
   return (
     <>
       <DialogDetails
@@ -80,7 +80,7 @@ const GoalsTable = ({
             isDisableSelectionOnClick={true}
           />
         ) : (
-          <TablePerYear rowsSelection={rowsSelection} />
+          <TablePerYear rowsSelection={rowsSelection}/>
         )}
       </Container>
     </>

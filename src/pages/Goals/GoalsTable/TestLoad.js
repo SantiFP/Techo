@@ -1,6 +1,7 @@
 import { Table } from '@mui/material';
 import { useState } from 'react';
 import * as XLSX from 'xlsx'
+import TablePerYear from './TablePerYear/TablePerYear';
 
 const TestLoad = () =>{
     const [items, setItems] = useState([]);
@@ -30,7 +31,6 @@ const TestLoad = () =>{
             
         });
    
-
     promise.then ((d) => {
         console.log(d);
         setItems(d)
@@ -43,28 +43,7 @@ const TestLoad = () =>{
             readExcel (file);
             }}  
             />
-            <div>
-                <table>
-                    <thead>
-                    <tr>
-                    <th>
-                        id
-                    </th>
-                    <th>
-                        Indicadores
-                    </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {items.map((d) => (
-                            <tr key={d.id}>
-                                <th>{d.id}</th>
-                                <td>{d.Tipo}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <TablePerYear rowsSelection={items} readExcel={readExcel}/>
         </>
     )
 }

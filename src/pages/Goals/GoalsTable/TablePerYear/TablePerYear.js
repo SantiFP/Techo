@@ -17,6 +17,8 @@ import {
 } from '@mui/material';
 import { forwardRef, useEffect, useRef,  useMemo, useState } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -42,6 +44,7 @@ const IndeterminateCheckbox = forwardRef(({ indeterminate, ...rest }, ref) => {
   );
 });
 
+
 const Styles = styled.div`
   .borderLineTop {
     border-top: 2px solid white;
@@ -59,7 +62,7 @@ const Styles = styled.div`
     padding-left: 10px;
     display: flex !important;
     align-items: center;
-    padding-right: 4rem;
+    
     text-align: left;
     border-color: white;
   }
@@ -82,7 +85,7 @@ const Styles = styled.div`
     }
 
     tr td:first-child {
-      background-color: #e5e5e5;
+     
       input {
         width: 380px;
       }
@@ -249,7 +252,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 type="checkbox"
                 onClick={() =>
                   allColumns.forEach(
-                    (c) => c.parent.Header === 'ANUAL' && c.toggleHidden()
+                    (c) => c.parent.Header === 'Anual' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -264,7 +267,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === '1ER TRIMESTRE' && c.toggleHidden()
+                      c.parent.Header === '1er trimestre' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -278,7 +281,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === '2DO TRIMESTRE' && c.toggleHidden()
+                      c.parent.Header === '2do trimestre' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -292,7 +295,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === '3ER TRIMESTRE' && c.toggleHidden()
+                      c.parent.Header === '3er trimestre' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -306,7 +309,7 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 onClick={() =>
                   allColumns.forEach(
                     (c) =>
-                      c.parent.Header === '4TO TRIMESTRE' && c.toggleHidden()
+                      c.parent.Header === '4to trimestre' && c.toggleHidden()
                   )
                 }
               ></input>
@@ -359,8 +362,8 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                 {headerGroup.headers.map((column) => (
                   <th
                     className={`titleHeaderGroup ${
-                      (column.Header === 'REAL' ||
-                        column.Header === 'PLAN' ||
+                      (column.Header === 'Real' ||
+                        column.Header === 'Plan' ||
                         column.Header === '% (R/P)') &&
                       borderLineTop
                     }`}
@@ -383,19 +386,19 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
                         <p>{`(${data.length})`}</p>
                       </div>
                     )}
-                    {column.Header === 'REAL' ||
-                    column.Header === 'PLAN' ||
+                    {column.Header === 'Real' ||
+                    column.Header === 'Plan' ||
                     column.Header === '% (R/P)' ||
                     column.id === 'Indicadores' ||
                     column.Header === '' ? (
                       column.isSorted ? (
                         column.isSortedDesc ? (
-                          <KeyboardArrowDownIcon />
+                          <span className='circle-sort'>   <ArrowDownwardIcon className='visible' id="color-arrow" fontSize='medium' /></span>
                         ) : (
-                          <KeyboardArrowUpIcon />
+                          <span className='circle-sort'>   <ArrowUpwardIcon className='visible' fontSize='medium' id="color-arrow"/></span>
                         )
                       ) : (
-                        <KeyboardArrowDownIcon />
+                        <span className='circle-sort'>  <ArrowDownwardIcon className='visible' fontSize='medium' /></span>
                       )
                     ) : (
                       ''
@@ -409,10 +412,10 @@ function Table({ columns, data, updateMyData, skipPageReset }) {
             {page.map((row, i) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr  {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                      <td className={i%2==0 ? "par" : "impar"} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     );
                   })}
                 </tr>
@@ -464,7 +467,7 @@ function TablePerYear({rowsSelection}) {
   const columns = useMemo(
     () => [
       {
-        Header: 'INDICADORES',
+        Header: 'Indicadores',
         sticky: 'left',
 
         columns: [
@@ -477,7 +480,7 @@ function TablePerYear({rowsSelection}) {
         ],
       },
       {
-        Header: 'TIPO',
+        Header: 'Tipo',
         columns: [
           {
             Header: '',
@@ -487,7 +490,7 @@ function TablePerYear({rowsSelection}) {
         ],
       },
       {
-        Header: 'PILAR',
+        Header: 'Pilar',
         columns: [
           {
             Header: '',
@@ -497,48 +500,52 @@ function TablePerYear({rowsSelection}) {
         ],
       },
       {
-        Header: 'ANUAL',
+        Header: 'Anual',
         columns: [
           {
-            Header: 'PLAN',
-            accessor: 'planannual',
+            Header: 'Plan',
+            accessor: 'planannual',   
           },
           {
-            Header: 'REAL',
-            accessor: 'realannual',
+            Header: 'Real',
+            accessor: 'realannual', 
           },
           {
             Header: '% (R/P)',
             accessor: 'rpannual',
+           
           },
         ],
       },
       {
-        Header: '1ER TRIMESTRE',
+        Header: '1er trimestre',
         columns: [
           {
-            Header: 'PLAN',
+            Header: 'Plan',
             accessor: 'plan1',
+            
           },
           {
-            Header: 'REAL',
+            Header: 'Real',
             accessor: 'real1',
+            
           },
           {
             Header: '% (R/P)',
             accessor: 'rp1',
+           
           },
         ],
       },
       {
-        Header: '2DO TRIMESTRE',
+        Header: '2do trimestre',
         columns: [
           {
-            Header: 'PLAN',
+            Header: 'Plan',
             accessor: 'plan2',
           },
           {
-            Header: 'REAL',
+            Header: 'Real',
             accessor: 'real2',
           },
           {
@@ -548,14 +555,14 @@ function TablePerYear({rowsSelection}) {
         ],
       },
       {
-        Header: '3ER TRIMESTRE',
+        Header: '3er trimestre',
         columns: [
           {
-            Header: 'PLAN',
+            Header: 'Plan',
             accessor: 'plan3',
           },
           {
-            Header: 'REAL',
+            Header: 'Real',
             accessor: 'real3',
           },
           {
@@ -565,14 +572,14 @@ function TablePerYear({rowsSelection}) {
         ],
       },
       {
-        Header: '4TO TRIMESTRE',
+        Header: '4to trimestre',
         columns: [
           {
-            Header: 'PLAN',
+            Header: 'Plan',
             accessor: 'plan4',
           },
           {
-            Header: 'REAL',
+            Header: 'Real',
             accessor: 'real4',
           },
           {
