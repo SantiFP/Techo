@@ -8,7 +8,6 @@ import operationalPlans from '../../data/operationalPlans';
 const crearObjetivo = true;
 
 const rows = operationalPlans.rows;
-console.log('rows', rows[0].RESPONSABLE);
 
 export const style = {
   position: 'absolute',

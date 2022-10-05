@@ -224,8 +224,7 @@ export default function TableOperationalPlans() {
         headerHeight={35}
         rowHeight={45}
         autoHeight={true}
-        disableColumnMenu
-        isCellEditable={'false'}        
+        disableColumnMenu 
       />
     </Stack>
   );
