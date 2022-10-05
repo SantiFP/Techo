@@ -14,6 +14,7 @@ import Diagnostico from 'pages/DiagnosticsPage/Diagnostico'
 import FodaActual from 'components/FodaActual'
 import VerFodaAnterior from 'components/VerFodaAnterior'
 import DataStudio from 'components/DataStudio'
+import OperationalPlans from 'pages/OperationalPlans/OperationalPlans'
 import Goals from 'pages/Goals/Goals'
 
 export default function Routing () {
@@ -65,6 +66,9 @@ export default function Routing () {
       </PrivateRoute>
       <PrivateRoute exact path='/diagnostico/dataStudio'>
         <DataStudio />
+      </PrivateRoute>
+      <PrivateRoute exact path='/operational-plans'>
+        <OperationalPlans />
       </PrivateRoute>
       <Route path='*'>
         <NoMatchRoute />

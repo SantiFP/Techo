@@ -92,7 +92,7 @@ export default function CustomDataGrid({ title, rows, columns, isLoading }) {
 
       <Container maxWidth={false} sx={{ height: 640, }}>
 
-        <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={5} hasCheckbox={false} isDisableSelectionOnClick={true} />
+        <CustomTable handleOpenModalDetails={handleOpenModalDetails} isLoading={isLoading} rows={rows} headers={headers} pageSize={4} hasCheckbox={false} isDisableSelectionOnClick={true} />
 
       </Container>
     </>

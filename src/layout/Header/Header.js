@@ -27,7 +27,7 @@ export const Logo = () => {
   return (
     <Link
       component={RouterLink}
-      style={{ color: 'white', textDecoration: 'none', backgroundColor: '#333', height: '115px', width: '245px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      style={{ color: 'white', textDecoration: 'none', backgroundColor: '#333', height: '90px', width: '245px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       to='/'
     >
       <Box
@@ -127,7 +127,6 @@ const menu = [
 const buttonStyles = (index, selectedIndex) => {
   return {
     position: 'relative',
-    //modif tipografia navbar
     fontSize: '16px',
     fontWeight: 'bold',
     lineHeight: 1.2,

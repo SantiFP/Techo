@@ -3,7 +3,7 @@ import { alpha, InputBase, styled} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 // SEARCH INPUT
-const Search = styled('div')(({ theme }) => ({
+export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     border: `1px solid ${theme.palette.primary.main}`,
     borderRadius: 10,
@@ -18,7 +18,7 @@ const Search = styled('div')(({ theme }) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+export const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
