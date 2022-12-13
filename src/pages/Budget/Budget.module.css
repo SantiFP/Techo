@@ -1,0 +1,73 @@
+.table-margin {
+  margin-right: 2rem;
+}
+
+.navlinks {
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 1.5rem;
+  font-weight: bold;
+}
+.navlinks {
+  text-decoration: none;
+  font-size: 16px;
+  margin-right: 1.5rem;
+  font-weight: bold;
+}
+
+.navLinksActive {
+  color: #ffffff;
+  background-color: #ea6d4f;
+  padding: 0.2rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.navLinksInactive {
+  color: #ea6d4f;
+  background-color: inherit;
+  padding: 0.2rem 0rem;
+}
+
+.buttonBlue {
+  display: flex;
+  flex-direction: flex-row;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  margin-right: 1rem;
+  background-color: #0092dd;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border: #0092dd solid 3px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.buttonWhite{
+    display: flex;
+    flex-direction: flex-row;
+    justify-content: center;
+    color: #0092dd;
+    font-weight: 500;
+    background-color: white;
+    width: fit-content;
+    padding: 0.5rem 1.5rem;
+    border: #0092dd solid 3px;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.buttonWhite:hover{
+  background-color: rgb(249, 243, 243);
+}
+
+.buttonBlue:hover{
+  background-color: #0582c0;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -0.5rem;
+}
+

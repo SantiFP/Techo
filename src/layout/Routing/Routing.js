@@ -16,6 +16,7 @@ import VerFodaAnterior from 'components/VerFodaAnterior'
 import DataStudio from 'components/DataStudio'
 import OperationalPlans from 'pages/OperationalPlans/OperationalPlans'
 import Goals from 'pages/Goals/Goals'
+import Budget from 'pages/Budget/Budget'
 
 export default function Routing () {
   return (
@@ -54,6 +55,9 @@ export default function Routing () {
       </PrivateRoute>
       <PrivateRoute exact path='/diagnostico'>
         <Diagnostico />
+      </PrivateRoute>
+      <PrivateRoute exact path='/budget'>
+        <Budget />
       </PrivateRoute>
       <PrivateRoute exact path='/goals'>
         <Goals/>
