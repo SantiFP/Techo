@@ -1,45 +1,12 @@
-import { DataGrid } from "@mui/x-data-grid";
-import operationalPlans from "../../../data/operationalPlans";
+import CustomTableBudget from "pages/Budget/Table/CustomTableBudget";
+import Numbers from "../../../data/budget.json";
 
-const columns = [
-    {
-      field: 'first',
-      headerClassName: 'super-app-theme--header',
-      headerAlign: 'center',
-    },
-    {
-      field: 'last',
-      headerClassName: 'super-app-theme--header',
-      headerAlign: 'center',
-    },
-  ];
+const columns = Numbers.columns;
 
-const rows =  [
-    {
-      id: 1,
-      first: 'TOTAL DE INGRESOS',
-      age: 20,
-    },
-    {
-        id: 1,
-        last: 'TOTAL DE EGRESOS',
-        age: 20,
-      },
-  ]
+const rows = Numbers.rows;
+
 const Table = () => {
-  return (
-    <DataGrid
-    
-    columns={columns}
-    rows={rows}
-    sx={{ m: 2 }}
-      hideFooter
-      headerHeight={35}
-      rowHeight={45}
-      autoHeight={true}
-      disableColumnMenu
-    />
-  );
+  return <CustomTableBudget columns={columns} rows={rows} />;
 };
 
 export default Table;

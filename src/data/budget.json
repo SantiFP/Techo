@@ -1,0 +1,138 @@
+{
+  "columns": [
+    {
+      "id": 0,
+      "field": "res",
+      "headerName": "RESULTADOS",
+      "width": 300
+    },
+    {
+      "id": 1,
+      "field": "jan",
+      "headerName": "ENE"
+    },
+    {
+      "id": 2,
+      "field": "feb",
+      "headerName": "FEB"
+    },
+    {
+      "id": 3,
+      "field": "mar",
+      "headerName": "MAR"
+    },
+    {
+      "id": 4,
+      "field": "apr",
+      "headerName": "ABR"
+    },
+    {
+      "id": 5,
+      "field": "may",
+      "headerName": "May"
+    },
+    {
+      "id": 6,
+      "field": "jun",
+      "headerName": "JUN"
+    },
+    {
+      "id": 7,
+      "field": "jul",
+      "headerName": "JUL"
+    },
+    {
+      "id": 8,
+      "field": "aug",
+      "headerName": "AGO"
+    },
+    {
+      "id": 9,
+      "field": "sept",
+      "headerName": "SET"
+    },
+    {
+      "id": 10,
+      "field": "oct",
+      "headerName": "OCT"
+    },
+    {
+      "id": 11,
+      "field": "nov",
+      "headerName": "NOV"
+    },
+    {
+      "id": 12,
+      "field": "dec",
+      "headerName": "DEC"
+    }
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "res": "TOTAL DE INGRESOS",
+      "jan": " 1.000.000 ",
+      "feb": " 1.000.000 ",
+      "mar": " 1.000.000 ",
+      "apr": " 1.000.000 ",
+      "may": " 1.000.000 ",
+      "jun": " 1.000.000 ",
+      "jul": " 1.000.000 ",
+      "aug": " 1.000.000 ",
+      "sept": "1.000.000 ",
+      "oct": " 1.000.000 ",
+      "nov": " 1.000.000 ",
+      "dec": " 1.000.000 "
+    },
+    {
+      "id": 2,
+      "res": "TOTAL DE EGRESOS",
+
+      "jan": " 1.000.000 ",
+      "feb": " 1.000.000 ",
+      "mar": " 1.000.000 ",
+      "apr": " 1.000.000 ",
+      "may": " 1.000.000 ",
+      "jun": " 1.000.000 ",
+      "jul": " 1.000.000 ",
+      "aug": " 1.000.000 ",
+      "sept": "1.000.000 ",
+      "oct": " 1.000.000 ",
+      "nov": " 1.000.000 ",
+      "dec": " 1.000.000 "
+    },
+    {
+      "id": 3,
+      "res": "SALDO",
+
+      "jan": " 1.000.000 ",
+      "feb": " 1.000.000 ",
+      "mar": " 1.000.000 ",
+      "apr": " 1.000.000 ",
+      "may": " 1.000.000 ",
+      "jun": " 1.000.000 ",
+      "jul": " 1.000.000 ",
+      "aug": " 1.000.000 ",
+      "sept": "1.000.000 ",
+      "oct": " 1.000.000 ",
+      "nov": " 1.000.000 ",
+      "dec": " 1.000.000 "
+    },
+    {
+      "id": 4,
+      "res": "SALDO ACUMULADO",
+      "jan": " 1.000.000 ",
+      "feb": " 1.000.000 ",
+      "mar": " 1.000.000 ",
+      "apr": " 1.000.000 ",
+      "may": " 1.000.000 ",
+      "jun": " 1.000.000 ",
+      "jul": " 1.000.000 ",
+      "aug": " 1.000.000 ",
+      "sept": "1.000.000 ",
+      "oct": " 1.000.000 ",
+      "nov": " 1.000.000 ",
+      "dec": " 1.000.000 "
+    }
+  ]
+}

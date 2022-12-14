@@ -78,7 +78,9 @@ const Budget = () => {
         <Buttons onShowModal={showModalHandler} />
       </Box>
       {showModal && <Modal onClose={hideModalHandler} />}
-      <Table/>
+      <div className={Styles.tableContainer}>
+        <Table />
+      </div>
     </>
   );
 };
