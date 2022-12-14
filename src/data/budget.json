@@ -9,7 +9,8 @@
     {
       "id": 1,
       "field": "jan",
-      "headerName": "ENE"
+      "headerName": "ENE",
+      "textAlign": "center"
     },
     {
       "id": 2,
@@ -87,7 +88,6 @@
     {
       "id": 2,
       "res": "TOTAL DE EGRESOS",
-
       "jan": " 1.000.000 ",
       "feb": " 1.000.000 ",
       "mar": " 1.000.000 ",
@@ -104,7 +104,6 @@
     {
       "id": 3,
       "res": "SALDO",
-
       "jan": " 1.000.000 ",
       "feb": " 1.000.000 ",
       "mar": " 1.000.000 ",

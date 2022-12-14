@@ -6,6 +6,7 @@ import React from "react";
 const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   border: 0,
   color: "rgba(0,0,0,.85)",
+  fontWeight: "600",
   fontFamily: [
     "-apple-system",
     "BlinkMacSystemFont",
@@ -58,7 +59,6 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
   "& .MuiDataGrid-row": {
     maxHeight: "inherit !important",
     minHeight: "inherit !important",
-    // height: 'auto',
     height: "100%",
     cursor: "pointer",
   },
@@ -67,6 +67,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme }) => ({
     minHeight: "inherit !important",
     padding: 12,
     whiteSpace: "normal",
+    textAlign: "center"
   },
   [`& .${gridClasses.row}.even`]: {
     backgroundColor: "#DBD5D5 ",
