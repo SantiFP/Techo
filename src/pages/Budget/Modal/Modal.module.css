@@ -7,6 +7,30 @@
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.75);
 }
+.fileInput::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+.fileInput {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.none {
+  display: none;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
 
 .modal {
   position: fixed;
@@ -63,16 +87,27 @@
 }
 
 .drag {
-  height: 5rem;
-  width: 80%;
-  border: #0092dd 3px dashed;
+  position: relative;
+  height: 110px;
+  border: 2px dashed #0092dd;
   border-radius: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 80%;
+  cursor: pointer;
+}
+
+.drag:hover {
+  border: 2px dashed #6dbce4;
+}
+
+.fileImg {
+  text-align: center;
+  margin-top: -16%;
 }
 
 .modalButton {
+  display: inline-block;
   background-color: #0092dd;
   color: white;
   padding: 0.8rem 1.5rem;
