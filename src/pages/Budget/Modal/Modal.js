@@ -15,6 +15,7 @@ const ModalOverlay = (props) => {
   const onLoad = (e) => {
     const files = e.target.files;
     let text = "";
+    console.log(files);
     if (files.length !== 0) {
       for (let i = 0; i < files.length; i++) {
         text += `${files[i].name}
@@ -58,7 +59,7 @@ const ModalOverlay = (props) => {
           ¿Necesitas descargar la plantilla de excel?
         </p>
 
-        <div className={Styles.buttonWhite}>
+        <div onClick={props.onGetExcel} className={Styles.buttonWhite}>
           <span>DESCARGAR</span>
         </div>
       </div>
@@ -68,11 +69,11 @@ const ModalOverlay = (props) => {
 
 const portalElement = document.getElementById("overlays");
 
-const Modal = ({ onClose }) => {
+const Modal = ({ onClose,onDownloadExcel }) => {
   return (
     <>
       {ReactDOM.createPortal(<Backdrop onClick={onClose} />, portalElement)}
-      {ReactDOM.createPortal(<ModalOverlay onClick={onClose} />, portalElement)}
+      {ReactDOM.createPortal(<ModalOverlay onGetExcel={onDownloadExcel} onClick={onClose} />, portalElement)}
     </>
   );
 };

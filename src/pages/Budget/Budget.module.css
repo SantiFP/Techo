@@ -21,7 +21,7 @@
   border-radius: 0.5rem;
 }
 
-.tableContainer{
+.tableContainer {
   margin-top: 3rem;
 }
 
@@ -33,7 +33,6 @@
 
 .buttonBlue {
   display: flex;
-  flex-direction: flex-row;
   justify-content: center;
   color: white;
   font-weight: 500;
@@ -41,36 +40,35 @@
   background-color: #0092dd;
   width: fit-content;
   padding: 0.5rem 1rem;
-  border: #0092dd solid 3px;
+  border: #0092dd solid 2px;
   border-radius: 0.5rem;
   cursor: pointer;
 }
 
-.buttonWhite{
-    display: flex;
-    flex-direction: flex-row;
-    justify-content: center;
-    color: #0092dd;
-    font-weight: 500;
-    background-color: white;
-    width: fit-content;
-    padding: 0.5rem 1.5rem;
-    border: #0092dd solid 3px;
-    border-radius: 0.5rem;
-    cursor: pointer;
+.buttonWhite {
+  display: flex;
+  justify-content: center;
+  color: #0092dd;
+  font-weight: 500;
+  background-color: white;
+  width: fit-content;
+  padding: 0.5rem 1.5rem;
+  border: #0092dd solid 2px;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
-.buttonWhite:hover{
-  background-color: rgb(249, 243, 243);
+.buttonWhite:hover {
+  background-color: rgb(255, 238, 238);
 }
 
-.buttonBlue:hover{
+.buttonBlue:hover {
+  border: #0582c0 solid 2px;
   background-color: #0582c0;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: row;
-    margin-bottom: -0.5rem;
+.buttons {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -0.5rem;
 }
-

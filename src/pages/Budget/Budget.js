@@ -6,6 +6,8 @@ import Nav from "./Nav/Nav";
 import Modal from "./Modal/Modal";
 import Buttons from "./Nav/Buttons";
 import Table from "./Table/Table";
+import * as XLSX from "xlsx";
+import Numbers from "../../data/budget.json";
 
 const Budget = () => {
   const years = [2018, 2019, 2020, 2021];
@@ -28,6 +30,13 @@ const Budget = () => {
 
   const onYearChange = (e) => {
     setYear(e.target.value);
+  };
+
+  const handleOnExport = () => {
+    let wb = XLSX.utils.book_new();
+    let ws = XLSX.utils.json_to_sheet(Numbers.rows);
+    XLSX.utils.book_append_sheet(wb,ws,'budgetFile');
+    XLSX.writeFile(wb, 'budget.xlsx')
   };
 
   return (
@@ -75,9 +84,9 @@ const Budget = () => {
         }}
       >
         <Nav />
-        <Buttons onShowModal={showModalHandler} />
+        <Buttons onDownloadExcel={handleOnExport} onShowModal={showModalHandler} />
       </Box>
-      {showModal && <Modal onClose={hideModalHandler} />}
+      {showModal && <Modal onDownloadExcel={handleOnExport} onClose={hideModalHandler} />}
       <div className={Styles.tableContainer}>
         <Table />
       </div>
